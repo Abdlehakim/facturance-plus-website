@@ -32,6 +32,9 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+# The committed template carries no values, only the variable names and the
+# intended production hosts. Every real env file above stays ignored.
+!.env.example
 
 # vercel
 .vercel

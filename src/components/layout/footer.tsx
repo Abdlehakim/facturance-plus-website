@@ -3,10 +3,13 @@
 import Link from "next/link";
 import { ArrowRight, Mail } from "lucide-react";
 import { useTranslation } from "@/i18n/useTranslation";
+import { CLIENT_LOGIN_URL, CLIENT_SIGNUP_URL } from "@/lib/urls";
 
+// `external` marks the entries that leave facturance.com for the client
+// application, which is another origin in production.
 const productLinks = [
-  { href: "/pricing", labelKey: "pricing" },
-  { href: "/login", labelKey: "login" },
+  { href: "/pricing", labelKey: "pricing", external: false },
+  { href: CLIENT_LOGIN_URL, labelKey: "login", external: true },
 ] as const;
 
 const companyLinks = [
@@ -41,8 +44,8 @@ export function Footer() {
               {t.footer.description}
             </p>
 
-            <Link
-              href="/register"
+            <a
+              href={CLIENT_SIGNUP_URL}
               className="btn btn-primary btn-md btn-full mt-7 sm:w-auto"
             >
               {t.common.startFree}
@@ -52,7 +55,7 @@ export function Footer() {
                 className="shrink-0"
                 aria-hidden="true"
               />
-            </Link>
+            </a>
           </div>
 
           <div className="min-w-0">
@@ -61,15 +64,25 @@ export function Footer() {
             </h3>
 
             <nav className="mt-5 grid gap-3" aria-label={t.footer.product}>
-              {productLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="w-fit text-body-sm font-medium text-zinc-600 transition hover:text-brand-primary"
-                >
-                  {t.common[link.labelKey]}
-                </Link>
-              ))}
+              {productLinks.map((link) =>
+                link.external ? (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    className="w-fit text-body-sm font-medium text-zinc-600 transition hover:text-brand-primary"
+                  >
+                    {t.common[link.labelKey]}
+                  </a>
+                ) : (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className="w-fit text-body-sm font-medium text-zinc-600 transition hover:text-brand-primary"
+                  >
+                    {t.common[link.labelKey]}
+                  </Link>
+                ),
+              )}
             </nav>
           </div>
 
@@ -130,9 +143,12 @@ export function Footer() {
             <Link href="/contact" className="transition hover:text-zinc-950">
               {t.common.contact}
             </Link>
-            <Link href="/login" className="transition hover:text-zinc-950">
+            <a
+              href={CLIENT_LOGIN_URL}
+              className="transition hover:text-zinc-950"
+            >
               {t.common.login}
-            </Link>
+            </a>
           </nav>
         </div>
       </div>

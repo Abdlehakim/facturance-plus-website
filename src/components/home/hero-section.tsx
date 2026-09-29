@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, CheckCircle2, Cloud } from "lucide-react";
 import { useTranslation } from "@/i18n/useTranslation";
+import { CLIENT_SIGNUP_URL } from "@/lib/urls";
 
 import heroDeviceMockup from "../../../public/images/hero-device-mockup.png";
 
@@ -59,13 +60,13 @@ export function HeroSection() {
 
           {/* buttons */}
           <div className="mt-7 flex w-full max-w-105 flex-col gap-3 sm:w-auto sm:max-w-none sm:flex-row sm:justify-center sm:gap-4 lg:justify-start">
-            <Link
-              href="/register"
+            <a
+              href={CLIENT_SIGNUP_URL}
               className="btn btn-primary btn-lg btn-full sm:w-auto"
             >
               {t.home.hero.primaryCta}
               <ArrowRight size={20} strokeWidth={2.7} className="shrink-0" />
-            </Link>
+            </a>
 
             <Link
               href="/pricing"

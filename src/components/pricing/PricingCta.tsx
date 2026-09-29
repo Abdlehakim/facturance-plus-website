@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Check } from "lucide-react";
 import { useTranslation } from "@/i18n/useTranslation";
+import { CLIENT_SIGNUP_URL } from "@/lib/urls";
 
 function DashboardMockup({ alt }: { alt: string }) {
   return (
@@ -58,13 +59,13 @@ export function PricingCta() {
             </p>
 
             <div className="mt-8 flex flex-col gap-3 sm:mt-11 sm:flex-row sm:items-center sm:gap-5">
-              <Link
-                href="/register"
+              <a
+                href={CLIENT_SIGNUP_URL}
                 className="btn btn-white btn-lg w-full sm:w-auto sm:min-w-55"
               >
                 {t.pricing.ctaPrimary}
                 <ArrowRight size={23} strokeWidth={2.7} aria-hidden="true" />
-              </Link>
+              </a>
 
               <Link
                 href="/contact"

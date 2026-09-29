@@ -6,6 +6,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { useTranslation } from "@/i18n/useTranslation";
+import { CLIENT_LOGIN_URL, CLIENT_SIGNUP_URL } from "@/lib/urls";
 
 const navItems = [
   { href: "/", labelKey: "home" },
@@ -117,13 +118,23 @@ function MobileNavigationModal({
           </nav>
 
           <div className="mt-5 grid gap-3 border-t border-border-soft pt-5">
-            <Link href="/login" onClick={onClose} className="btn btn-outline btn-md">
+            {/* Another origin in production, so a plain anchor rather than a
+                Next.js route transition. */}
+            <a
+              href={CLIENT_LOGIN_URL}
+              onClick={onClose}
+              className="btn btn-outline btn-md"
+            >
               {labels.login}
-            </Link>
+            </a>
 
-            <Link href="/register" onClick={onClose} className="btn btn-primary btn-md">
+            <a
+              href={CLIENT_SIGNUP_URL}
+              onClick={onClose}
+              className="btn btn-primary btn-md"
+            >
               {labels.startFree}
-            </Link>
+            </a>
           </div>
         </div>
       </div>
@@ -225,21 +236,23 @@ export function Navbar() {
         </nav>
 
         <div className="flex shrink-0 items-center gap-2 sm:gap-3 lg:gap-4">
-          <Link
-            href="/login"
+          {/* Another origin in production, so a plain anchor rather than a
+              Next.js route transition. */}
+          <a
+            href={CLIENT_LOGIN_URL}
             onClick={closeMenu}
             className="btn btn-outline btn-sm hidden lg:inline-flex"
           >
             {t.nav.login}
-          </Link>
+          </a>
 
-          <Link
-            href="/register"
+          <a
+            href={CLIENT_SIGNUP_URL}
             onClick={closeMenu}
             className="btn btn-primary btn-sm hidden sm:inline-flex"
           >
             {t.nav.startFree}
-          </Link>
+          </a>
 
           <button
             type="button"
