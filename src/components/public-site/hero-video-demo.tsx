@@ -110,7 +110,11 @@ export function HeroVideoDemo() {
                 type="button"
                 onClick={close}
                 aria-label="Fermer la vidéo"
-                className="absolute -top-3 right-0 z-10 grid size-10 -translate-y-full place-items-center rounded-full bg-white/95 text-[#0b294d] shadow-lg transition hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-transparent motion-reduce:transition-none"
+                /* Anchored to the player, not the overlay: beside its
+                   upper-right corner once there is room alongside it, and
+                   stacked just above that same corner on narrow screens,
+                   where the player already takes nearly the full width. */
+                className="absolute -top-3 right-0 z-10 grid size-10 -translate-y-full place-items-center rounded-full bg-white/95 text-[#0b294d] shadow-lg transition hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-transparent motion-reduce:transition-none sm:left-full sm:right-auto sm:top-0 sm:ml-3 sm:translate-y-0"
               >
                 <X className="size-5" aria-hidden="true" />
               </button>

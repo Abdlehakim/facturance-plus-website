@@ -350,25 +350,6 @@ export function FacturancePlusPage() {
               />
 
               <HeroVideoDemo />
-
-              <div className="relative z-20 ml-auto mt-3 hidden min-h-[4.5rem] w-full max-w-[11.5rem] items-center gap-3 rounded-lg border border-[#1688ff]/70 bg-[#082b50]/95 px-4 py-3 text-white shadow-[0_10px_24px_rgba(2,18,39,0.3)] backdrop-blur lg:absolute lg:bottom-4 lg:right-0 lg:mt-0 lg:flex">
-                <span className="grid size-10 shrink-0 place-items-center text-white">
-                  <ShieldCheck
-                    className="size-10 stroke-[1.6]"
-                    aria-hidden="true"
-                  />
-                </span>
-
-                <span className="min-w-0">
-                  <span className="block text-xs leading-4 text-blue-100/90">
-                    Données
-                  </span>
-
-                  <span className="mt-0.5 block whitespace-nowrap text-sm font-semibold leading-5 text-white">
-                    100% sécurisées
-                  </span>
-                </span>
-              </div>
             </div>
           </div>
 
