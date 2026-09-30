@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Markdown, type Components } from "react-markdown";
+import Markdown, { type Components } from "react-markdown";
 
 /**
  * Renders an article body, with the classes the hand-built content blocks used
