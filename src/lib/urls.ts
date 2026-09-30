@@ -22,3 +22,9 @@ export const CLIENT_LOGIN_URL = `${CLIENT_APP_BASE_URL}/login`;
 
 /** The canonical trial signup screen, which the client application owns. */
 export const CLIENT_SIGNUP_URL = `${CLIENT_APP_BASE_URL}/signup`;
+
+/**
+ * Desktop installers and release notes. Authenticated, so the public site
+ * links to it rather than reimplementing it.
+ */
+export const CLIENT_DOWNLOADS_URL = `${CLIENT_APP_BASE_URL}/downloads`;
