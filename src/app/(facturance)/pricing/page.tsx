@@ -6,6 +6,7 @@ import {
   CheckCircle2,
   Cloud,
   FileText,
+  Globe,
   HardDrive,
   Layers,
   PackageCheck,
@@ -22,7 +23,7 @@ import { CLIENT_SIGNUP_URL } from "@/lib/urls";
 export const metadata: Metadata = {
   title: "Tarifs",
   description:
-    "Les tarifs de Facturance Plus : mode Local uniquement ou Local + serveur, remise à partir de trois entreprises, et trois jours d’essai gratuit.",
+    "Les tarifs de Facturance Plus : Local uniquement, Local + serveur ou Version web, remise à partir de trois entreprises, et trois jours d’essai gratuit.",
   alternates: { canonical: "/pricing" },
 };
 
@@ -87,6 +88,25 @@ const plans: Plan[] = [
     highlighted: true,
   },
   {
+    name: "Version web",
+    description:
+      "Utilisez Facturance Plus directement depuis votre navigateur, sans installation : vos données sont hébergées sur le serveur Facturance.",
+    icon: Globe,
+    badge: {
+      label: "-33,33 %",
+      tone: "border-emerald-300 bg-emerald-100 text-emerald-800",
+    },
+    previousPrice: "45 DT",
+    price: "30 DT",
+    priceSuffix: "par entreprise / mois",
+    note: "Économisez 15 DT par entreprise",
+    features: [
+      "Accès depuis votre navigateur",
+      "Aucune installation sur votre ordinateur",
+      "Données hébergées sur le serveur Facturance",
+    ],
+  },
+  {
     name: "Tarif multi-entreprises",
     description:
       "Remise sur volume, indépendante du mode de fonctionnement : 10 % de réduction supplémentaire à partir de 3 entreprises.",
@@ -121,6 +141,13 @@ const plans: Plan[] = [
     ],
   },
 ];
+
+/**
+ * Five offers over the six-column track: three cards on the first row, then the
+ * remaining two centred. A plain three-column grid would leave them
+ * left-aligned under an empty third slot.
+ */
+const centredCardIndex = plans.length % 3 === 2 ? plans.length - 2 : -1;
 
 /** The capabilities the product section already lists, unchanged. */
 const includedFeatures: { label: string; icon: LucideIcon }[] = [
@@ -263,9 +290,9 @@ export default function PricingPage() {
           Des tarifs simples pour Facturance Plus
         </h1>
         <p className="mt-5 text-base leading-8 text-muted-foreground sm:text-lg">
-          Choisissez votre mode de fonctionnement, Local uniquement ou Local +
-          serveur, puis profitez d’un tarif adapté au nombre d’entreprises de
-          votre compte. L’essai gratuit dure trois jours.
+          Choisissez votre mode de fonctionnement, Local uniquement, Local +
+          serveur ou Version web, puis profitez d’un tarif adapté au nombre
+          d’entreprises de votre compte. L’essai gratuit dure trois jours.
         </p>
 
         <div className="mt-7 flex flex-wrap items-center gap-3">
@@ -279,9 +306,16 @@ export default function PricingPage() {
       </header>
 
       <section className="mt-12">
-        <div className="grid items-stretch gap-5 md:grid-cols-2 xl:grid-cols-4">
-          {plans.map((plan) => (
-            <PlanCard key={plan.name} plan={plan} />
+        <div className="grid items-stretch gap-5 md:grid-cols-2 lg:grid-cols-6">
+          {plans.map((plan, index) => (
+            <div
+              key={plan.name}
+              className={`lg:col-span-2 ${
+                index === centredCardIndex ? "lg:col-start-2" : ""
+              }`}
+            >
+              <PlanCard plan={plan} />
+            </div>
           ))}
         </div>
       </section>
