@@ -1,5 +1,9 @@
 import type { LucideIcon } from "lucide-react";
-import type { LanguageCode } from "@/components/layout/site-preferences-provider";
+/**
+ * The locales the article records carry. Declared here because the blog data
+ * is the only consumer left after the old marketing site was removed.
+ */
+export type LanguageCode = "en" | "fr" | "de" | "ar";
 
 export type BlogContentBlock =
   | {

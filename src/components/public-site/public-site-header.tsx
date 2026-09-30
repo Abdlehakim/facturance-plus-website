@@ -48,10 +48,15 @@ export function PublicSiteHeader() {
   const pathname = usePathname();
   const [mobileNavigationOpen, setMobileNavigationOpen] = React.useState(false);
 
-  // Closing on navigation, as the router-based effect did before.
-  React.useEffect(() => {
+  // Closing on navigation, as the router-based effect did before. Adjusted
+  // during render rather than in an effect: the menu must already be closed in
+  // the same commit that paints the new route, and an effect would both render
+  // it open for a frame and trip react-hooks/set-state-in-effect.
+  const [renderedPathname, setRenderedPathname] = React.useState(pathname);
+  if (pathname !== renderedPathname) {
+    setRenderedPathname(pathname);
     setMobileNavigationOpen(false);
-  }, [pathname]);
+  }
 
   return (
     <header className="sticky top-0 z-50 border-b bg-white/95 shadow-sm shadow-slate-900/[0.03] backdrop-blur">

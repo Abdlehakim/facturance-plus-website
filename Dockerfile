@@ -19,18 +19,16 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-# NEXT_PUBLIC_* values are inlined into the browser bundle while it is built,
-# so they have to be present here and cannot be supplied at runtime.
+# A NEXT_PUBLIC_* value is inlined into the browser bundle while it is built,
+# so it has to be present here and cannot be supplied at runtime.
 #
-# Both are public URLs the browser reveals anyway - no secret belongs in a
-# build argument, which is recorded in the image history.
+# It is a public URL the browser reveals anyway - no secret belongs in a build
+# argument, which is recorded in the image history.
 #
-# The defaults are the production hosts on purpose: an empty value would not be
+# The default is the production host on purpose: an empty value would not be
 # nullish, so the website's `?? "http://localhost:5174"` fallback would not fire
 # and every client link would silently become a same-origin relative path.
-ARG NEXT_PUBLIC_API_BASE_URL=https://api.plus.facturance.com
 ARG NEXT_PUBLIC_CLIENT_APP_BASE_URL=https://client.plus.facturance.com
-ENV NEXT_PUBLIC_API_BASE_URL=${NEXT_PUBLIC_API_BASE_URL}
 ENV NEXT_PUBLIC_CLIENT_APP_BASE_URL=${NEXT_PUBLIC_CLIENT_APP_BASE_URL}
 ENV NEXT_TELEMETRY_DISABLED=1
 

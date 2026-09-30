@@ -1,36 +1,57 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Facturance Plus — public website
 
-## Getting Started
+The public marketing site served at **facturance.com**. It renders marketing,
+legal and blog pages only: it never authenticates anyone, holds no session and
+talks to no API. Login, signup and every authenticated screen belong to the
+customer application on its own origin
+(`client.plus.facturance.com`, `apps/customer`).
 
-First, run the development server:
+## Stack
+
+Next.js 16 (App Router, React 19), Tailwind CSS v4, `lucide-react` for icons.
+`next.config.ts` sets `output: "standalone"`, which is what the production
+image runs.
+
+## Local development
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev     # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Copy `.env.example` to `.env.local` first. The only variable is
+`NEXT_PUBLIC_CLIENT_APP_BASE_URL`, the origin every "Connexion" and
+"Essayer gratuitement" link points at. It is read at build time and inlined
+into the browser bundle, so changing it needs a rebuild, not a restart.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Other scripts: `npm run build`, `npm run start`, `npm run lint`.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Routes
 
-## Learn More
+- `src/app/(facturance)/` — the public pages and the chrome that wraps them:
+  `/`, `/features`, `/pricing`, `/blog` (+ `/blog/[slug]`), `/resources`,
+  `/contact`, `/support`, and the legal pages `/terms`, `/privacy`, `/legal`,
+  `/data-requests`.
+- `src/app/(auth)/login` and `src/app/(auth)/register` — compatibility
+  redirects only. They render nothing and send visitors to the customer
+  application, `/register` forwarding a `?plan=` selection.
+- `src/app/sitemap.ts` and `src/app/robots.ts` — this site is the only one of
+  the two that is indexed; the customer application is served `noindex`.
 
-To learn more about Next.js, take a look at the following resources:
+Cross-origin URLs are centralised in `src/lib/urls.ts`. Brand, contact and
+publisher details are in `src/lib/public-site-config.ts`. Blog posts live in
+`src/components/blog/articles/`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Production
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Built and run as a container, not on Vercel:
 
-## Deploy on Vercel
+- `Dockerfile` — multi-stage build producing the standalone server on
+  `node:22-alpine`, listening on port 3000 in the container.
+- `compose.production.yaml` (repository root) — the `website` service, mapped
+  to `127.0.0.1:3104` on the host.
+- `infrastructure/nginx/facturance.com.conf` — the public vhost in front of it.
+- `.github/workflows/sync-production.yml` — deploys the submodule at an exact
+  commit SHA.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Deployment for the whole suite is documented in the repository root README.
