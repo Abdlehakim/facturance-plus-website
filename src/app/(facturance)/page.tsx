@@ -42,7 +42,7 @@ function HomepageStructuredData() {
         name: publicSiteConfig.brandName,
         url: homeUrl,
         description:
-          "Logiciel Windows de facturation, devis, stock, clients, paiements et gestion multi-sociétés.",
+          "Logiciel Windows de facturation, devis, stock, clients, paiements et gestion multi-entreprises.",
         applicationCategory: "BusinessApplication",
         operatingSystem: "Windows 10, Windows 11",
         publisher: {

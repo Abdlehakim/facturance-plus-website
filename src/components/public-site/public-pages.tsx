@@ -170,9 +170,9 @@ export function FacturancePlusPage() {
       icon: CheckCircle2,
     },
     {
-      title: "Gestion multi-sociétés",
+      title: "Gestion multi-entreprises",
       description:
-        "Accédez aux sociétés autorisées depuis un même compte client.",
+        "Accédez aux entreprises autorisées depuis un même compte client.",
       icon: Building2,
     },
     {
@@ -271,7 +271,7 @@ export function FacturancePlusPage() {
                 </span>
               </h1>
               <p className="mt-4 max-w-2xl text-sm leading-6 text-blue-50/85 sm:text-base sm:leading-7">
-                Créez vos factures, devis, bons de commande et de livraison, puis gérez clients, fournisseurs, articles, stocks, paiements et sociétés depuis un seul espace.
+                Créez vos factures, devis, bons de commande et de livraison, puis gérez clients, fournisseurs, articles, stocks, paiements et entreprises depuis un seul espace.
               </p>
 
               <ul className="mt-4 grid gap-5 sm:grid-cols-3 lg:gap-6">
@@ -460,7 +460,7 @@ export function FacturancePlusPage() {
             </h2>
 
             <p className="mx-auto mt-2 max-w-3xl text-sm leading-6 text-muted-foreground sm:text-base">
-              Choisissez votre mode de fonctionnement, Local uniquement ou Local + serveur, puis profitez d’un tarif adapté au nombre de sociétés de votre compte.
+              Choisissez votre mode de fonctionnement, Local uniquement ou Local + serveur, puis profitez d’un tarif adapté au nombre de entreprises de votre compte.
             </p>
           </div>
 
@@ -504,11 +504,11 @@ export function FacturancePlusPage() {
                   </div>
 
                   <p className="mt-2 text-sm font-semibold text-[#0b294d]">
-                    par société / mois
+                    par entreprise / mois
                   </p>
 
                   <span className="mt-3 inline-flex rounded-full bg-emerald-100 px-3 py-1 text-sm font-semibold text-emerald-700">
-                    Économisez 15 DT par société
+                    Économisez 15 DT par entreprise
                   </span>
                 </div>
 
@@ -601,11 +601,11 @@ export function FacturancePlusPage() {
                   </div>
 
                   <p className="mt-2 text-sm font-semibold text-[#0b294d]">
-                    par société / mois
+                    par entreprise / mois
                   </p>
 
                   <span className="mt-3 inline-flex rounded-full bg-emerald-100 px-3 py-1 text-sm font-semibold text-emerald-700">
-                    Économisez 20 DT par société
+                    Économisez 20 DT par entreprise
                   </span>
                 </div>
 
@@ -696,11 +696,11 @@ export function FacturancePlusPage() {
 
                 <div className="mt-3 lg:min-h-[5.75rem]">
                   <h3 className="text-xl font-bold tracking-tight text-[#0b294d]">
-                    Tarif multi-sociétés
+                    Tarif multi-entreprises
                   </h3>
 
                   <p className="mt-1 text-sm leading-5 text-muted-foreground">
-                    Remise sur volume, indépendante du mode de fonctionnement : 10 % de réduction supplémentaire à partir de 3 sociétés.
+                    Remise sur volume, indépendante du mode de fonctionnement : 10 % de réduction supplémentaire à partir de 3 entreprises.
                   </p>
                 </div>
 
@@ -716,7 +716,7 @@ export function FacturancePlusPage() {
                   </div>
 
                   <p className="mt-2 text-sm font-semibold text-[#0b294d]">
-                    pour 3 sociétés / mois
+                    pour 3 entreprises / mois
                   </p>
 
                   <span className="mt-3 inline-flex rounded-full bg-emerald-100 px-3 py-1 text-sm font-semibold text-emerald-700">
@@ -731,7 +731,7 @@ export function FacturancePlusPage() {
                     </span>
 
                     <span className="text-sm font-semibold leading-5 text-[#0b294d]">
-                      Gestion centralisée de plusieurs sociétés
+                      Gestion centralisée de plusieurs entreprises
                     </span>
                   </li>
 
@@ -741,7 +741,7 @@ export function FacturancePlusPage() {
                     </span>
 
                     <span className="text-sm font-semibold leading-5 text-[#0b294d]">
-                      Réduction supplémentaire à partir de 3 sociétés
+                      Réduction supplémentaire à partir de 3 entreprises
                     </span>
                   </li>
 
@@ -786,7 +786,7 @@ export function FacturancePlusPage() {
                   )}
 
                   <p className="mt-2 min-h-10 text-center text-xs leading-5 text-muted-foreground">
-                    Contactez-nous pour configurer votre offre multi-sociétés.
+                    Contactez-nous pour configurer votre offre multi-entreprises.
                   </p>
                 </div>
               </div>
@@ -928,7 +928,7 @@ export function FacturancePlusPage() {
             <p className="mx-auto mt-4 max-w-3xl text-base leading-7 text-muted-foreground sm:text-lg">
               Créez votre compte, accédez à votre espace client, téléchargez
               l’application, puis installez Facturance Plus pour commencer à gérer
-              vos factures, devis et sociétés.
+              vos factures, devis et entreprises.
             </p>
           </div>
 
@@ -981,7 +981,7 @@ export function FacturancePlusPage() {
 
               <p className="mt-2 text-sm leading-6 text-muted-foreground">
                 Connectez-vous à votre tableau de bord client pour gérer votre
-                compte, vos sociétés et vos accès.
+                compte, vos entreprises et vos accès.
               </p>
 
               <div className="mt-auto pt-5">
@@ -1204,7 +1204,7 @@ export function PrivacyPage() {
             <li>le nom, le nom d’utilisateur et le numéro de téléphone ;</li>
             <li>l’adresse e-mail lorsqu’elle est fournie ;</li>
             <li>le statut du compte et sa date d’expiration ;</li>
-            <li>les sociétés associées au compte ;</li>
+            <li>les entreprises associées au compte ;</li>
             <li>les identifiants de session, leur expiration et leur statut de révocation ;</li>
             <li>l’agent utilisateur, l’adresse IP et les événements d’authentification ou de sécurité ;</li>
             <li>les informations techniques nécessaires aux téléchargements et mises à jour de l’application.</li>
@@ -1213,7 +1213,7 @@ export function PrivacyPage() {
             L’application de bureau peut également traiter localement sur l’appareil les catégories de données professionnelles suivantes, sans que celles-ci soient automatiquement téléversées vers les serveurs de Facturance Plus :
           </p>
           <ul className={bulletListClassName}>
-            <li>les informations d’identification et de contact des sociétés ;</li>
+            <li>les informations d’identification et de contact des entreprises ;</li>
             <li>les informations relatives aux clients, aux fournisseurs et aux transporteurs ;</li>
             <li>les articles et les services ;</li>
             <li>les informations de stock et d’entrepôt ;</li>
@@ -1232,7 +1232,7 @@ export function PrivacyPage() {
             L’application de bureau Electron traite les informations professionnelles saisies, importées, générées, numérisées ou gérées par l’utilisateur afin de fournir les fonctions de facturation et de gestion commerciale.
           </p>
           <p>
-            Ces informations peuvent notamment concerner les fiches de sociétés, les clients, les fournisseurs, les transporteurs, les articles et services, les inventaires et mouvements de stock, les factures et documents commerciaux associés, les paiements, les dépenses, la trésorerie, les PDF générés ainsi que les factures d’achat importées ou numérisées.
+            Ces informations peuvent notamment concerner les fiches de entreprises, les clients, les fournisseurs, les transporteurs, les articles et services, les inventaires et mouvements de stock, les factures et documents commerciaux associés, les paiements, les dépenses, la trésorerie, les PDF générés ainsi que les factures d’achat importées ou numérisées.
           </p>
           <p>
             L’utilisateur ou l’organisation cliente est responsable de s’assurer que les informations professionnelles et personnelles saisies dans Facturance Plus sont licites, exactes et utilisées à des fins professionnelles légitimes.
@@ -1241,7 +1241,7 @@ export function PrivacyPage() {
 
         <LegalSection title="Stockage local sur l’appareil">
           <p>
-            L’application de bureau stocke les données commerciales des sociétés localement, dans des fichiers de base de données SQLite sur l’ordinateur Windows de l’utilisateur. Ces bases locales peuvent contenir les sociétés, les clients, les fournisseurs, les articles, les documents, les informations de stock, les paiements, les informations de trésorerie, les paramètres et les enregistrements professionnels associés.
+            L’application de bureau stocke les données commerciales des entreprises localement, dans des fichiers de base de données SQLite sur l’ordinateur Windows de l’utilisateur. Ces bases locales peuvent contenir les entreprises, les clients, les fournisseurs, les articles, les documents, les informations de stock, les paiements, les informations de trésorerie, les paramètres et les enregistrements professionnels associés.
           </p>
           <p>
             Les documents générés et les fichiers exportés peuvent également être enregistrés dans les emplacements sélectionnés par l’utilisateur.
@@ -1262,7 +1262,7 @@ export function PrivacyPage() {
             <strong>Azure Document Intelligence.</strong> Lorsque l’utilisateur lance la numérisation d’une facture, l’image ou le PDF sélectionné est envoyé à Azure Document Intelligence pour analyse et extraction des informations de la facture. Les informations extraites peuvent comprendre les coordonnées du fournisseur, les identifiants fiscaux, les numéros et dates de facture, les totaux, les taxes, les coordonnées de contact et les lignes d’articles. Cette fonctionnalité est facultative et nécessite une configuration.
           </p>
           <p>
-            <strong>Envoi par e-mail SMTP.</strong> Lorsque l’utilisateur envoie un document par e-mail, le fournisseur SMTP configuré traite les adresses de l’expéditeur et du destinataire. Il peut également traiter l’objet, le contenu du message, les pièces jointes, les PDF générés et le logo facultatif de la société. Le fournisseur SMTP est choisi et configuré par l’utilisateur ou l’organisation cliente.
+            <strong>Envoi par e-mail SMTP.</strong> Lorsque l’utilisateur envoie un document par e-mail, le fournisseur SMTP configuré traite les adresses de l’expéditeur et du destinataire. Il peut également traiter l’objet, le contenu du message, les pièces jointes, les PDF générés et le logo facultatif de la entreprise. Le fournisseur SMTP est choisi et configuré par l’utilisateur ou l’organisation cliente.
           </p>
           <p>
             <strong>WhatsApp.</strong> Lorsque le mode API WhatsApp Cloud est configuré et utilisé, l’application peut transmettre le numéro de téléphone du destinataire, téléverser le document PDF pour sa livraison et transmettre le nom du fichier ainsi qu’une légende facultative. Ce traitement est effectué par l’intermédiaire de l’API WhatsApp Cloud de Meta et ne s’applique pas lorsque cette fonctionnalité est désactivée ou qu’une méthode de partage limitée à l’application de bureau est utilisée.
@@ -1279,7 +1279,7 @@ export function PrivacyPage() {
           <ul className={bulletListClassName}>
             <li>création et gestion du compte client ;</li>
             <li>authentification et sécurité des sessions ;</li>
-            <li>gestion de l’accès aux sociétés ;</li>
+            <li>gestion de l’accès aux entreprises ;</li>
             <li>gestion des comptes d’essai ;</li>
             <li>distribution de l’application et de ses mises à jour ;</li>
             <li>assistance client ;</li>
@@ -1291,7 +1291,7 @@ export function PrivacyPage() {
             <li>traitement des factures numérisées lorsque l’utilisateur le demande explicitement ;</li>
             <li>envoi de documents par les services d’e-mail ou WhatsApp configurés lorsque l’utilisateur le demande explicitement ;</li>
             <li>fourniture des fonctions professionnelles locales hors ligne ;</li>
-            <li>maintien de la sécurité de l’application et de l’accès autorisé aux sociétés ;</li>
+            <li>maintien de la sécurité de l’application et de l’accès autorisé aux entreprises ;</li>
             <li>mesure de l’audience, attribution et analyse des performances des campagnes publicitaires lorsque Meta Pixel est utilisé.</li>
           </ul>
         </LegalSection>
@@ -1426,11 +1426,11 @@ export function SupportPage() {
       ),
     },
     {
-      title: "Société indisponible",
+      title: "Entreprise indisponible",
       icon: Building2,
       content: (
         <p>
-          Vérifiez qu’au moins une société active est associée à votre compte. Contactez l’assistance si un accès a été retiré de manière inattendue.
+          Vérifiez qu’au moins une entreprise active est associée à votre compte. Contactez l’assistance si un accès a été retiré de manière inattendue.
         </p>
       ),
     },
@@ -1586,10 +1586,10 @@ export function TermsPage() {
           <p>Le client doit protéger ses identifiants, choisir un mot de passe confidentiel et signaler toute utilisation suspecte de son compte.</p>
         </LegalSection>
         <LegalSection title="Essai gratuit">
-          <p>L’essai gratuit dure trois jours. L’inscription à l’essai permet d’associer entre une et trois sociétés au compte.</p>
+          <p>L’essai gratuit dure trois jours. L’inscription à l’essai permet d’associer entre une et trois entreprises au compte.</p>
         </LegalSection>
-        <LegalSection title="Sociétés associées au compte">
-          <p>L’accès est limité aux sociétés actives expressément associées au compte. La suppression ou la désactivation d’une association peut retirer l’accès correspondant.</p>
+        <LegalSection title="Entreprises associées au compte">
+          <p>L’accès est limité aux entreprises actives expressément associées au compte. La suppression ou la désactivation d’une association peut retirer l’accès correspondant.</p>
         </LegalSection>
         <LegalSection title="Utilisation acceptable">
           <p>Le service ne doit pas être utilisé à des fins illicites, frauduleuses, nuisibles à la sécurité ou susceptibles de perturber son fonctionnement.</p>
@@ -1772,7 +1772,7 @@ export function DataRequestsPage() {
     { label: "Demande de correction", icon: FileText },
     { label: "Demande d’export", icon: HardDrive },
     { label: "Demande de suppression du compte", icon: FileLock2 },
-    { label: "Demande de suppression de données de société", icon: Building2 },
+    { label: "Demande de suppression de données de entreprise", icon: Building2 },
     {
       label:
         "Demande de limitation ou d’opposition, lorsque ce droit s’applique",
@@ -1821,13 +1821,13 @@ export function DataRequestsPage() {
               <li>le nom d’utilisateur du compte ;</li>
               <li>le numéro de téléphone associé ;</li>
               <li>le type de demande ;</li>
-              <li>les sociétés concernées ;</li>
+              <li>les entreprises concernées ;</li>
               <li>les détails suffisants pour comprendre et traiter la demande.</li>
             </ul>
             <div className="mt-5 space-y-3 text-sm leading-7 text-slate-700 sm:text-base">
               <p>Facturance Plus peut demander une vérification d’identité avant de traiter la demande.</p>
               <p>Une demande peut être limitée lorsque la conservation de certaines informations est imposée par une obligation légale.</p>
-              <p>La suppression d’un compte peut retirer l’accès aux sociétés associées et mettre fin aux sessions actives.</p>
+              <p>La suppression d’un compte peut retirer l’accès aux entreprises associées et mettre fin aux sessions actives.</p>
               <p>Le portail client actuel ne propose pas de bouton automatique de suppression en libre-service.</p>
             </div>
           </div>
