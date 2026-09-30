@@ -10,6 +10,7 @@ import {
   Library,
   LogIn,
   Menu,
+  MessageCircle,
   Newspaper,
   UserPlus,
   X,
@@ -33,10 +34,11 @@ import { CLIENT_LOGIN_URL, CLIENT_SIGNUP_URL } from "@/lib/urls";
  * also match every route under the prefix test below.
  */
 const publicNavigation = [
-  { label: "Fonctionnalités", href: "/features", icon: LayoutGrid },
   { label: "Tarifs", href: "/pricing", icon: BadgeDollarSign },
   { label: "Blog", href: "/blog", icon: Newspaper },
+  { label: "Fonctionnalités", href: "/features", icon: LayoutGrid },
   { label: "Ressources utiles", href: "/resources", icon: Library },
+  { label: "Contactez-nous", href: "/contact", icon: MessageCircle },
 ];
 
 /** A section stays active on its nested routes, e.g. /blog/some-article. */
