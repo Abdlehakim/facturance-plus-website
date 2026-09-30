@@ -68,6 +68,25 @@ const plans: Plan[] = [
     ],
   },
   {
+    name: "Version web",
+    description:
+      "Utilisez Facturance Plus directement depuis votre navigateur, sans installation : vos données sont hébergées sur le serveur Facturance.",
+    icon: Globe,
+    badge: {
+      label: "-33,33 %",
+      tone: "border-emerald-300 bg-emerald-100 text-emerald-800",
+    },
+    previousPrice: "45 DT",
+    price: "30 DT",
+    priceSuffix: "par entreprise / mois",
+    note: "Économisez 15 DT par entreprise",
+    features: [
+      "Accès depuis votre navigateur",
+      "Aucune installation sur votre ordinateur",
+      "Données hébergées sur le serveur Facturance",
+    ],
+  },
+  {
     name: "Local + serveur",
     description:
       "Vos données restent disponibles localement et sont synchronisées avec le serveur Facturance.",
@@ -86,25 +105,6 @@ const plans: Plan[] = [
       "Accès à l’espace client web",
     ],
     highlighted: true,
-  },
-  {
-    name: "Version web",
-    description:
-      "Utilisez Facturance Plus directement depuis votre navigateur, sans installation : vos données sont hébergées sur le serveur Facturance.",
-    icon: Globe,
-    badge: {
-      label: "-33,33 %",
-      tone: "border-emerald-300 bg-emerald-100 text-emerald-800",
-    },
-    previousPrice: "45 DT",
-    price: "30 DT",
-    priceSuffix: "par entreprise / mois",
-    note: "Économisez 15 DT par entreprise",
-    features: [
-      "Accès depuis votre navigateur",
-      "Aucune installation sur votre ordinateur",
-      "Données hébergées sur le serveur Facturance",
-    ],
   },
   {
     name: "Tarif multi-entreprises",
