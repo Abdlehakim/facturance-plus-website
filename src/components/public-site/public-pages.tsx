@@ -39,6 +39,7 @@ import Image from "next/image"
 import Link from "next/link"
 
 import { PricingOffers } from "@/components/public-site/pricing-offers"
+import { HeroVideoDemo } from "@/components/public-site/hero-video-demo"
 import { Button } from "@/components/ui/button"
 import {
   Card,
@@ -347,6 +348,8 @@ export function FacturancePlusPage() {
                 sizes="(min-width: 1024px) 50vw, 100vw"
                 className="h-auto w-full object-contain"
               />
+
+              <HeroVideoDemo />
 
               <div className="relative z-20 ml-auto mt-3 hidden min-h-[4.5rem] w-full max-w-[11.5rem] items-center gap-3 rounded-lg border border-[#1688ff]/70 bg-[#082b50]/95 px-4 py-3 text-white shadow-[0_10px_24px_rgba(2,18,39,0.3)] backdrop-blur lg:absolute lg:bottom-4 lg:right-0 lg:mt-0 lg:flex">
                 <span className="grid size-10 shrink-0 place-items-center text-white">
