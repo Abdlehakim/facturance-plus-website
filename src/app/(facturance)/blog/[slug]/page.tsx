@@ -1,7 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, CalendarDays, Clock3, UserRound } from "lucide-react";
+import {
+  ArrowLeft,
+  ArrowRight,
+  CalendarDays,
+  Clock3,
+  UserRound,
+} from "lucide-react";
 
 import {
   getAllBlogPosts,
@@ -118,6 +124,29 @@ function ContentBlock({ block }: { block: BlogContentBlock }) {
           </li>
         ))}
       </ul>
+    );
+  }
+
+  if (block.type === "links") {
+    return (
+      <aside className="mt-8 rounded-2xl border border-blue-100 bg-white p-5">
+        {block.title && (
+          <p className="font-bold text-[#0b294d]">{block.title}</p>
+        )}
+        <ul className="mt-3 grid gap-2">
+          {block.items.map((item) => (
+            <li key={item.href}>
+              <Link
+                href={item.href}
+                className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline"
+              >
+                {item.label}
+                <ArrowRight className="size-4" aria-hidden="true" />
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </aside>
     );
   }
 
