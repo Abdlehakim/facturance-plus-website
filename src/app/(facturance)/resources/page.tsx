@@ -19,14 +19,15 @@ import {
   getSupportEmail,
   getWhatsAppUrl,
 } from "@/lib/public-site-config";
+import { buildPageMetadata } from "@/lib/seo";
 import { CLIENT_DOWNLOADS_URL } from "@/lib/urls";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "Ressources utiles",
   description:
     "Le blog, le centre d’aide, le contact et les documents légaux de Facturance Plus, réunis au même endroit.",
-  alternates: { canonical: "/resources" },
-};
+  path: "/resources",
+});
 
 type ResourceLink = {
   label: string;

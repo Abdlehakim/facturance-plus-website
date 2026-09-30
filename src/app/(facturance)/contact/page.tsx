@@ -17,14 +17,15 @@ import {
   getWhatsAppUrl,
   publicSiteConfig,
 } from "@/lib/public-site-config";
+import { buildPageMetadata } from "@/lib/seo";
 import { CLIENT_SIGNUP_URL } from "@/lib/urls";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "Contact",
   description:
-    "Contactez l’équipe Facturance Plus par e-mail, par téléphone ou sur WhatsApp.",
-  alternates: { canonical: "/contact" },
-};
+    "Une question sur Facturance Plus ou besoin d’assistance ? Contactez l’équipe par e-mail, par téléphone ou sur WhatsApp.",
+  path: "/contact",
+});
 
 /**
  * Only the channels the public site config actually defines are rendered. The

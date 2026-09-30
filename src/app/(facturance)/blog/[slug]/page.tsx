@@ -7,7 +7,10 @@ import {
   getAllBlogPosts,
   getLocalizedBlogPostBySlug,
   type BlogContentBlock,
+  type LocalizedBlogPost,
 } from "@/components/blog/blog-data";
+import { publicSiteConfig } from "@/lib/public-site-config";
+import { absoluteUrl, buildPageMetadata } from "@/lib/seo";
 
 type BlogArticlePageProps = {
   params: Promise<{ slug: string }>;
@@ -28,11 +31,66 @@ export async function generateMetadata({
     return { title: "Article introuvable" };
   }
 
-  return {
+  return buildPageMetadata({
     title: post.title,
     description: post.description,
-    alternates: { canonical: `/blog/${slug}` },
+    path: `/blog/${slug}`,
+    article: {
+      publishedTime: post.publishedAt,
+      authors: post.author ? [post.author] : [],
+    },
+  });
+}
+
+/**
+ * BlogPosting for one article, built only from fields the article record
+ * actually carries. The records hold no cover image and no modified date, so
+ * `image` and `dateModified` are deliberately absent rather than invented, and
+ * the author is an Organization because every byline names a team.
+ */
+function ArticleStructuredData({
+  post,
+  slug,
+}: {
+  post: LocalizedBlogPost;
+  slug: string;
+}) {
+  const articleUrl = absoluteUrl(`/blog/${slug}`);
+
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.title,
+    description: post.description,
+    datePublished: post.publishedAt,
+    inLanguage: "fr",
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": articleUrl,
+    },
+    ...(post.author
+      ? { author: { "@type": "Organization", name: post.author } }
+      : {}),
+    publisher: {
+      "@type": "Organization",
+      name: publicSiteConfig.publisherName,
+      url: publicSiteConfig.siteUrl,
+      logo: {
+        "@type": "ImageObject",
+        url: absoluteUrl("/facturance-plus-logo.png"),
+        width: 1919,
+        height: 348,
+      },
+    },
   };
+
+  return (
+    <script
+      type="application/ld+json"
+      // Serialized from values this repository controls, never from input.
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+    />
+  );
 }
 
 const dateFormatter = new Intl.DateTimeFormat("fr-FR", { dateStyle: "long" });
@@ -89,6 +147,8 @@ export default async function BlogArticlePage({
 
   return (
     <div className="mx-auto w-full max-w-3xl px-5 py-12 sm:px-8 lg:py-16">
+      <ArticleStructuredData post={post} slug={slug} />
+
       <Link
         href="/blog"
         className="inline-flex items-center gap-2 text-sm font-semibold text-primary"

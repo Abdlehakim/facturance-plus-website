@@ -10,6 +10,7 @@
 
 import type * as React from "react"
 import {
+  ArrowRight,
   Building2,
   CheckCircle2,
   CirclePlay,
@@ -34,6 +35,7 @@ import {
   Store,
   UserRoundCheck,
 } from "lucide-react"
+import Image from "next/image"
 import Link from "next/link"
 
 import { PricingOffers } from "@/components/public-site/pricing-offers"
@@ -336,9 +338,13 @@ export function FacturancePlusPage() {
             </div>
 
             <div className="relative z-10 min-w-0">
-              <img
+              <Image
                 src="/img-main-page.png"
-                alt="Ordinateur portable affichant l’interface principale de Facturance Plus"
+                alt="Ordinateur portable affichant l’écran principal de Facturance Plus, logiciel de facturation et de gestion commerciale"
+                width={1350}
+                height={875}
+                priority
+                sizes="(min-width: 1024px) 50vw, 100vw"
                 className="h-auto w-full object-contain"
               />
 
@@ -443,6 +449,14 @@ export function FacturancePlusPage() {
               </Card>
             ))}
           </div>
+
+          <Link
+            href="/features"
+            className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline"
+          >
+            Voir toutes les fonctionnalités
+            <ArrowRight className="size-4" aria-hidden="true" />
+          </Link>
         </PublicPageContainer>
       </section>
 

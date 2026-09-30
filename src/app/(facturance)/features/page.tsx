@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import type { LucideIcon } from "lucide-react";
 import {
   Building2,
@@ -13,14 +14,15 @@ import {
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { buildPageMetadata } from "@/lib/seo";
 import { CLIENT_SIGNUP_URL } from "@/lib/urls";
 
-export const metadata: Metadata = {
-  title: "Fonctionnalités",
+export const metadata: Metadata = buildPageMetadata({
+  title: "Fonctionnalités du logiciel de facturation",
   description:
-    "Devis, factures, bons de commande et de livraison, clients, articles, stocks, paiements et gestion multi-entreprises : tout ce que Facturance Plus couvre.",
-  alternates: { canonical: "/features" },
-};
+    "Devis, factures, bons de commande et de livraison, clients, fournisseurs, articles, stocks, paiements et gestion multi-entreprises : tout ce que Facturance Plus couvre.",
+  path: "/features",
+});
 
 type Feature = {
   title: string;
@@ -182,12 +184,21 @@ export default function FeaturesPage() {
           Créez votre compte et découvrez l’application pendant 3 jours, sans
           engagement.
         </p>
-        <Button
-          asChild
-          className="mt-7 h-11 bg-white px-6 text-[#0b294d] hover:bg-blue-50"
-        >
-          <a href={CLIENT_SIGNUP_URL}>Commencer l’essai gratuit</a>
-        </Button>
+        <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
+          <Button
+            asChild
+            className="h-11 bg-white px-6 text-[#0b294d] hover:bg-blue-50"
+          >
+            <a href={CLIENT_SIGNUP_URL}>Commencer l’essai gratuit</a>
+          </Button>
+          <Button
+            asChild
+            variant="outline"
+            className="h-11 border-white/40 bg-transparent px-6 text-white hover:bg-white/10 hover:text-white"
+          >
+            <Link href="/pricing">Voir les tarifs</Link>
+          </Button>
+        </div>
       </section>
     </div>
   );

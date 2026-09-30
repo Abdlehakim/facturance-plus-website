@@ -4,14 +4,15 @@ import { ArrowRight, CalendarDays, Clock3, Newspaper } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { getLocalizedBlogPosts } from "@/components/blog/blog-data";
+import { buildPageMetadata } from "@/lib/seo";
 import { CLIENT_SIGNUP_URL } from "@/lib/urls";
 
-export const metadata: Metadata = {
-  title: "Blog",
+export const metadata: Metadata = buildPageMetadata({
+  title: "Blog facturation et gestion commerciale",
   description:
-    "Conseils, guides et actualités pour mieux gérer votre facturation et votre activité avec Facturance Plus.",
-  alternates: { canonical: "/blog" },
-};
+    "Conseils, guides et actualités pour mieux gérer votre facturation et votre gestion commerciale avec Facturance Plus.",
+  path: "/blog",
+});
 
 /** The articles already ship a French localization; nothing is invented here. */
 const dateFormatter = new Intl.DateTimeFormat("fr-FR", { dateStyle: "long" });

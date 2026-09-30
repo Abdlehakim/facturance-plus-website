@@ -14,14 +14,15 @@ import {
 
 import { PricingOffers } from "@/components/public-site/pricing-offers";
 import { Button } from "@/components/ui/button";
+import { buildPageMetadata } from "@/lib/seo";
 import { CLIENT_SIGNUP_URL } from "@/lib/urls";
 
-export const metadata: Metadata = {
-  title: "Tarifs",
+export const metadata: Metadata = buildPageMetadata({
+  title: "Tarifs du logiciel de facturation en Tunisie",
   description:
-    "Les tarifs de Facturance Plus : Local uniquement, Local + serveur ou Version web, remise à partir de trois entreprises, et trois jours d’essai gratuit.",
-  alternates: { canonical: "/pricing" },
-};
+    "Les tarifs de Facturance Plus : Local uniquement, Version web ou Local + serveur, remise à partir de trois entreprises, et trois jours d’essai gratuit.",
+  path: "/pricing",
+});
 
 /** The capabilities the product section already lists, unchanged. */
 const includedFeatures: { label: string; icon: LucideIcon }[] = [

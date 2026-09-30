@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 
 import { publicSiteConfig } from "@/lib/public-site-config";
+import { OG_LOCALE, SOCIAL_IMAGE } from "@/lib/seo";
 
 import "./globals.css";
 
@@ -25,16 +26,40 @@ const geistMono = Geist_Mono({
   preload: false,
 });
 
+const SITE_TITLE = `${publicSiteConfig.brandName} — Logiciel de facturation et gestion commerciale en Tunisie`;
+
+const SITE_DESCRIPTION =
+  "Facturance Plus est un logiciel de facturation et de gestion commerciale pour les entreprises en Tunisie : devis, factures, clients, fournisseurs, articles, stocks et paiements.";
+
+/**
+ * Defaults for every route. Pages that call `buildPageMetadata` replace the
+ * title, description, canonical and the social tags with their own; the ones
+ * that do not - there are none indexable today - still inherit a correct card.
+ */
 export const metadata: Metadata = {
   metadataBase: new URL(publicSiteConfig.siteUrl),
   title: {
-    default: `${publicSiteConfig.brandName} — Facturation et gestion commerciale`,
+    default: SITE_TITLE,
     template: `%s | ${publicSiteConfig.brandName}`,
   },
-  description:
-    "Toute votre facturation et votre gestion commerciale dans une seule application : devis, factures, stock, clients et règlements.",
+  description: SITE_DESCRIPTION,
   applicationName: publicSiteConfig.brandName,
   publisher: publicSiteConfig.publisherName,
+  openGraph: {
+    type: "website",
+    locale: OG_LOCALE,
+    siteName: publicSiteConfig.brandName,
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    url: publicSiteConfig.siteUrl,
+    images: [{ ...SOCIAL_IMAGE }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    images: [SOCIAL_IMAGE.url],
+  },
 };
 
 export const viewport: Viewport = {

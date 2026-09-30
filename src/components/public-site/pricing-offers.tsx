@@ -300,6 +300,47 @@ function CustomPlanCard({ plan }: { plan: Plan }) {
   );
 }
 
+/** One offer, in the machine-readable form the homepage structured data needs. */
+export type StructuredPricingOffer = {
+  name: string;
+  price: number;
+  priceCurrency: string;
+  unitText: string;
+};
+
+/**
+ * The offers as structured data, parsed from the very strings the cards render
+ * so a price can never be published with two different values.
+ *
+ * Only plans quoting a recurring per-entreprise price qualify: the
+ * multi-entreprises card shows a three-company total rather than a unit price,
+ * and the custom offer carries no numeric price at all.
+ */
+export function getStructuredPricingOffers(): StructuredPricingOffer[] {
+  return plans.flatMap((plan) => {
+    if (!plan.priceSuffix) {
+      return [];
+    }
+
+    // "67,50 DT" -> 67.5; anything that is not a number is left out rather
+    // than guessed at.
+    const amount = Number(
+      plan.price.replace(/[^\d,.]/g, "").replace(",", "."),
+    );
+
+    return Number.isFinite(amount) && amount > 0
+      ? [
+          {
+            name: plan.name,
+            price: amount,
+            priceCurrency: "TND",
+            unitText: plan.priceSuffix,
+          },
+        ]
+      : [];
+  });
+}
+
 /**
  * The four per-entreprise offers in one row, then the custom offer full width
  * beneath them. The wrapping section supplies its own container and spacing.
