@@ -4,7 +4,16 @@ import * as React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { FileText, LogIn, Menu, UserPlus, X } from "lucide-react";
+import {
+  BadgeDollarSign,
+  LayoutGrid,
+  Library,
+  LogIn,
+  Menu,
+  Newspaper,
+  UserPlus,
+  X,
+} from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/cn";
@@ -19,7 +28,21 @@ import { CLIENT_LOGIN_URL, CLIENT_SIGNUP_URL } from "@/lib/urls";
  * login/signup buttons now cross the origin to the client application.
  */
 
-const publicNavigation = [{ label: "Produit", href: "/", icon: FileText }];
+/**
+ * Home is the logo, so it is deliberately not a menu item - an "/" entry would
+ * also match every route under the prefix test below.
+ */
+const publicNavigation = [
+  { label: "Fonctionnalités", href: "/features", icon: LayoutGrid },
+  { label: "Tarifs", href: "/pricing", icon: BadgeDollarSign },
+  { label: "Blog", href: "/blog", icon: Newspaper },
+  { label: "Ressources utiles", href: "/resources", icon: Library },
+];
+
+/** A section stays active on its nested routes, e.g. /blog/some-article. */
+function isSectionActive(pathname: string, href: string): boolean {
+  return pathname === href || pathname.startsWith(`${href}/`);
+}
 
 export function PublicSiteHeader() {
   const pathname = usePathname();
@@ -36,7 +59,7 @@ export function PublicSiteHeader() {
         <Link
           href="/"
           className="flex min-w-0 items-center gap-3 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-          aria-label="Facturance Plus — Accueil produit"
+          aria-label="Facturance Plus — Accueil"
         >
           <Image
             src="/facturance-plus-logo.svg"
@@ -53,7 +76,7 @@ export function PublicSiteHeader() {
           aria-label="Navigation publique"
         >
           {publicNavigation.map(({ label, href }) => {
-            const isActive = pathname === href;
+            const isActive = isSectionActive(pathname, href);
             return (
               <Link
                 key={href}
@@ -112,7 +135,7 @@ export function PublicSiteHeader() {
             aria-label="Navigation publique mobile"
           >
             {publicNavigation.map(({ label, href, icon: Icon }) => {
-              const isActive = pathname === href;
+              const isActive = isSectionActive(pathname, href);
               return (
                 <Link
                   key={href}
