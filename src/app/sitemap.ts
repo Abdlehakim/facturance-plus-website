@@ -13,6 +13,7 @@ import { publicSiteConfig } from "@/lib/public-site-config";
 const PUBLIC_PATHS = [
   "/",
   "/features",
+  "/pricing",
   "/resources",
   "/privacy",
   "/support",
