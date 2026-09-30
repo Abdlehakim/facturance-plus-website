@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ArrowRight, CalendarDays, Clock3, Newspaper } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import { getLocalizedBlogPosts } from "@/components/blog/blog-data";
+import { getAllBlogPosts, getFeaturedBlogPost } from "@/lib/blog";
 import { buildPageMetadata } from "@/lib/seo";
 import { CLIENT_SIGNUP_URL } from "@/lib/urls";
 
@@ -14,7 +14,6 @@ export const metadata: Metadata = buildPageMetadata({
   path: "/blog",
 });
 
-/** The articles already ship a French localization; nothing is invented here. */
 const dateFormatter = new Intl.DateTimeFormat("fr-FR", { dateStyle: "long" });
 
 function formatPublishedAt(value: string): string | null {
@@ -23,8 +22,13 @@ function formatPublishedAt(value: string): string | null {
 }
 
 export default function BlogPage() {
-  const posts = getLocalizedBlogPosts("fr");
-  const [featured, ...rest] = posts;
+  const posts = getAllBlogPosts();
+  // The featured article comes from front matter; the grid below lists the
+  // rest, still newest first.
+  const featured = getFeaturedBlogPost();
+  const rest = featured
+    ? posts.filter((post) => post.slug !== featured.slug)
+    : posts;
 
   return (
     <div className="mx-auto w-full max-w-6xl px-5 py-12 sm:px-8 lg:px-10 lg:py-16">
@@ -41,7 +45,7 @@ export default function BlogPage() {
         </p>
       </header>
 
-      {posts.length === 0 ? (
+      {!featured ? (
         <section className="mt-12 rounded-2xl border border-blue-100/80 bg-white px-6 py-16 text-center">
           <span className="mx-auto grid size-14 place-items-center rounded-2xl bg-primary/10 text-primary">
             <Newspaper className="size-7" aria-hidden="true" />

@@ -42,6 +42,7 @@ export function buildPageMetadata({
   description,
   path,
   socialTitle,
+  image,
   article,
 }: {
   title: string;
@@ -49,6 +50,8 @@ export function buildPageMetadata({
   /** Root-relative, e.g. "/pricing". Becomes both canonical and og:url. */
   path: string;
   socialTitle?: string;
+  /** Root-relative path to a real image; falls back to the shared card. */
+  image?: string;
   article?: ArticleFacts;
 }): Metadata {
   const resolvedSocialTitle =
@@ -60,7 +63,7 @@ export function buildPageMetadata({
     title: resolvedSocialTitle,
     description,
     url: absoluteUrl(path),
-    images: [{ ...SOCIAL_IMAGE }],
+    images: image ? [{ url: image, alt: title }] : [{ ...SOCIAL_IMAGE }],
   };
 
   // Two branches rather than a conditional `type`: Open Graph is a
@@ -84,7 +87,7 @@ export function buildPageMetadata({
       card: "summary_large_image",
       title: resolvedSocialTitle,
       description,
-      images: [SOCIAL_IMAGE.url],
+      images: [image ?? SOCIAL_IMAGE.url],
     },
   };
 }

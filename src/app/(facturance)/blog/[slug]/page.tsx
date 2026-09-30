@@ -1,20 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import {
-  ArrowLeft,
-  ArrowRight,
-  CalendarDays,
-  Clock3,
-  UserRound,
-} from "lucide-react";
+import { ArrowLeft, CalendarDays, Clock3, UserRound } from "lucide-react";
 
+import { MarkdownContent } from "@/components/blog/markdown-content";
 import {
   getAllBlogPosts,
-  getLocalizedBlogPostBySlug,
-  type BlogContentBlock,
-  type LocalizedBlogPost,
-} from "@/components/blog/blog-data";
+  getBlogPostBySlug,
+  type BlogArticle,
+} from "@/lib/blog";
 import { publicSiteConfig } from "@/lib/public-site-config";
 import { absoluteUrl, buildPageMetadata } from "@/lib/seo";
 
@@ -22,16 +16,24 @@ type BlogArticlePageProps = {
   params: Promise<{ slug: string }>;
 };
 
-/** Unchanged: the same slugs are still generated, so no article URL breaks. */
+/** Derived from the Markdown files, so a new article needs no registration. */
 export function generateStaticParams() {
   return getAllBlogPosts().map((post) => ({ slug: post.slug }));
 }
+
+/**
+ * Every article is known at build time, and the standalone production image
+ * carries the rendered pages rather than src/content. Without this, an unknown
+ * slug would be rendered on demand and the loader would look for Markdown that
+ * is not in the image; with it, anything outside the list above is a 404.
+ */
+export const dynamicParams = false;
 
 export async function generateMetadata({
   params,
 }: BlogArticlePageProps): Promise<Metadata> {
   const { slug } = await params;
-  const post = getLocalizedBlogPostBySlug(slug, "fr");
+  const post = getBlogPostBySlug(slug);
 
   if (!post) {
     return { title: "Article introuvable" };
@@ -41,6 +43,7 @@ export async function generateMetadata({
     title: post.title,
     description: post.description,
     path: `/blog/${slug}`,
+    image: post.image,
     article: {
       publishedTime: post.publishedAt,
       authors: post.author ? [post.author] : [],
@@ -49,16 +52,17 @@ export async function generateMetadata({
 }
 
 /**
- * BlogPosting for one article, built only from fields the article record
- * actually carries. The records hold no cover image and no modified date, so
- * `image` and `dateModified` are deliberately absent rather than invented, and
- * the author is an Organization because every byline names a team.
+ * BlogPosting for one article, built only from fields the front matter
+ * actually carries. `image` appears when the article declares one and is left
+ * out otherwise; no article records a modified date, so `dateModified` is
+ * absent rather than invented, and the author is an Organization because every
+ * byline names a team.
  */
 function ArticleStructuredData({
   post,
   slug,
 }: {
-  post: LocalizedBlogPost;
+  post: BlogArticle;
   slug: string;
 }) {
   const articleUrl = absoluteUrl(`/blog/${slug}`);
@@ -74,6 +78,7 @@ function ArticleStructuredData({
       "@type": "WebPage",
       "@id": articleUrl,
     },
+    ...(post.image ? { image: absoluteUrl(post.image) } : {}),
     ...(post.author
       ? { author: { "@type": "Organization", name: post.author } }
       : {}),
@@ -106,67 +111,11 @@ function formatPublishedAt(value: string): string | null {
   return Number.isNaN(date.getTime()) ? null : dateFormatter.format(date);
 }
 
-function ContentBlock({ block }: { block: BlogContentBlock }) {
-  if (block.type === "heading") {
-    return (
-      <h2 className="mt-10 text-2xl font-bold tracking-tight text-[#0b294d]">
-        {block.text}
-      </h2>
-    );
-  }
-
-  if (block.type === "list") {
-    return (
-      <ul className="mt-5 grid gap-2 pl-5 marker:text-primary [&>li]:list-disc">
-        {block.items.map((item) => (
-          <li key={item} className="leading-7 text-muted-foreground">
-            {item}
-          </li>
-        ))}
-      </ul>
-    );
-  }
-
-  if (block.type === "links") {
-    return (
-      <aside className="mt-8 rounded-2xl border border-blue-100 bg-white p-5">
-        {block.title && (
-          <p className="font-bold text-[#0b294d]">{block.title}</p>
-        )}
-        <ul className="mt-3 grid gap-2">
-          {block.items.map((item) => (
-            <li key={item.href}>
-              <Link
-                href={item.href}
-                className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline"
-              >
-                {item.label}
-                <ArrowRight className="size-4" aria-hidden="true" />
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </aside>
-    );
-  }
-
-  if (block.type === "callout") {
-    return (
-      <aside className="mt-8 rounded-2xl border border-blue-100 bg-blue-50/60 p-5">
-        <p className="font-bold text-[#0b294d]">{block.title}</p>
-        <p className="mt-2 leading-7 text-muted-foreground">{block.text}</p>
-      </aside>
-    );
-  }
-
-  return <p className="mt-5 leading-8 text-muted-foreground">{block.text}</p>;
-}
-
 export default async function BlogArticlePage({
   params,
 }: BlogArticlePageProps) {
   const { slug } = await params;
-  const post = getLocalizedBlogPostBySlug(slug, "fr");
+  const post = getBlogPostBySlug(slug);
 
   if (!post) {
     notFound();
@@ -223,9 +172,7 @@ export default async function BlogArticlePage({
         </header>
 
         <div className="mt-6">
-          {post.content.map((block, index) => (
-            <ContentBlock key={index} block={block} />
-          ))}
+          <MarkdownContent content={post.content} />
         </div>
       </article>
 

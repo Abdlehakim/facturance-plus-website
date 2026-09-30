@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-import { getAllBlogPosts } from "@/components/blog/blog-data";
+import { getAllBlogPosts } from "@/lib/blog";
 import { publicSiteConfig } from "@/lib/public-site-config";
 
 /**
