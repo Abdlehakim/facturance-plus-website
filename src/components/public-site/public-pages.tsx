@@ -43,6 +43,7 @@ import Image from "next/image"
 import Link from "next/link"
 
 import { PricingOffers } from "@/components/public-site/pricing-offers"
+import { HeroVideoDemo } from "@/components/public-site/hero-video-demo"
 import { Button } from "@/components/ui/button"
 import {
   Card,
@@ -284,7 +285,7 @@ export function FacturancePlusPage() {
           Below xl the same element returns to the document flow after the
           copy, which is why it is first in the DOM with `order-last`.
         */}
-        <div className="relative order-last aspect-[16/10] w-full sm:aspect-[16/9] xl:absolute xl:right-[1.5%] xl:top-1/2 xl:z-10 xl:order-none xl:aspect-[1672/941] xl:w-[72%] xl:-translate-y-[60%]">
+        <div className="relative order-last aspect-[16/10] w-full sm:aspect-[16/9] xl:absolute xl:right-[1.5%] xl:top-1/2 xl:order-none xl:aspect-[1672/941] xl:w-[72%] xl:-translate-y-[60%]">
           <Image
             src="/facturance-plus-hero.webp"
             alt="Facturance Plus affiché sur un écran de bureau : logiciel de facturation et de gestion commerciale"
@@ -293,6 +294,8 @@ export function FacturancePlusPage() {
             sizes="(min-width: 1280px) 70vw, 100vw"
             className="object-cover object-[72%_center] xl:object-center"
           />
+
+          <HeroVideoDemo triggerClassName="z-40 left-1/2 top-[44%] xl:left-[67%] xl:top-[45%]" />
 
           {/* The photograph does not span the hero, so its edges melt into
               the navy panel instead of cutting against it. */}
