@@ -11,6 +11,7 @@
 import type * as React from "react"
 import {
   ArrowRight,
+  BarChart3,
   Building2,
   CheckCircle2,
   CirclePlay,
@@ -38,7 +39,6 @@ import Image from "next/image"
 import Link from "next/link"
 
 import { PricingOffers } from "@/components/public-site/pricing-offers"
-import { HeroVideoDemo } from "@/components/public-site/hero-video-demo"
 import { Button } from "@/components/ui/button"
 import {
   Card,
@@ -247,30 +247,52 @@ export function FacturancePlusPage() {
    * Desktop only and marked decorative: the bar below states the same
    * capabilities for assistive technology.
    */
+  /*
+   * Capability widgets drawn in HTML around the product visual, never baked
+   * into the image. Percentages are tuned to the reference composition: a left
+   * cluster in the band between the copy and the monitor, and a right cluster
+   * past the monitor's edge.
+   */
   const heroFloatingCards = [
     {
-      title: "Paiements",
-      detail: "Suivi des règlements",
-      icon: ReceiptText,
-      position: "right-[5%] top-[14%]",
+      title: "Factures",
+      detail: "Export PDF",
+      icon: FileText,
+      position: "left-[44%] top-[13%]",
       delay: "0s",
       wideOnly: false,
     },
     {
       title: "Clients",
-      detail: "Gestion centralisée",
+      detail: "Gestion centralis\u00e9e",
       icon: UserRoundCheck,
-      position: "left-[41%] bottom-[30%]",
-      delay: "1.8s",
+      position: "left-[42%] top-[41%]",
+      delay: "1.4s",
       wideOnly: false,
     },
     {
       title: "Stock",
-      detail: "Suivi simplifié",
+      detail: "Suivi simplifi\u00e9",
       icon: PackageCheck,
-      /** Third card only once the viewport is wide enough to carry it. */
-      position: "right-[6%] bottom-[22%]",
-      delay: "3.2s",
+      position: "left-[44%] top-[62%]",
+      delay: "2.8s",
+      wideOnly: false,
+    },
+    {
+      title: "Paiements",
+      detail: "Suivi des r\u00e8glements",
+      icon: ReceiptText,
+      position: "right-[1.5%] top-[44%]",
+      delay: "2.1s",
+      wideOnly: false,
+    },
+    {
+      title: "Rapports",
+      detail: "Vue d\u2019ensemble",
+      icon: BarChart3,
+      /** Fifth widget only once the viewport can carry it without crowding. */
+      position: "right-[1.5%] top-[23%]",
+      delay: "3.6s",
       wideOnly: true,
     },
   ]
@@ -279,38 +301,39 @@ export function FacturancePlusPage() {
 
   return (
     <>
-      <section className="relative flex flex-col overflow-hidden bg-gradient-to-br from-[#06182d] via-[#0b3763] to-[#176eb0] text-white lg:block lg:min-h-[calc(100svh-4.5rem)]">
+      <section className="relative flex flex-col overflow-hidden bg-[#031b35] text-white lg:block lg:min-h-[50rem] xl:min-h-[51.5rem]">
         {/*
-          One image serves both layouts. Below lg it is a block that follows
-          the copy; from lg it becomes the full-bleed backdrop. `order-last`
-          places it visually after the text on mobile although it comes first
-          in the DOM, which is what lets the copy stack above it from lg
-          without a second element and a second download.
+          The product visual is a layer on the right rather than a full-bleed
+          backdrop: covering the whole hero scaled the monitor far past the
+          reference and cropped away its stand, keyboard and desk. Bound by the
+          hero's height, the image shows its full vertical extent and the
+          monitor lands at roughly 40% of the viewport width.
+
+          Below lg the same element returns to the flow after the copy, which
+          is why it is first in the DOM with `order-last`.
         */}
-        <div className="relative order-last aspect-[16/10] w-full sm:aspect-[16/9] lg:absolute lg:inset-0 lg:order-none lg:aspect-auto">
+        <div className="relative order-last aspect-[16/10] w-full sm:aspect-[16/9] lg:absolute lg:inset-y-0 lg:right-0 lg:order-none lg:aspect-auto lg:w-[70%]">
           <Image
             src="/facturance-plus-hero.webp"
-            alt="Facturance Plus affiché sur un écran de bureau : logiciel de facturation et de gestion commerciale"
+            alt="Facturance Plus affich\u00e9 sur un \u00e9cran de bureau : logiciel de facturation et de gestion commerciale"
             fill
             priority
-            sizes="100vw"
-            className="object-cover object-[72%_center] lg:object-[68%_center]"
+            sizes="(min-width: 1024px) 70vw, 100vw"
+            className="object-cover object-[72%_center] lg:object-right"
           />
-
-          <HeroVideoDemo triggerClassName="left-1/2 top-[44%] lg:left-[66%] lg:top-[45%]" />
         </div>
 
         {/*
-          Navy wash over the left of the image so the copy keeps its contrast,
-          fading out before the monitor. Only needed where the image sits
-          behind the text.
+          Navy wash blending the photograph into the flat left panel. Fully
+          opaque under the copy, clear well before the monitor so the interface
+          keeps the image's own brightness.
         */}
         <div
-          className="pointer-events-none absolute inset-0 hidden bg-[linear-gradient(to_right,#06182d_0%,rgba(6,24,45,0.95)_32%,rgba(6,24,45,0.74)_39%,rgba(6,24,45,0.34)_45%,rgba(6,24,45,0.08)_51%,rgba(6,24,45,0)_57%)] lg:block"
+          className="pointer-events-none absolute inset-0 hidden bg-[linear-gradient(90deg,rgba(3,27,53,1)_0%,rgba(3,27,53,0.98)_30%,rgba(3,27,53,0.8)_40%,rgba(3,27,53,0.25)_52%,rgba(3,27,53,0)_62%)] lg:block"
           aria-hidden="true"
         />
         <div
-          className="pointer-events-none absolute inset-x-0 bottom-0 hidden h-36 bg-gradient-to-t from-[#06182d]/60 to-transparent lg:block"
+          className="pointer-events-none absolute inset-x-0 bottom-0 hidden h-44 bg-gradient-to-t from-[#031b35]/80 to-transparent lg:block"
           aria-hidden="true"
         />
 
@@ -323,8 +346,8 @@ export function FacturancePlusPage() {
               <div
                 key={title}
                 style={{ animationDelay: delay }}
-                className={`absolute flex animate-[facturance-hero-float_6s_ease-in-out_infinite] items-center gap-2.5 rounded-2xl border border-white/55 bg-white/88 px-3.5 py-2.5 shadow-[0_14px_32px_rgba(2,18,39,0.26)] backdrop-blur-sm motion-reduce:animate-none ${position} ${
-                  wideOnly ? "hidden xl:flex" : ""
+                className={`absolute flex w-[9.5rem] animate-[facturance-hero-float_6s_ease-in-out_infinite] items-center gap-2.5 rounded-xl border border-white/55 bg-white/90 px-3 py-2.5 shadow-[0_12px_28px_rgba(2,18,39,0.28)] backdrop-blur-sm motion-reduce:animate-none ${position} ${
+                  wideOnly ? "hidden 2xl:flex" : ""
                 }`}
               >
                 <span className="grid size-8 shrink-0 place-items-center rounded-lg bg-[#0b294d]/10 text-[#0b294d]">
@@ -332,10 +355,10 @@ export function FacturancePlusPage() {
                 </span>
 
                 <span className="min-w-0">
-                  <span className="block whitespace-nowrap text-[0.8125rem] font-bold leading-[1.1rem] text-[#0b294d]">
+                  <span className="block text-[0.8125rem] font-bold leading-[1.05rem] text-[#0b294d]">
                     {title}
                   </span>
-                  <span className="mt-0.5 block whitespace-nowrap text-[0.6875rem] leading-4 text-[#0b294d]/65">
+                  <span className="mt-0.5 block text-[0.6875rem] leading-[0.9rem] text-[#0b294d]/65">
                     {detail}
                   </span>
                 </span>
@@ -344,17 +367,18 @@ export function FacturancePlusPage() {
           )}
         </div>
 
-        <div className="relative z-20 mx-auto flex w-full max-w-[90rem] flex-col justify-center px-5 py-10 sm:px-8 sm:py-12 lg:min-h-[calc(100svh-4.5rem)] lg:px-8 lg:py-12">
-          {/*
-            The copy keeps to the left of the composition on desktop, where the
-            image reserves the right side for the monitor.
-          */}
-          <div className="flex w-full min-w-0 max-w-xl flex-col gap-6 lg:max-w-none lg:w-[43%] xl:w-[40%]">
+        {/*
+          Near-full-bleed with a 4% gutter, as in the reference: a centred
+          max-width container pushed the copy too far inboard and left no room
+          for the widgets between it and the monitor.
+        */}
+        <div className="relative z-20 mx-auto flex w-full max-w-[120rem] flex-col justify-center px-5 py-10 sm:px-8 sm:py-12 lg:min-h-[50rem] lg:px-[4%] lg:py-14 xl:min-h-[51.5rem]">
+          <div className="flex w-full min-w-0 max-w-xl flex-col gap-6 lg:max-w-[38.75rem]">
             <div className="min-w-0">
               <p className="text-xs font-bold uppercase tracking-[0.22em] text-blue-200">
                 LOGICIEL DE FACTURATION ET DE GESTION COMMERCIALE
               </p>
-              <h1 className="mt-4 text-[1.75rem] font-bold leading-[1.08] tracking-tight sm:text-[2.05rem] lg:text-[2.25rem] xl:text-[2.5rem]">
+              <h1 className="mt-4 text-[1.75rem] font-bold leading-[1.08] tracking-tight sm:text-[2.05rem] lg:text-[2.35rem] xl:text-[2.6rem]">
                 <span className="text-white">
                   Toute votre facturation et votre gestion commerciale
                 </span>{" "}
@@ -363,56 +387,14 @@ export function FacturancePlusPage() {
                 </span>
               </h1>
               <p className="mt-4 text-sm leading-6 text-blue-50/85 sm:text-base sm:leading-7">
-                Créez vos factures, devis, bons de commande et de livraison, puis gérez clients, fournisseurs, articles, stocks, paiements et entreprises depuis un seul espace.
+                Cr\u00e9ez vos factures, devis, bons de commande et de livraison, puis g\u00e9rez clients, fournisseurs, articles, stocks, paiements et entreprises depuis un seul espace.
               </p>
             </div>
 
-            {/* Actions before the benefits on small screens, after them from lg. */}
-            <div className="order-2 min-w-0 lg:order-3">
-              <div className="flex flex-col items-stretch gap-3 sm:flex-row sm:items-stretch sm:gap-4">
-                <Button
-                  asChild
-                  size="lg"
-                  className="h-14 w-full justify-start gap-3 rounded-md bg-white px-5 py-2 text-[#0b294d] shadow-[0_6px_16px_rgba(2,18,39,0.16)] hover:bg-blue-50 sm:w-[15rem] [&_svg]:size-6"
-                >
-                  <Link href={CLIENT_SIGNUP_URL}>
-                    <Download aria-hidden="true" />
-                    <span className="flex flex-col items-start gap-0.5 text-left">
-                      <span className="text-sm font-semibold leading-5">
-                        Démarrer l’essai gratuit
-                      </span>
-                      <span className="text-xs font-medium leading-4 text-[#0b294d]/85">
-                        3 jours d’essai gratuit
-                      </span>
-                    </span>
-                  </Link>
-                </Button>
-
-                <Button
-                  asChild
-                  size="lg"
-                  variant="outline"
-                  className="h-14 w-full justify-start gap-3 rounded-md border border-white/60 bg-transparent px-5 py-2 text-white shadow-none hover:bg-white/10 hover:text-white sm:w-[17rem] [&_svg]:size-6"
-                >
-                  <a href="#features">
-                    <CirclePlay aria-hidden="true" />
-                    <span className="text-sm font-semibold leading-5">
-                      Découvrir les fonctionnalités
-                    </span>
-                  </a>
-                </Button>
-              </div>
-
-              <p className="mt-3 flex items-center gap-2 text-sm text-blue-100/80">
-                <ShieldCheck className="size-4 shrink-0" aria-hidden="true" />
-                Aucune carte bancaire requise
-              </p>
-            </div>
-
-            <ul className="order-3 grid min-w-0 gap-5 sm:grid-cols-3 lg:order-2 lg:gap-6">
+            <ul className="grid min-w-0 gap-5 sm:grid-cols-3 lg:gap-5">
               {heroBenefits.map(({ title, description, icon: Icon }) => (
                 <li key={title} className="flex min-w-0 items-start gap-3">
-                  <span className="grid size-11 shrink-0 place-items-center rounded-full bg-white/10 text-sky-200">
+                  <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-white/10 text-sky-200">
                     <Icon className="size-5" aria-hidden="true" />
                   </span>
                   <span className="min-w-0">
@@ -426,9 +408,50 @@ export function FacturancePlusPage() {
                 </li>
               ))}
             </ul>
+
+            <div className="min-w-0">
+              <div className="flex flex-col items-stretch gap-3 sm:flex-row sm:items-stretch sm:gap-4">
+                <Button
+                  asChild
+                  size="lg"
+                  className="h-14 w-full justify-start gap-3 rounded-md bg-white px-5 py-2 text-[#0b294d] shadow-[0_6px_16px_rgba(2,18,39,0.16)] hover:bg-blue-50 sm:w-[14.5rem] [&_svg]:size-6"
+                >
+                  <Link href={CLIENT_SIGNUP_URL}>
+                    <Download aria-hidden="true" />
+                    <span className="flex flex-col items-start gap-0.5 text-left">
+                      <span className="text-sm font-semibold leading-5">
+                        D\u00e9marrer l\u2019essai gratuit
+                      </span>
+                      <span className="text-xs font-medium leading-4 text-[#0b294d]/85">
+                        3 jours d\u2019essai gratuit
+                      </span>
+                    </span>
+                  </Link>
+                </Button>
+
+                <Button
+                  asChild
+                  size="lg"
+                  variant="outline"
+                  className="h-14 w-full justify-start gap-3 rounded-md border border-white/60 bg-transparent px-5 py-2 text-white shadow-none hover:bg-white/10 hover:text-white sm:w-[16.5rem] [&_svg]:size-6"
+                >
+                  <a href="#features">
+                    <CirclePlay aria-hidden="true" />
+                    <span className="text-sm font-semibold leading-5">
+                      D\u00e9couvrir les fonctionnalit\u00e9s
+                    </span>
+                  </a>
+                </Button>
+              </div>
+
+              <p className="mt-3 flex items-center gap-2 text-sm text-blue-100/80">
+                <ShieldCheck className="size-4 shrink-0" aria-hidden="true" />
+                Aucune carte bancaire requise
+              </p>
+            </div>
           </div>
 
-          <div className="mt-8 overflow-hidden rounded-2xl border border-white/15 bg-[#0a3159]/70 shadow-xl shadow-slate-950/20 backdrop-blur-sm lg:mt-10">
+          <div className="mt-10 overflow-hidden rounded-2xl border border-white/15 bg-[#06223f]/80 shadow-[0_18px_44px_rgba(2,12,26,0.4)] backdrop-blur-sm lg:mt-12">
             <ul className="grid grid-cols-2 lg:grid-cols-4">
               {heroCapabilities.map(
                 ({ title, detail, icon: Icon, iconClassName }, index) => (
