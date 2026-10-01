@@ -11,11 +11,12 @@
 import type * as React from "react"
 import {
   ArrowRight,
-  BarChart3,
   Building2,
+  Check,
   CheckCircle2,
   CirclePlay,
   Clock3,
+  CreditCard,
   Download,
   ExternalLink,
   FileLock2,
@@ -25,6 +26,7 @@ import {
   KeyRound,
   Mail,
   MessageCircle,
+  Package,
   PackageCheck,
   Phone,
   Printer,
@@ -33,6 +35,8 @@ import {
   Scale,
   ShieldCheck,
   Store,
+  TrendingUp,
+  UserRound,
   UserRoundCheck,
 } from "lucide-react"
 import Image from "next/image"
@@ -261,60 +265,6 @@ export function FacturancePlusPage() {
    * `accent` and `shadow` vary slightly per card so the group reads as a set
    * rather than five identical tiles.
    */
-  const heroFloatingCards = [
-    {
-      title: "Factures",
-      detail: "Export PDF",
-      icon: FileText,
-      accent: "bg-blue-500/10 text-[#13407a]",
-      shadow: "shadow-[0_16px_34px_rgba(2,18,39,0.3)]",
-      position: "left-[49%] top-[13%]",
-      delay: "0s",
-      wideOnly: false,
-    },
-    {
-      title: "Clients",
-      detail: "Gestion centralisée",
-      icon: UserRoundCheck,
-      accent: "bg-sky-500/10 text-[#0f5b86]",
-      shadow: "shadow-[0_12px_28px_rgba(2,18,39,0.24)]",
-      position: "left-[48.5%] top-[40%]",
-      delay: "1.4s",
-      wideOnly: false,
-    },
-    {
-      title: "Stock",
-      detail: "Suivi simplifié",
-      icon: PackageCheck,
-      accent: "bg-cyan-500/10 text-[#0b5b6b]",
-      shadow: "shadow-[0_16px_34px_rgba(2,18,39,0.28)]",
-      position: "left-[49%] top-[62%]",
-      delay: "2.8s",
-      wideOnly: false,
-    },
-    {
-      title: "Paiements",
-      detail: "Suivi des règlements",
-      icon: ReceiptText,
-      accent: "bg-indigo-500/10 text-[#2b3a8c]",
-      shadow: "shadow-[0_14px_30px_rgba(2,18,39,0.26)]",
-      position: "right-[1%] top-[41%]",
-      delay: "2.1s",
-      wideOnly: false,
-    },
-    {
-      title: "Rapports",
-      detail: "Vue d’ensemble",
-      icon: BarChart3,
-      accent: "bg-blue-500/10 text-[#13407a]",
-      shadow: "shadow-[0_12px_28px_rgba(2,18,39,0.22)]",
-      /** Fifth widget only once the viewport can carry it without crowding. */
-      position: "right-[2%] top-[10%]",
-      delay: "3.6s",
-      wideOnly: true,
-    },
-  ]
-
   const whatsAppUrl = getWhatsAppUrl()
 
   return (
@@ -378,41 +328,127 @@ export function FacturancePlusPage() {
           className="pointer-events-none absolute inset-0 z-40 hidden xl:block"
           aria-hidden="true"
         >
-          {heroFloatingCards.map(
-            ({
-              title,
-              detail,
-              icon: Icon,
-              accent,
-              shadow,
-              position,
-              delay,
-              wideOnly,
-            }) => (
-              <div
-                key={title}
-                style={{ animationDelay: delay }}
-                className={`absolute flex w-[8rem] animate-[facturance-hero-float_5.5s_ease-in-out_infinite] items-center gap-2 rounded-2xl border border-white/60 bg-white/95 p-2.5 backdrop-blur-sm motion-reduce:animate-none ${shadow} ${position} ${
-                  wideOnly ? "hidden 2xl:flex" : ""
-                }`}
-              >
-                <span
-                  className={`grid size-8 shrink-0 place-items-center rounded-xl ${accent}`}
-                >
-                  <Icon className="size-5" aria-hidden="true" />
-                </span>
+          {/*
+            Five widgets with deliberately different silhouettes - a document,
+            a wide card, a square, and two taller dashboard tiles - so the group
+            reads as a product surface rather than five copies of one component.
+            Decorative: the capability bar below states the same capabilities
+            for assistive technology.
+          */}
 
-                <span className="min-w-0">
-                  <span className="block text-[0.8125rem] font-bold leading-[1.05rem] text-[#0b294d]">
-                    {title}
-                  </span>
-                  <span className="mt-0.5 block text-[0.6875rem] leading-[0.9rem] text-[#0b294d]/65">
-                    {detail}
-                  </span>
-                </span>
-              </div>
-            ),
-          )}
+          {/* Facture: a miniature invoice drawn in markup, with a PDF tag
+              clipped to its corner. Tallest and narrowest of the set. */}
+          <div
+            className="absolute left-[49%] top-[11%] animate-[facturance-hero-float_5.5s_ease-in-out_infinite] motion-reduce:animate-none"
+            style={{ animationDelay: "0s" }}
+          >
+            <div className="relative w-[6.25rem] rounded-xl border border-white/70 bg-white/97 backdrop-blur-sm px-3 pb-5 pt-3.5 shadow-[0_10px_30px_rgba(0,20,60,0.2),0_0_22px_rgba(60,180,255,0.12)]">
+              <p className="text-[0.6rem] font-bold uppercase tracking-[0.14em] text-[#1d4ed8]">
+                Facture
+              </p>
+
+              <span className="mt-3 block space-y-1.5">
+                <span className="block h-1 w-full rounded-full bg-[#dbeafe]" />
+                <span className="block h-1 w-3/4 rounded-full bg-[#e6effb]" />
+                <span className="block h-1 w-full rounded-full bg-[#dbeafe]" />
+                <span className="block h-1 w-2/3 rounded-full bg-[#e6effb]" />
+                <span className="block h-1 w-5/6 rounded-full bg-[#dbeafe]" />
+                <span className="block h-1 w-1/2 rounded-full bg-[#e6effb]" />
+              </span>
+
+              <span className="mt-3 block h-px w-full bg-[#e8f0fb]" />
+
+              <span className="mt-2.5 flex items-center justify-between">
+                <span className="block h-1 w-1/3 rounded-full bg-[#e6effb]" />
+                <span className="block h-1.5 w-2/5 rounded-full bg-[#bfdbfe]" />
+              </span>
+            </div>
+
+            <span className="absolute -bottom-2 -right-2 rounded-md bg-[#e03127] px-1.5 py-0.5 text-[0.55rem] font-bold tracking-wide text-white shadow-[0_6px_14px_rgba(224,49,39,0.42)]">
+              PDF
+            </span>
+          </div>
+
+          {/* Clients: wide and short, the icon carried bare at a larger size
+              rather than inside a tile. */}
+          <div
+            className="absolute left-[48.5%] top-[45%] flex w-[8.5rem] items-center gap-2.5 rounded-2xl border border-white/70 bg-white/97 backdrop-blur-sm px-3 py-4 shadow-[0_8px_26px_rgba(0,20,60,0.16),0_0_18px_rgba(60,180,255,0.1)] animate-[facturance-hero-float_6s_ease-in-out_infinite] motion-reduce:animate-none"
+            style={{ animationDelay: "1.3s" }}
+          >
+            <UserRound className="size-8 shrink-0 text-[#1d4ed8]" />
+
+            <span className="min-w-0">
+              <span className="block text-[0.8125rem] font-bold leading-[1.05rem] text-[#0b294d]">
+                Clients
+              </span>
+              <span className="mt-0.5 block text-[0.6875rem] leading-[0.9rem] text-[#0b294d]/60">
+                Gestion centralisée
+              </span>
+            </span>
+          </div>
+
+          {/* Stock: near square, stacked and centred. */}
+          <div
+            className="absolute left-[49%] top-[62%] flex w-[5.75rem] flex-col items-center gap-1.5 rounded-2xl border border-white/70 bg-white/97 backdrop-blur-sm px-3 py-3.5 text-center shadow-[0_10px_30px_rgba(0,20,60,0.2),0_0_22px_rgba(60,180,255,0.12)] animate-[facturance-hero-float_5s_ease-in-out_infinite] motion-reduce:animate-none"
+            style={{ animationDelay: "2.6s" }}
+          >
+            <Package className="size-7 text-[#0b7285]" />
+
+            <span className="text-[0.8125rem] font-bold leading-4 text-[#0b294d]">
+              Stock
+            </span>
+
+            <span className="inline-flex items-center gap-1 text-[0.625rem] leading-3 text-[#0b294d]/60">
+              Suivi
+              <Check className="size-3 text-emerald-600" />
+            </span>
+          </div>
+
+          {/* Rapports: the tallest right-hand tile, led by a small bar chart
+              drawn in markup rather than an icon. */}
+          <div
+            className="absolute right-[2%] top-[10%] flex min-h-[7.75rem] w-[7rem] flex-col justify-between rounded-2xl border border-white/70 bg-white/97 backdrop-blur-sm px-3.5 py-4 shadow-[0_10px_30px_rgba(0,20,60,0.2),0_0_22px_rgba(60,180,255,0.12)] animate-[facturance-hero-float_6.5s_ease-in-out_infinite] motion-reduce:animate-none"
+            style={{ animationDelay: "3.4s" }}
+          >
+            <span className="flex items-end justify-between">
+              <span className="flex items-end gap-1">
+                <span className="block h-3 w-1.5 rounded-sm bg-[#bfdbfe]" />
+                <span className="block h-5 w-1.5 rounded-sm bg-[#60a5fa]" />
+                <span className="block h-7 w-1.5 rounded-sm bg-[#1d4ed8]" />
+              </span>
+
+              <TrendingUp className="size-4 text-emerald-600" />
+            </span>
+
+            <span className="mt-3 block">
+              <span className="block text-[0.8125rem] font-bold leading-[1.05rem] text-[#0b294d]">
+                Rapports
+              </span>
+              <span className="mt-0.5 block text-[0.6875rem] leading-[0.9rem] text-[#0b294d]/60">
+                Vue globale
+              </span>
+            </span>
+          </div>
+
+          {/* Paiements: a status tile, shorter than Rapports. */}
+          <div
+            className="absolute right-[1%] top-[42%] flex min-h-[7.25rem] w-[7rem] flex-col justify-between rounded-2xl border border-white/70 bg-white/97 backdrop-blur-sm px-3.5 py-4 shadow-[0_8px_26px_rgba(0,20,60,0.16),0_0_18px_rgba(60,180,255,0.1)] animate-[facturance-hero-float_5.8s_ease-in-out_infinite] motion-reduce:animate-none"
+            style={{ animationDelay: "2s" }}
+          >
+            <span className="grid size-9 place-items-center rounded-xl bg-indigo-500/10 text-[#2b3a8c]">
+              <CreditCard className="size-5" />
+            </span>
+
+            <span className="mt-3 block">
+              <span className="block text-[0.8125rem] font-bold leading-[1.05rem] text-[#0b294d]">
+                Paiements
+              </span>
+              <span className="mt-0.5 inline-flex items-center gap-1 text-[0.6875rem] leading-[0.9rem] text-[#0b294d]/60">
+                Suivi
+                <Check className="size-3 text-emerald-600" />
+              </span>
+            </span>
+          </div>
         </div>
 
         {/*
