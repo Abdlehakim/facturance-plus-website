@@ -122,4 +122,4 @@ Gérer plusieurs entreprises correctement tient à un équilibre : un accès cen
 
 Les trois points à vérifier en priorité sont la numérotation par entreprise, la séparation des stocks, et la clarté de la bascule d’un contexte à l’autre. Un outil qui traite correctement ces trois éléments vous évitera l’essentiel des erreurs que produit la duplication de fichiers.
 
-Vous pouvez [consulter les fonctionnalités de Facturance Plus](/features) pour voir comment cette séparation s’organise, ou [décrire votre situation à l’équipe](/contact) si vous gérez plusieurs entités et souhaitez vérifier que l’organisation proposée correspond à votre cas.
+Vous pouvez [consulter les fonctionnalités de Facturance Plus](/features) ou la page [logiciel de gestion commerciale en Tunisie](/logiciel-gestion-commerciale-tunisie) pour voir comment cette séparation s’organise, ou [décrire votre situation à l’équipe](/contact) si vous gérez plusieurs entités et souhaitez vérifier que l’organisation proposée correspond à votre cas.

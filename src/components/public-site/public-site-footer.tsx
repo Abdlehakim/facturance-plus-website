@@ -60,6 +60,12 @@ const productFooterLinks: FooterLinkItem[] = [
     kind: "route",
   },
   {
+    label: "Logiciel de gestion commerciale en Tunisie",
+    href: "/logiciel-gestion-commerciale-tunisie",
+    icon: LayoutGrid,
+    kind: "route",
+  },
+  {
     label: "Fonctionnalités",
     href: "/features",
     icon: LayoutGrid,
