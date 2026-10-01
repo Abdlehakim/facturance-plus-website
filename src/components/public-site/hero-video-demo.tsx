@@ -83,13 +83,24 @@ export function HeroVideoDemo({
         type="button"
         onClick={() => setIsOpen(true)}
         aria-label="Voir la présentation vidéo de Facturance Plus"
-        className={`group absolute z-20 flex -translate-x-1/2 -translate-y-1/2 cursor-pointer flex-col items-center gap-3 rounded-2xl p-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b3763] ${triggerClassName}`}
+        className={`group pointer-events-auto absolute z-20 flex -translate-x-1/2 -translate-y-1/2 cursor-pointer flex-col items-center gap-3 rounded-2xl p-2 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky-300 ${triggerClassName}`}
       >
-        <span className="grid size-14 place-items-center rounded-full bg-white/95 text-[#0b294d] shadow-[0_10px_28px_rgba(2,18,39,0.42)] ring-1 ring-white/60 transition group-hover:scale-105 group-hover:bg-white motion-reduce:transition-none motion-reduce:group-hover:scale-100 sm:size-16">
-          <Play className="ml-0.5 size-6 fill-current" aria-hidden="true" />
+        <span className="relative inline-grid place-items-center">
+          {/* Decorative only, and never the click target. */}
+          <span
+            className="pointer-events-none absolute inset-0 animate-[facturance-play-pulse_2.8s_ease-out_infinite] rounded-full bg-sky-300/45 motion-reduce:hidden"
+            aria-hidden="true"
+          />
+
+          <span className="relative grid size-15 place-items-center rounded-full bg-primary text-white shadow-[0_14px_34px_rgba(2,18,39,0.45),0_0_26px_rgba(56,189,248,0.3)] ring-[3px] ring-white/35 transition duration-200 group-hover:scale-105 group-hover:shadow-[0_18px_40px_rgba(2,18,39,0.5),0_0_32px_rgba(56,189,248,0.45)] group-active:scale-[0.97] motion-reduce:transition-none motion-reduce:group-hover:scale-100 sm:size-17 lg:size-19">
+            <Play
+              className="ml-[2px] size-6 fill-current sm:size-7"
+              aria-hidden="true"
+            />
+          </span>
         </span>
 
-        <span className="whitespace-nowrap rounded-full bg-[#082b50]/90 px-4 py-1.5 text-xs font-semibold text-white shadow-lg backdrop-blur sm:text-sm">
+        <span className="whitespace-nowrap rounded-full border border-white/15 bg-[#0b294d]/92 px-4 py-1.5 text-xs font-semibold text-white shadow-[0_8px_20px_rgba(2,18,39,0.35)] backdrop-blur transition-colors duration-200 group-hover:bg-[#0b294d] motion-reduce:transition-none sm:px-5 sm:py-2 sm:text-sm">
           Voir Facturance Plus en 1 minute
         </span>
       </button>

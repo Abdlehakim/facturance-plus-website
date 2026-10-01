@@ -56,6 +56,22 @@
  * keyframes cannot live in a utility class; the cards apply it with an
  * arbitrary `animate-[...]` value and disable it under motion-reduce.
  */
+/*
+ * Expanding ring behind the hero's video control. Only the decorative ring
+ * animates; the button itself never moves, so the click target is stable.
+ */
+@keyframes facturance-play-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  70%,
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+
 @keyframes facturance-hero-float {
   0%,
   100% {
