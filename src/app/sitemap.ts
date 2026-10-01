@@ -18,6 +18,7 @@ const PUBLIC_PATHS: { path: string; priority: number }[] = [
   { path: "/logiciel-facturation-tunisie", priority: 0.9 },
   { path: "/logiciel-gestion-commerciale-tunisie", priority: 0.9 },
   { path: "/logiciel-gestion-stock-tunisie", priority: 0.9 },
+  { path: "/comparatif-logiciel-facturation-tunisie", priority: 0.8 },
   { path: "/pricing", priority: 0.9 },
   { path: "/features", priority: 0.9 },
   { path: "/blog", priority: 0.8 },

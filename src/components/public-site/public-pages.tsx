@@ -111,7 +111,7 @@ function LegalSection({
 }) {
   return (
     <section className="scroll-mt-24 border-t pt-8">
-      <h2 className="text-xl font-semibold tracking-tight text-[#0b294d] sm:text-2xl">
+      <h2 className="text-sm font-semibold tracking-tight text-[#0b294d] sm:text-2xl">
         {title}
       </h2>
       <div className="mt-4 space-y-4 text-sm leading-7 text-slate-700 sm:text-base">

@@ -262,6 +262,12 @@ export function PublicSiteFooter() {
       icon: CircleHelp,
       kind: "route",
     },
+    {
+      label: "Comparatif des logiciels de facturation",
+      href: "/comparatif-logiciel-facturation-tunisie",
+      icon: Scale,
+      kind: "route",
+    },
     ...(whatsAppUrl
       ? [
           {
