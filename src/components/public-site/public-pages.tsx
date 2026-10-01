@@ -295,7 +295,7 @@ export function FacturancePlusPage() {
             className="object-cover object-[72%_center] xl:object-center"
           />
 
-          <HeroVideoDemo triggerClassName="z-40 left-1/2 top-[44%] xl:left-[67%] xl:top-[45%]" />
+          <HeroVideoDemo triggerClassName="left-1/2 top-[44%] xl:left-[67%] xl:top-[45%]" />
 
           {/* The photograph does not span the hero, so its edges melt into
               the navy panel instead of cutting against it. */}
@@ -459,8 +459,8 @@ export function FacturancePlusPage() {
           max-width container pushed the copy too far inboard and left no room
           for the widgets between it and the monitor.
         */}
-        <div className="relative z-30 mx-auto flex w-full max-w-[120rem] flex-col justify-center px-5 py-10 sm:px-8 sm:py-12 xl:px-[4%] xl:py-14 xl:min-h-[calc(100svh-4.5rem-1px)]">
-          <div className="flex w-full min-w-0 max-w-xl flex-col gap-6 xl:max-w-[34rem] xl:flex-1 xl:justify-center 2xl:max-w-[38.75rem]">
+        <div className="pointer-events-none relative z-30 mx-auto flex w-full max-w-[120rem] flex-col justify-center px-5 py-10 sm:px-8 sm:py-12 xl:px-[4%] xl:py-14 xl:min-h-[calc(100svh-4.5rem-1px)]">
+          <div className="pointer-events-auto flex w-full min-w-0 max-w-xl flex-col gap-6 xl:max-w-[34rem] xl:flex-1 xl:justify-center 2xl:max-w-[38.75rem]">
             <div className="min-w-0">
               <p className="text-xs font-bold uppercase tracking-[0.22em] text-blue-200">
                 LOGICIEL DE FACTURATION ET DE GESTION COMMERCIALE
@@ -538,7 +538,7 @@ export function FacturancePlusPage() {
             </div>
           </div>
 
-          <div className="mt-10 overflow-hidden rounded-2xl border border-white/15 bg-[#06223f]/80 shadow-[0_18px_44px_rgba(2,12,26,0.4)] backdrop-blur-sm lg:mt-12">
+          <div className="pointer-events-auto mt-10 overflow-hidden rounded-2xl border border-white/15 bg-[#06223f]/80 shadow-[0_18px_44px_rgba(2,12,26,0.4)] backdrop-blur-sm lg:mt-12">
             <ul className="grid grid-cols-2 lg:grid-cols-4">
               {heroCapabilities.map(
                 ({ title, detail, icon: Icon, iconClassName }, index) => (
