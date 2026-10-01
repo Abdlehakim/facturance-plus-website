@@ -145,6 +145,100 @@ const inlineLinkClassName =
 const bulletListClassName =
   "grid gap-2 pl-5 marker:text-primary [&>li]:list-disc"
 
+/*
+ * The three widgets the hero shows at every width. Position, width and delay
+ * come from the caller so the desktop layer and the narrower mobile layer can
+ * place the same markup differently without duplicating it.
+ */
+
+type HeroWidgetProps = {
+  /** Position utilities, e.g. "left-[49%] top-[11%]". */
+  className: string;
+  /** Width utilities; mobile passes a narrower value. */
+  width: string;
+  delay: string;
+};
+
+/** A miniature invoice drawn in markup, with a PDF tag clipped to its corner. */
+function HeroFactureWidget({ className, width, delay }: HeroWidgetProps) {
+  return (
+    <div
+      className={`absolute animate-[facturance-hero-float_5.5s_ease-in-out_infinite] motion-reduce:animate-none ${className}`}
+      style={{ animationDelay: delay }}
+    >
+      <div
+        className={`relative rounded-xl border border-white/70 bg-white/97 px-3 pb-5 pt-3.5 backdrop-blur-sm shadow-[0_10px_30px_rgba(0,20,60,0.2),0_0_22px_rgba(60,180,255,0.12)] ${width}`}
+      >
+        <p className="text-[0.6rem] font-bold uppercase tracking-[0.14em] text-[#1d4ed8]">
+          Facture
+        </p>
+
+        <span className="mt-3 block space-y-1.5">
+          <span className="block h-1 w-full rounded-full bg-[#dbeafe]" />
+          <span className="block h-1 w-3/4 rounded-full bg-[#e6effb]" />
+          <span className="block h-1 w-full rounded-full bg-[#dbeafe]" />
+          <span className="block h-1 w-2/3 rounded-full bg-[#e6effb]" />
+          <span className="block h-1 w-5/6 rounded-full bg-[#dbeafe]" />
+          <span className="block h-1 w-1/2 rounded-full bg-[#e6effb]" />
+        </span>
+
+        <span className="mt-3 block h-px w-full bg-[#e8f0fb]" />
+
+        <span className="mt-2.5 flex items-center justify-between">
+          <span className="block h-1 w-1/3 rounded-full bg-[#e6effb]" />
+          <span className="block h-1.5 w-2/5 rounded-full bg-[#bfdbfe]" />
+        </span>
+      </div>
+
+      <span className="absolute -bottom-2 -right-2 rounded-md bg-[#e03127] px-1.5 py-0.5 text-[0.55rem] font-bold tracking-wide text-white shadow-[0_6px_14px_rgba(224,49,39,0.42)]">
+        PDF
+      </span>
+    </div>
+  );
+}
+
+/** Wide and short, the icon carried bare rather than inside a tile. */
+function HeroClientsWidget({ className, width, delay }: HeroWidgetProps) {
+  return (
+    <div
+      className={`absolute flex items-center gap-2.5 rounded-2xl border border-white/70 bg-white/97 backdrop-blur-sm px-3 py-4 shadow-[0_8px_26px_rgba(0,20,60,0.16),0_0_18px_rgba(60,180,255,0.1)] animate-[facturance-hero-float_6s_ease-in-out_infinite] motion-reduce:animate-none ${width} ${className}`}
+      style={{ animationDelay: delay }}
+    >
+      <UserRound className="size-8 shrink-0 text-[#1d4ed8]" />
+
+      <span className="min-w-0">
+        <span className="block text-[0.8125rem] font-bold leading-[1.05rem] text-[#0b294d]">
+          Clients
+        </span>
+        <span className="mt-0.5 block text-[0.6875rem] leading-[0.9rem] text-[#0b294d]/60">
+          Gestion centralisée
+        </span>
+      </span>
+    </div>
+  );
+}
+
+/** Near square, stacked and centred. */
+function HeroStockWidget({ className, width, delay }: HeroWidgetProps) {
+  return (
+    <div
+      className={`absolute flex flex-col items-center gap-1.5 rounded-2xl border border-white/70 bg-white/97 backdrop-blur-sm px-3 py-3.5 text-center shadow-[0_10px_30px_rgba(0,20,60,0.2),0_0_22px_rgba(60,180,255,0.12)] animate-[facturance-hero-float_5s_ease-in-out_infinite] motion-reduce:animate-none ${width} ${className}`}
+      style={{ animationDelay: delay }}
+    >
+      <Package className="size-7 text-[#0b7285]" />
+
+      <span className="text-[0.8125rem] font-bold leading-4 text-[#0b294d]">
+        Stock
+      </span>
+
+      <span className="inline-flex items-center gap-1 text-[0.625rem] leading-3 text-[#0b294d]/60">
+        Suivi
+        <Check className="size-3 text-emerald-600" />
+      </span>
+    </div>
+  );
+}
+
 export function FacturancePlusPage() {
   const features = [
     {
@@ -285,15 +379,44 @@ export function FacturancePlusPage() {
           Below xl the same element returns to the document flow after the
           copy, which is why it is first in the DOM with `order-last`.
         */}
-        <div className="relative order-last aspect-[16/10] w-full sm:aspect-[16/9] xl:absolute xl:right-[1.5%] xl:top-1/2 xl:order-none xl:aspect-[1672/941] xl:w-[72%] xl:-translate-y-[60%]">
+        <div className="relative order-last mt-2 aspect-[4/3] w-full sm:mt-0 sm:aspect-[1672/941] xl:absolute xl:right-[1.5%] xl:top-1/2 xl:order-none xl:aspect-[1672/941] xl:w-[72%] xl:-translate-y-[60%]">
           <Image
             src="/facturance-plus-hero.webp"
             alt="Facturance Plus affiché sur un écran de bureau : logiciel de facturation et de gestion commerciale"
             fill
             priority
             sizes="(min-width: 1280px) 70vw, 100vw"
-            className="object-cover object-[72%_center] xl:object-center"
+            className="object-cover object-[78%_center] sm:object-center"
           />
+
+          {/*
+            Below xl the widgets live inside the image box rather than over the
+            whole hero, and sit in the band to the left of the monitor so they
+            never cover the interface. Clients needs more height than a phone
+            can spare, so it joins from md.
+          */}
+          <div
+            className="pointer-events-none absolute inset-0 z-10 hidden min-[375px]:block xl:hidden"
+            aria-hidden="true"
+          >
+            <HeroFactureWidget
+              className="left-[3%] top-[4%]"
+              width="w-[5.25rem] sm:w-[6.25rem]"
+              delay="0s"
+            />
+
+            <HeroClientsWidget
+              className="left-[3%] top-[44%] hidden md:flex"
+              width="w-[8.5rem]"
+              delay="1.3s"
+            />
+
+            <HeroStockWidget
+              className="bottom-[4%] left-[3%]"
+              width="w-[4.75rem] sm:w-[5.75rem]"
+              delay="2.6s"
+            />
+          </div>
 
           <HeroVideoDemo triggerClassName="left-1/2 top-[44%] xl:left-[67%] xl:top-[45%]" />
 
@@ -339,73 +462,23 @@ export function FacturancePlusPage() {
             for assistive technology.
           */}
 
-          {/* Facture: a miniature invoice drawn in markup, with a PDF tag
-              clipped to its corner. Tallest and narrowest of the set. */}
-          <div
-            className="absolute left-[49%] top-[11%] animate-[facturance-hero-float_5.5s_ease-in-out_infinite] motion-reduce:animate-none"
-            style={{ animationDelay: "0s" }}
-          >
-            <div className="relative w-[6.25rem] rounded-xl border border-white/70 bg-white/97 backdrop-blur-sm px-3 pb-5 pt-3.5 shadow-[0_10px_30px_rgba(0,20,60,0.2),0_0_22px_rgba(60,180,255,0.12)]">
-              <p className="text-[0.6rem] font-bold uppercase tracking-[0.14em] text-[#1d4ed8]">
-                Facture
-              </p>
+          <HeroFactureWidget
+            className="left-[49%] top-[11%]"
+            width="w-[6.25rem]"
+            delay="0s"
+          />
 
-              <span className="mt-3 block space-y-1.5">
-                <span className="block h-1 w-full rounded-full bg-[#dbeafe]" />
-                <span className="block h-1 w-3/4 rounded-full bg-[#e6effb]" />
-                <span className="block h-1 w-full rounded-full bg-[#dbeafe]" />
-                <span className="block h-1 w-2/3 rounded-full bg-[#e6effb]" />
-                <span className="block h-1 w-5/6 rounded-full bg-[#dbeafe]" />
-                <span className="block h-1 w-1/2 rounded-full bg-[#e6effb]" />
-              </span>
+          <HeroClientsWidget
+            className="left-[48.5%] top-[45%]"
+            width="w-[8.5rem]"
+            delay="1.3s"
+          />
 
-              <span className="mt-3 block h-px w-full bg-[#e8f0fb]" />
-
-              <span className="mt-2.5 flex items-center justify-between">
-                <span className="block h-1 w-1/3 rounded-full bg-[#e6effb]" />
-                <span className="block h-1.5 w-2/5 rounded-full bg-[#bfdbfe]" />
-              </span>
-            </div>
-
-            <span className="absolute -bottom-2 -right-2 rounded-md bg-[#e03127] px-1.5 py-0.5 text-[0.55rem] font-bold tracking-wide text-white shadow-[0_6px_14px_rgba(224,49,39,0.42)]">
-              PDF
-            </span>
-          </div>
-
-          {/* Clients: wide and short, the icon carried bare at a larger size
-              rather than inside a tile. */}
-          <div
-            className="absolute left-[48.5%] top-[45%] flex w-[8.5rem] items-center gap-2.5 rounded-2xl border border-white/70 bg-white/97 backdrop-blur-sm px-3 py-4 shadow-[0_8px_26px_rgba(0,20,60,0.16),0_0_18px_rgba(60,180,255,0.1)] animate-[facturance-hero-float_6s_ease-in-out_infinite] motion-reduce:animate-none"
-            style={{ animationDelay: "1.3s" }}
-          >
-            <UserRound className="size-8 shrink-0 text-[#1d4ed8]" />
-
-            <span className="min-w-0">
-              <span className="block text-[0.8125rem] font-bold leading-[1.05rem] text-[#0b294d]">
-                Clients
-              </span>
-              <span className="mt-0.5 block text-[0.6875rem] leading-[0.9rem] text-[#0b294d]/60">
-                Gestion centralisée
-              </span>
-            </span>
-          </div>
-
-          {/* Stock: near square, stacked and centred. */}
-          <div
-            className="absolute left-[49%] top-[62%] flex w-[5.75rem] flex-col items-center gap-1.5 rounded-2xl border border-white/70 bg-white/97 backdrop-blur-sm px-3 py-3.5 text-center shadow-[0_10px_30px_rgba(0,20,60,0.2),0_0_22px_rgba(60,180,255,0.12)] animate-[facturance-hero-float_5s_ease-in-out_infinite] motion-reduce:animate-none"
-            style={{ animationDelay: "2.6s" }}
-          >
-            <Package className="size-7 text-[#0b7285]" />
-
-            <span className="text-[0.8125rem] font-bold leading-4 text-[#0b294d]">
-              Stock
-            </span>
-
-            <span className="inline-flex items-center gap-1 text-[0.625rem] leading-3 text-[#0b294d]/60">
-              Suivi
-              <Check className="size-3 text-emerald-600" />
-            </span>
-          </div>
+          <HeroStockWidget
+            className="left-[49%] top-[62%]"
+            width="w-[5.75rem]"
+            delay="2.6s"
+          />
 
           {/* Rapports: the tallest right-hand tile, led by a small bar chart
               drawn in markup rather than an icon. */}
@@ -465,7 +538,7 @@ export function FacturancePlusPage() {
               <p className="text-xs font-bold uppercase tracking-[0.22em] text-blue-200">
                 LOGICIEL DE FACTURATION ET DE GESTION COMMERCIALE
               </p>
-              <h1 className="mt-4 text-[1.75rem] font-bold leading-[1.08] tracking-tight sm:text-[2.05rem] lg:text-[2.3rem] 2xl:text-[2.6rem]">
+              <h1 className="mt-4 text-[1.875rem] font-bold leading-[1.1] tracking-[-0.01em] min-[390px]:text-[2.25rem] sm:text-[2.25rem] lg:text-[2.3rem] lg:leading-[1.08] lg:tracking-tight 2xl:text-[2.6rem]">
                 <span className="text-white tracking-[0.015em]">
                   Toute votre facturation et votre gestion commerciale
                 </span>{" "}
@@ -473,12 +546,12 @@ export function FacturancePlusPage() {
                   dans une seule application.
                 </span>
               </h1>
-              <p className="mt-4 text-sm leading-6 text-blue-50/85 sm:text-base sm:leading-7">
+              <p className="mt-4 text-base leading-7 text-blue-50/85 sm:leading-7">
                 Créez vos factures, devis, bons de commande et de livraison, puis gérez clients, fournisseurs, articles, stocks, paiements et entreprises depuis un seul espace.
               </p>
             </div>
 
-            <ul className="grid min-w-0 gap-5 sm:grid-cols-3 lg:gap-5">
+            <ul className="grid min-w-0 gap-4 sm:grid-cols-3 sm:gap-5 lg:gap-5">
               {heroBenefits.map(({ title, description, icon: Icon }) => (
                 <li key={title} className="flex min-w-0 items-start gap-3">
                   <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-white/10 text-sky-200">
@@ -501,18 +574,18 @@ export function FacturancePlusPage() {
                 <Button
                   asChild
                   size="lg"
-                  className="group h-14 w-full justify-start gap-3 rounded-xl border border-white/70 bg-white px-4 py-2 text-[#0b294d] shadow-[0_10px_26px_rgba(2,18,39,0.22),0_0_22px_rgba(56,189,248,0.14)] transition duration-200 hover:-translate-y-0.5 hover:border-primary hover:bg-primary hover:text-white hover:shadow-[0_16px_36px_rgba(2,18,39,0.36),0_0_30px_rgba(56,189,248,0.3)] focus-visible:ring-sky-300 active:translate-y-0 motion-reduce:transition-none motion-reduce:hover:translate-y-0 sm:h-15 sm:w-auto sm:px-5 [&_svg]:size-6"
+                  className="group h-15 w-full justify-start gap-3 rounded-xl border border-white/70 bg-white px-4 py-2 text-[#0b294d] shadow-[0_10px_26px_rgba(2,18,39,0.22),0_0_22px_rgba(56,189,248,0.14)] transition duration-200 hover:-translate-y-0.5 hover:border-primary hover:bg-primary hover:text-white hover:shadow-[0_16px_36px_rgba(2,18,39,0.36),0_0_30px_rgba(56,189,248,0.3)] focus-visible:ring-sky-300 active:translate-y-0 active:border-primary active:bg-primary active:text-white motion-reduce:transition-none motion-reduce:hover:translate-y-0 sm:w-auto sm:px-5 [&_svg]:size-6"
                 >
                   <Link href={CLIENT_SIGNUP_URL}>
                     <Download
-                      className="shrink-0 stroke-[2.2] text-primary transition-colors duration-200 group-hover:text-white motion-reduce:transition-none"
+                      className="shrink-0 stroke-[2.2] text-primary transition-colors duration-200 group-hover:text-white group-active:text-white motion-reduce:transition-none"
                       aria-hidden="true"
                     />
                     <span className="flex flex-col items-start gap-0.5 text-left">
                       <span className="whitespace-nowrap text-sm font-bold leading-5">
                         Démarrer l’essai gratuit
                       </span>
-                      <span className="text-xs font-medium leading-4 text-[#0b294d]/70 transition-colors duration-200 group-hover:text-blue-50/85 motion-reduce:transition-none">
+                      <span className="text-xs font-medium leading-4 text-[#0b294d]/70 transition-colors duration-200 group-hover:text-blue-50/85 group-active:text-blue-50/85 motion-reduce:transition-none">
                         3 jours d’essai gratuit
                       </span>
                     </span>
@@ -523,11 +596,11 @@ export function FacturancePlusPage() {
                   asChild
                   size="lg"
                   variant="outline"
-                  className="group h-14 w-full justify-start gap-3 rounded-xl border border-white/35 bg-white/[0.08] px-4 py-2 text-white shadow-[0_8px_22px_rgba(2,18,39,0.2)] backdrop-blur-sm transition duration-200 hover:-translate-y-0.5 hover:border-sky-300/70 hover:bg-primary/90 hover:text-white hover:shadow-[0_14px_32px_rgba(2,18,39,0.3),0_0_26px_rgba(56,189,248,0.28)] focus-visible:ring-sky-300 active:translate-y-0 motion-reduce:transition-none motion-reduce:hover:translate-y-0 sm:h-15 sm:w-auto sm:px-5 [&_svg]:size-6"
+                  className="group h-15 w-full justify-start gap-3 rounded-xl border border-white/35 bg-white/[0.08] px-4 py-2 text-white shadow-[0_8px_22px_rgba(2,18,39,0.2)] backdrop-blur-sm transition duration-200 hover:-translate-y-0.5 hover:border-sky-300/70 hover:bg-primary/90 hover:text-white hover:shadow-[0_14px_32px_rgba(2,18,39,0.3),0_0_26px_rgba(56,189,248,0.28)] focus-visible:ring-sky-300 active:translate-y-0 active:border-sky-300/70 active:bg-primary/90 active:text-white motion-reduce:transition-none motion-reduce:hover:translate-y-0 sm:w-auto sm:px-5 [&_svg]:size-6"
                 >
                   <a href="#features">
                     <CirclePlay
-                      className="shrink-0 text-sky-300 transition-colors duration-200 group-hover:text-white motion-reduce:transition-none"
+                      className="shrink-0 text-sky-300 transition-colors duration-200 group-hover:text-white group-active:text-white motion-reduce:transition-none"
                       aria-hidden="true"
                     />
                     <span className="whitespace-nowrap text-sm font-semibold leading-5">
@@ -537,7 +610,7 @@ export function FacturancePlusPage() {
                 </Button>
               </div>
 
-              <p className="mt-3 flex items-center gap-2 text-sm text-blue-100/80">
+              <p className="mt-4 flex items-center justify-center gap-2 text-sm text-blue-100/80 lg:mt-3 lg:justify-start">
                 <ShieldCheck className="size-4 shrink-0" aria-hidden="true" />
                 Aucune carte bancaire requise
               </p>
