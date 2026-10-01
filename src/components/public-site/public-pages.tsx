@@ -167,7 +167,7 @@ function HeroFactureWidget({ className, width, delay }: HeroWidgetProps) {
       style={{ animationDelay: delay }}
     >
       <div
-        className={`relative rounded-xl border border-white/70 bg-white/97 px-3 pb-5 pt-3.5 backdrop-blur-sm shadow-[0_10px_30px_rgba(0,20,60,0.2),0_0_22px_rgba(60,180,255,0.12)] ${width}`}
+        className={`relative rounded-xl border border-white/70 bg-white/97 px-2.5 pb-4 pt-3 backdrop-blur-sm sm:px-3 sm:pb-5 sm:pt-3.5 shadow-[0_10px_30px_rgba(0,20,60,0.2),0_0_22px_rgba(60,180,255,0.12)] ${width}`}
       >
         <p className="text-[0.6rem] font-bold uppercase tracking-[0.14em] text-[#1d4ed8]">
           Facture
@@ -190,7 +190,7 @@ function HeroFactureWidget({ className, width, delay }: HeroWidgetProps) {
         </span>
       </div>
 
-      <span className="absolute -bottom-2 -right-2 rounded-md bg-[#e03127] px-1.5 py-0.5 text-[0.55rem] font-bold tracking-wide text-white shadow-[0_6px_14px_rgba(224,49,39,0.42)]">
+      <span className="absolute -bottom-1.5 -right-1.5 rounded-md bg-[#e03127] px-1.5 py-0.5 sm:-bottom-2 sm:-right-2 text-[0.55rem] font-bold tracking-wide text-white shadow-[0_6px_14px_rgba(224,49,39,0.42)]">
         PDF
       </span>
     </div>
@@ -201,10 +201,10 @@ function HeroFactureWidget({ className, width, delay }: HeroWidgetProps) {
 function HeroClientsWidget({ className, width, delay }: HeroWidgetProps) {
   return (
     <div
-      className={`absolute flex items-center gap-2.5 rounded-2xl border border-white/70 bg-white/97 backdrop-blur-sm px-3 py-4 shadow-[0_8px_26px_rgba(0,20,60,0.16),0_0_18px_rgba(60,180,255,0.1)] animate-[facturance-hero-float_6s_ease-in-out_infinite] motion-reduce:animate-none ${width} ${className}`}
+      className={`absolute flex items-center gap-2 rounded-2xl border border-white/70 bg-white/97 backdrop-blur-sm px-2.5 py-3 sm:gap-2.5 sm:px-3 sm:py-4 shadow-[0_8px_26px_rgba(0,20,60,0.16),0_0_18px_rgba(60,180,255,0.1)] animate-[facturance-hero-float_6s_ease-in-out_infinite] motion-reduce:animate-none ${width} ${className}`}
       style={{ animationDelay: delay }}
     >
-      <UserRound className="size-8 shrink-0 text-[#1d4ed8]" />
+      <UserRound className="size-6 shrink-0 text-[#1d4ed8] sm:size-8" />
 
       <span className="min-w-0">
         <span className="block text-[0.8125rem] font-bold leading-[1.05rem] text-[#0b294d]">
@@ -222,10 +222,10 @@ function HeroClientsWidget({ className, width, delay }: HeroWidgetProps) {
 function HeroStockWidget({ className, width, delay }: HeroWidgetProps) {
   return (
     <div
-      className={`absolute flex flex-col items-center gap-1.5 rounded-2xl border border-white/70 bg-white/97 backdrop-blur-sm px-3 py-3.5 text-center shadow-[0_10px_30px_rgba(0,20,60,0.2),0_0_22px_rgba(60,180,255,0.12)] animate-[facturance-hero-float_5s_ease-in-out_infinite] motion-reduce:animate-none ${width} ${className}`}
+      className={`absolute flex flex-col items-center gap-1 rounded-2xl border border-white/70 bg-white/97 backdrop-blur-sm px-2 py-3 text-center sm:gap-1.5 sm:px-3 sm:py-3.5 shadow-[0_10px_30px_rgba(0,20,60,0.2),0_0_22px_rgba(60,180,255,0.12)] animate-[facturance-hero-float_5s_ease-in-out_infinite] motion-reduce:animate-none ${width} ${className}`}
       style={{ animationDelay: delay }}
     >
-      <Package className="size-7 text-[#0b7285]" />
+      <Package className="size-5 text-[#0b7285] sm:size-7" />
 
       <span className="text-[0.8125rem] font-bold leading-4 text-[#0b294d]">
         Stock
@@ -243,17 +243,17 @@ function HeroStockWidget({ className, width, delay }: HeroWidgetProps) {
 function HeroRapportsWidget({ className, width, delay }: HeroWidgetProps) {
   return (
     <div
-      className={`absolute flex flex-col justify-between rounded-2xl border border-white/70 bg-white/97 backdrop-blur-sm px-3.5 py-4 shadow-[0_10px_30px_rgba(0,20,60,0.2),0_0_22px_rgba(60,180,255,0.12)] animate-[facturance-hero-float_6.5s_ease-in-out_infinite] motion-reduce:animate-none ${width} ${className}`}
+      className={`absolute flex flex-col justify-between rounded-2xl border border-white/70 bg-white/97 backdrop-blur-sm px-3 py-3 shadow-[0_10px_30px_rgba(0,20,60,0.2),0_0_22px_rgba(60,180,255,0.12)] sm:px-3.5 sm:py-4 animate-[facturance-hero-float_6.5s_ease-in-out_infinite] motion-reduce:animate-none ${width} ${className}`}
       style={{ animationDelay: delay }}
     >
       <span className="flex items-end justify-between">
         <span className="flex items-end gap-1">
-          <span className="block h-3 w-1.5 rounded-sm bg-[#bfdbfe]" />
-          <span className="block h-5 w-1.5 rounded-sm bg-[#60a5fa]" />
-          <span className="block h-7 w-1.5 rounded-sm bg-[#1d4ed8]" />
+          <span className="block h-2.5 w-1 rounded-sm bg-[#bfdbfe] sm:h-3 sm:w-1.5" />
+          <span className="block h-4 w-1 rounded-sm bg-[#60a5fa] sm:h-5 sm:w-1.5" />
+          <span className="block h-5 w-1 rounded-sm bg-[#1d4ed8] sm:h-7 sm:w-1.5" />
         </span>
 
-        <TrendingUp className="size-4 text-emerald-600" />
+        <TrendingUp className="size-3.5 text-emerald-600 sm:size-4" />
       </span>
 
       <span className="mt-3 block">
@@ -272,11 +272,11 @@ function HeroRapportsWidget({ className, width, delay }: HeroWidgetProps) {
 function HeroPaiementsWidget({ className, width, delay }: HeroWidgetProps) {
   return (
     <div
-      className={`absolute flex flex-col justify-between rounded-2xl border border-white/70 bg-white/97 backdrop-blur-sm px-3.5 py-4 shadow-[0_8px_26px_rgba(0,20,60,0.16),0_0_18px_rgba(60,180,255,0.1)] animate-[facturance-hero-float_5.8s_ease-in-out_infinite] motion-reduce:animate-none ${width} ${className}`}
+      className={`absolute flex flex-col justify-between rounded-2xl border border-white/70 bg-white/97 backdrop-blur-sm px-3 py-3 shadow-[0_8px_26px_rgba(0,20,60,0.16),0_0_18px_rgba(60,180,255,0.1)] sm:px-3.5 sm:py-4 animate-[facturance-hero-float_5.8s_ease-in-out_infinite] motion-reduce:animate-none ${width} ${className}`}
       style={{ animationDelay: delay }}
     >
-      <span className="grid size-9 place-items-center rounded-xl bg-indigo-500/10 text-[#2b3a8c]">
-        <CreditCard className="size-5" />
+      <span className="grid size-7 place-items-center rounded-xl bg-indigo-500/10 text-[#2b3a8c] sm:size-9">
+        <CreditCard className="size-4 sm:size-5" />
       </span>
 
       <span className="mt-3 block">
@@ -432,7 +432,7 @@ export function FacturancePlusPage() {
           Below xl the same element returns to the document flow after the
           copy, which is why it is first in the DOM with `order-last`.
         */}
-        <div className="relative order-2 mt-6 aspect-[8/7] w-full sm:mt-8 sm:aspect-[1672/941] xl:absolute xl:right-[1.5%] xl:top-1/2 xl:order-none xl:mt-0 xl:aspect-[1672/941] xl:w-[72%] xl:-translate-y-[60%]">
+        <div className="relative order-2 mt-6 aspect-[9/7] w-full sm:mt-8 sm:aspect-[1672/941] xl:absolute xl:right-[1.5%] xl:top-1/2 xl:order-none xl:mt-0 xl:aspect-[1672/941] xl:w-[72%] xl:-translate-y-[60%]">
           <Image
             src="/facturance-plus-hero.webp"
             alt="Facturance Plus affiché sur un écran de bureau : logiciel de facturation et de gestion commerciale"
@@ -453,31 +453,31 @@ export function FacturancePlusPage() {
           >
             <HeroFactureWidget
               className="left-[2.5%] top-[2%]"
-              width="w-[4.5rem] min-[375px]:w-[5rem] sm:w-[6.25rem]"
+              width="w-[4rem] min-[375px]:w-[4.5rem] sm:w-[6.25rem]"
               delay="0s"
             />
 
             <HeroRapportsWidget
               className="right-[2.5%] top-[4%]"
-              width="min-h-[5.5rem] w-[4.75rem] min-[375px]:min-h-[6rem] min-[375px]:w-[5.25rem] sm:min-h-[7.75rem] sm:w-[7rem]"
+              width="min-h-[5rem] w-[4.125rem] min-[375px]:min-h-[5.25rem] min-[375px]:w-[4.5rem] sm:min-h-[7.75rem] sm:w-[7rem]"
               delay="3.4s"
             />
 
             <HeroClientsWidget
-              className="bottom-[14%] left-[2.5%]"
-              width="w-[5.75rem] min-[375px]:w-[6.5rem] sm:w-[8.5rem]"
+              className="bottom-[12%] left-[2.5%]"
+              width="w-[5rem] min-[375px]:w-[5.625rem] sm:w-[8.5rem]"
               delay="1.3s"
             />
 
             <HeroPaiementsWidget
               className="bottom-[6%] right-[2.5%]"
-              width="min-h-[5.25rem] w-[5.25rem] min-[375px]:min-h-[5.75rem] min-[375px]:w-[6rem] sm:min-h-[7.25rem] sm:w-[7rem]"
+              width="min-h-[4.75rem] w-[4.625rem] min-[375px]:min-h-[5.25rem] min-[375px]:w-[5.25rem] sm:min-h-[7.25rem] sm:w-[7rem]"
               delay="2s"
             />
 
             <HeroStockWidget
               className="bottom-[1%] left-[32%]"
-              width="w-[4rem] min-[375px]:w-[4.5rem] sm:w-[5.75rem]"
+              width="w-[3.5rem] min-[375px]:w-[3.875rem] sm:w-[5.75rem]"
               delay="2.6s"
             />
           </div>
