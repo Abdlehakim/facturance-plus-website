@@ -14,6 +14,7 @@ import {
   Mail,
   MapPin,
   MessageCircle,
+  PackageCheck,
   Phone,
   ReceiptText,
   Scale,
@@ -63,6 +64,12 @@ const productFooterLinks: FooterLinkItem[] = [
     label: "Logiciel de gestion commerciale en Tunisie",
     href: "/logiciel-gestion-commerciale-tunisie",
     icon: LayoutGrid,
+    kind: "route",
+  },
+  {
+    label: "Logiciel de gestion de stock en Tunisie",
+    href: "/logiciel-gestion-stock-tunisie",
+    icon: PackageCheck,
     kind: "route",
   },
   {
