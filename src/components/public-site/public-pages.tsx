@@ -249,37 +249,29 @@ export function FacturancePlusPage() {
    */
   const heroFloatingCards = [
     {
-      title: "Factures",
-      detail: "Export PDF",
-      icon: FileText,
-      position: "left-[43%] top-[15%]",
+      title: "Paiements",
+      detail: "Suivi des règlements",
+      icon: ReceiptText,
+      position: "right-[5%] top-[14%]",
       delay: "0s",
-      /** The fourth card only appears once there is room for it. */
-      wide: false,
+      wideOnly: false,
     },
     {
       title: "Clients",
       detail: "Gestion centralisée",
       icon: UserRoundCheck,
-      position: "left-[40%] bottom-[31%]",
-      delay: "1.6s",
-      wide: false,
+      position: "left-[41%] bottom-[30%]",
+      delay: "1.8s",
+      wideOnly: false,
     },
     {
       title: "Stock",
       detail: "Suivi simplifié",
       icon: PackageCheck,
-      position: "right-[4%] bottom-[27%]",
-      delay: "3.1s",
-      wide: false,
-    },
-    {
-      title: "Paiements",
-      detail: "Suivi des règlements",
-      icon: ReceiptText,
-      position: "right-[6%] top-[13%]",
-      delay: "2.3s",
-      wide: true,
+      /** Third card only once the viewport is wide enough to carry it. */
+      position: "right-[6%] bottom-[22%]",
+      delay: "3.2s",
+      wideOnly: true,
     },
   ]
 
@@ -305,7 +297,7 @@ export function FacturancePlusPage() {
             className="object-cover object-[72%_center] lg:object-[68%_center]"
           />
 
-          <HeroVideoDemo triggerClassName="left-1/2 top-[44%] lg:left-[67%] lg:top-[47%]" />
+          <HeroVideoDemo triggerClassName="left-1/2 top-[44%] lg:left-[66%] lg:top-[45%]" />
         </div>
 
         {/*
@@ -314,11 +306,11 @@ export function FacturancePlusPage() {
           behind the text.
         */}
         <div
-          className="pointer-events-none absolute inset-0 hidden bg-[linear-gradient(to_right,#06182d_0%,rgba(6,24,45,0.94)_26%,rgba(6,24,45,0.72)_44%,rgba(6,24,45,0.28)_62%,rgba(6,24,45,0)_80%)] lg:block"
+          className="pointer-events-none absolute inset-0 hidden bg-[linear-gradient(to_right,#06182d_0%,rgba(6,24,45,0.95)_32%,rgba(6,24,45,0.74)_39%,rgba(6,24,45,0.34)_45%,rgba(6,24,45,0.08)_51%,rgba(6,24,45,0)_57%)] lg:block"
           aria-hidden="true"
         />
         <div
-          className="pointer-events-none absolute inset-x-0 bottom-0 hidden h-48 bg-gradient-to-t from-[#06182d]/85 to-transparent lg:block"
+          className="pointer-events-none absolute inset-x-0 bottom-0 hidden h-36 bg-gradient-to-t from-[#06182d]/60 to-transparent lg:block"
           aria-hidden="true"
         />
 
@@ -327,23 +319,23 @@ export function FacturancePlusPage() {
           aria-hidden="true"
         >
           {heroFloatingCards.map(
-            ({ title, detail, icon: Icon, position, delay, wide }) => (
+            ({ title, detail, icon: Icon, position, delay, wideOnly }) => (
               <div
                 key={title}
                 style={{ animationDelay: delay }}
-                className={`absolute flex animate-[facturance-hero-float_6s_ease-in-out_infinite] items-center gap-3 rounded-2xl border border-white/55 bg-white/90 px-4 py-3 shadow-[0_18px_40px_rgba(2,18,39,0.3)] backdrop-blur-sm motion-reduce:animate-none ${position} ${
-                  wide ? "hidden xl:flex" : ""
+                className={`absolute flex animate-[facturance-hero-float_6s_ease-in-out_infinite] items-center gap-2.5 rounded-2xl border border-white/55 bg-white/88 px-3.5 py-2.5 shadow-[0_14px_32px_rgba(2,18,39,0.26)] backdrop-blur-sm motion-reduce:animate-none ${position} ${
+                  wideOnly ? "hidden xl:flex" : ""
                 }`}
               >
-                <span className="grid size-9 shrink-0 place-items-center rounded-xl bg-[#0b294d]/10 text-[#0b294d]">
-                  <Icon className="size-[18px]" aria-hidden="true" />
+                <span className="grid size-8 shrink-0 place-items-center rounded-lg bg-[#0b294d]/10 text-[#0b294d]">
+                  <Icon className="size-4" aria-hidden="true" />
                 </span>
 
                 <span className="min-w-0">
-                  <span className="block whitespace-nowrap text-sm font-bold leading-5 text-[#0b294d]">
+                  <span className="block whitespace-nowrap text-[0.8125rem] font-bold leading-[1.1rem] text-[#0b294d]">
                     {title}
                   </span>
-                  <span className="mt-0.5 block whitespace-nowrap text-xs leading-4 text-[#0b294d]/65">
+                  <span className="mt-0.5 block whitespace-nowrap text-[0.6875rem] leading-4 text-[#0b294d]/65">
                     {detail}
                   </span>
                 </span>
@@ -357,12 +349,12 @@ export function FacturancePlusPage() {
             The copy keeps to the left of the composition on desktop, where the
             image reserves the right side for the monitor.
           */}
-          <div className="flex w-full min-w-0 max-w-2xl flex-col gap-6 lg:max-w-none lg:w-[46%] xl:w-[44%]">
+          <div className="flex w-full min-w-0 max-w-xl flex-col gap-6 lg:max-w-none lg:w-[43%] xl:w-[40%]">
             <div className="min-w-0">
               <p className="text-xs font-bold uppercase tracking-[0.22em] text-blue-200">
                 LOGICIEL DE FACTURATION ET DE GESTION COMMERCIALE
               </p>
-              <h1 className="mt-4 text-[1.75rem] font-bold leading-[1.06] tracking-tight sm:text-[2.15rem] lg:text-[2.4rem] xl:text-[2.65rem]">
+              <h1 className="mt-4 text-[1.75rem] font-bold leading-[1.08] tracking-tight sm:text-[2.05rem] lg:text-[2.25rem] xl:text-[2.5rem]">
                 <span className="text-white">
                   Toute votre facturation et votre gestion commerciale
                 </span>{" "}

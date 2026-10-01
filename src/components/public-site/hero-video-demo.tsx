@@ -85,8 +85,8 @@ export function HeroVideoDemo({
         aria-label="Voir la présentation vidéo de Facturance Plus"
         className={`group absolute z-20 flex -translate-x-1/2 -translate-y-1/2 cursor-pointer flex-col items-center gap-3 rounded-2xl p-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b3763] ${triggerClassName}`}
       >
-        <span className="grid size-16 place-items-center rounded-full bg-white/95 text-[#0b294d] shadow-[0_12px_32px_rgba(2,18,39,0.45)] ring-1 ring-white/60 transition group-hover:scale-105 group-hover:bg-white motion-reduce:transition-none motion-reduce:group-hover:scale-100 sm:size-[4.5rem]">
-          <Play className="ml-0.5 size-7 fill-current" aria-hidden="true" />
+        <span className="grid size-14 place-items-center rounded-full bg-white/95 text-[#0b294d] shadow-[0_10px_28px_rgba(2,18,39,0.42)] ring-1 ring-white/60 transition group-hover:scale-105 group-hover:bg-white motion-reduce:transition-none motion-reduce:group-hover:scale-100 sm:size-16">
+          <Play className="ml-0.5 size-6 fill-current" aria-hidden="true" />
         </span>
 
         <span className="whitespace-nowrap rounded-full bg-[#082b50]/90 px-4 py-1.5 text-xs font-semibold text-white shadow-lg backdrop-blur sm:text-sm">
