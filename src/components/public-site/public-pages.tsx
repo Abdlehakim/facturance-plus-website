@@ -239,6 +239,59 @@ function HeroStockWidget({ className, width, delay }: HeroWidgetProps) {
   );
 }
 
+/** The taller analytics tile, led by a bar chart drawn in markup. */
+function HeroRapportsWidget({ className, width, delay }: HeroWidgetProps) {
+  return (
+    <div
+      className={`absolute flex flex-col justify-between rounded-2xl border border-white/70 bg-white/97 backdrop-blur-sm px-3.5 py-4 shadow-[0_10px_30px_rgba(0,20,60,0.2),0_0_22px_rgba(60,180,255,0.12)] animate-[facturance-hero-float_6.5s_ease-in-out_infinite] motion-reduce:animate-none ${width} ${className}`}
+      style={{ animationDelay: delay }}
+    >
+      <span className="flex items-end justify-between">
+        <span className="flex items-end gap-1">
+          <span className="block h-3 w-1.5 rounded-sm bg-[#bfdbfe]" />
+          <span className="block h-5 w-1.5 rounded-sm bg-[#60a5fa]" />
+          <span className="block h-7 w-1.5 rounded-sm bg-[#1d4ed8]" />
+        </span>
+
+        <TrendingUp className="size-4 text-emerald-600" />
+      </span>
+
+      <span className="mt-3 block">
+        <span className="block text-[0.8125rem] font-bold leading-[1.05rem] text-[#0b294d]">
+          Rapports
+        </span>
+        <span className="mt-0.5 block text-[0.6875rem] leading-[0.9rem] text-[#0b294d]/60">
+          Vue globale
+        </span>
+      </span>
+    </div>
+  );
+}
+
+/** A status tile, shorter than Rapports. */
+function HeroPaiementsWidget({ className, width, delay }: HeroWidgetProps) {
+  return (
+    <div
+      className={`absolute flex flex-col justify-between rounded-2xl border border-white/70 bg-white/97 backdrop-blur-sm px-3.5 py-4 shadow-[0_8px_26px_rgba(0,20,60,0.16),0_0_18px_rgba(60,180,255,0.1)] animate-[facturance-hero-float_5.8s_ease-in-out_infinite] motion-reduce:animate-none ${width} ${className}`}
+      style={{ animationDelay: delay }}
+    >
+      <span className="grid size-9 place-items-center rounded-xl bg-indigo-500/10 text-[#2b3a8c]">
+        <CreditCard className="size-5" />
+      </span>
+
+      <span className="mt-3 block">
+        <span className="block text-[0.8125rem] font-bold leading-[1.05rem] text-[#0b294d]">
+          Paiements
+        </span>
+        <span className="mt-0.5 inline-flex items-center gap-1 text-[0.6875rem] leading-[0.9rem] text-[#0b294d]/60">
+          Suivi
+          <Check className="size-3 text-emerald-600" />
+        </span>
+      </span>
+    </div>
+  );
+}
+
 export function FacturancePlusPage() {
   const features = [
     {
@@ -364,7 +417,7 @@ export function FacturancePlusPage() {
 
   return (
     <>
-      <section className="relative flex flex-col overflow-hidden bg-[#031b35] text-white xl:block xl:min-h-[calc(100svh-4.5rem-1px)]">
+      <section className="relative flex flex-col overflow-hidden bg-[#031b35] pb-10 text-white sm:pb-12 xl:block xl:pb-0 xl:min-h-[calc(100svh-4.5rem-1px)]">
         {/*
           A box on the right whose aspect matches the photograph, so nothing is
           cropped and the monitor keeps a fixed share of the viewport at every
@@ -379,7 +432,7 @@ export function FacturancePlusPage() {
           Below xl the same element returns to the document flow after the
           copy, which is why it is first in the DOM with `order-last`.
         */}
-        <div className="relative order-last mt-2 aspect-[4/3] w-full sm:mt-0 sm:aspect-[1672/941] xl:absolute xl:right-[1.5%] xl:top-1/2 xl:order-none xl:aspect-[1672/941] xl:w-[72%] xl:-translate-y-[60%]">
+        <div className="relative order-2 mt-6 aspect-[4/3] w-full sm:mt-8 sm:aspect-[1672/941] xl:absolute xl:right-[1.5%] xl:top-1/2 xl:order-none xl:mt-0 xl:aspect-[1672/941] xl:w-[72%] xl:-translate-y-[60%]">
           <Image
             src="/facturance-plus-hero.webp"
             alt="Facturance Plus affiché sur un écran de bureau : logiciel de facturation et de gestion commerciale"
@@ -390,35 +443,46 @@ export function FacturancePlusPage() {
           />
 
           {/*
-            Below xl the widgets live inside the image box rather than over the
-            whole hero, and sit in the band to the left of the monitor so they
-            never cover the interface. Clients needs more height than a phone
-            can spare, so it joins from md.
+            Below xl the widgets sit inside the image box and ring the monitor
+            the way the mobile reference does, overlapping its bezel but never
+            its screen. Percentages are of the box, so they scale with it.
           */}
           <div
-            className="pointer-events-none absolute inset-0 z-10 hidden min-[375px]:block xl:hidden"
+            className="pointer-events-none absolute inset-0 z-10 hidden min-[360px]:block xl:hidden"
             aria-hidden="true"
           >
             <HeroFactureWidget
-              className="left-[3%] top-[4%]"
+              className="left-[2%] top-[3%]"
               width="w-[5.25rem] sm:w-[6.25rem]"
               delay="0s"
             />
 
+            <HeroRapportsWidget
+              className="right-[2%] top-[8%]"
+              width="min-h-[6.25rem] w-[5.5rem] sm:min-h-[7.75rem] sm:w-[7rem]"
+              delay="3.4s"
+            />
+
             <HeroClientsWidget
-              className="left-[3%] top-[44%] hidden md:flex"
-              width="w-[8.5rem]"
+              className="bottom-[20%] left-[2%]"
+              width="w-[7rem] sm:w-[8.5rem]"
               delay="1.3s"
             />
 
+            <HeroPaiementsWidget
+              className="bottom-[4%] right-[2%]"
+              width="min-h-[6rem] w-[5.5rem] sm:min-h-[7.25rem] sm:w-[7rem]"
+              delay="2s"
+            />
+
             <HeroStockWidget
-              className="bottom-[4%] left-[3%]"
+              className="bottom-[2%] left-[32%]"
               width="w-[4.75rem] sm:w-[5.75rem]"
               delay="2.6s"
             />
           </div>
 
-          <HeroVideoDemo triggerClassName="left-1/2 top-[44%] xl:left-[67%] xl:top-[45%]" />
+          <HeroVideoDemo triggerClassName="left-[58%] top-[40%] sm:left-1/2 sm:top-[44%] xl:left-[67%] xl:top-[45%]" />
 
           {/* The photograph does not span the hero, so its edges melt into
               the navy panel instead of cutting against it. */}
@@ -480,51 +544,17 @@ export function FacturancePlusPage() {
             delay="2.6s"
           />
 
-          {/* Rapports: the tallest right-hand tile, led by a small bar chart
-              drawn in markup rather than an icon. */}
-          <div
-            className="absolute right-[2%] top-[10%] flex min-h-[7.75rem] w-[7rem] flex-col justify-between rounded-2xl border border-white/70 bg-white/97 backdrop-blur-sm px-3.5 py-4 shadow-[0_10px_30px_rgba(0,20,60,0.2),0_0_22px_rgba(60,180,255,0.12)] animate-[facturance-hero-float_6.5s_ease-in-out_infinite] motion-reduce:animate-none"
-            style={{ animationDelay: "3.4s" }}
-          >
-            <span className="flex items-end justify-between">
-              <span className="flex items-end gap-1">
-                <span className="block h-3 w-1.5 rounded-sm bg-[#bfdbfe]" />
-                <span className="block h-5 w-1.5 rounded-sm bg-[#60a5fa]" />
-                <span className="block h-7 w-1.5 rounded-sm bg-[#1d4ed8]" />
-              </span>
+          <HeroRapportsWidget
+            className="right-[2%] top-[10%]"
+            width="min-h-[7.75rem] w-[7rem]"
+            delay="3.4s"
+          />
 
-              <TrendingUp className="size-4 text-emerald-600" />
-            </span>
-
-            <span className="mt-3 block">
-              <span className="block text-[0.8125rem] font-bold leading-[1.05rem] text-[#0b294d]">
-                Rapports
-              </span>
-              <span className="mt-0.5 block text-[0.6875rem] leading-[0.9rem] text-[#0b294d]/60">
-                Vue globale
-              </span>
-            </span>
-          </div>
-
-          {/* Paiements: a status tile, shorter than Rapports. */}
-          <div
-            className="absolute right-[1%] top-[42%] flex min-h-[7.25rem] w-[7rem] flex-col justify-between rounded-2xl border border-white/70 bg-white/97 backdrop-blur-sm px-3.5 py-4 shadow-[0_8px_26px_rgba(0,20,60,0.16),0_0_18px_rgba(60,180,255,0.1)] animate-[facturance-hero-float_5.8s_ease-in-out_infinite] motion-reduce:animate-none"
-            style={{ animationDelay: "2s" }}
-          >
-            <span className="grid size-9 place-items-center rounded-xl bg-indigo-500/10 text-[#2b3a8c]">
-              <CreditCard className="size-5" />
-            </span>
-
-            <span className="mt-3 block">
-              <span className="block text-[0.8125rem] font-bold leading-[1.05rem] text-[#0b294d]">
-                Paiements
-              </span>
-              <span className="mt-0.5 inline-flex items-center gap-1 text-[0.6875rem] leading-[0.9rem] text-[#0b294d]/60">
-                Suivi
-                <Check className="size-3 text-emerald-600" />
-              </span>
-            </span>
-          </div>
+          <HeroPaiementsWidget
+            className="right-[1%] top-[42%]"
+            width="min-h-[7.25rem] w-[7rem]"
+            delay="2s"
+          />
         </div>
 
         {/*
@@ -532,8 +562,8 @@ export function FacturancePlusPage() {
           max-width container pushed the copy too far inboard and left no room
           for the widgets between it and the monitor.
         */}
-        <div className="pointer-events-none relative z-30 mx-auto flex w-full max-w-[120rem] flex-col justify-center px-5 py-10 sm:px-8 sm:py-12 xl:px-[4%] xl:py-14 xl:min-h-[calc(100svh-4.5rem-1px)]">
-          <div className="pointer-events-auto flex w-full min-w-0 max-w-xl flex-col gap-6 xl:max-w-[34rem] xl:flex-1 xl:justify-center 2xl:max-w-[38.75rem]">
+        <div className="contents xl:pointer-events-none xl:relative xl:z-30 xl:mx-auto xl:flex xl:w-full xl:max-w-[120rem] xl:flex-col xl:justify-center xl:px-[4%] xl:py-14 xl:min-h-[calc(100svh-4.5rem-1px)]">
+          <div className="pointer-events-auto order-1 flex w-full min-w-0 max-w-xl flex-col gap-6 px-5 pt-10 sm:px-8 sm:pt-12 xl:order-none xl:max-w-[34rem] xl:flex-1 xl:justify-center xl:px-0 xl:pt-0 2xl:max-w-[38.75rem]">
             <div className="min-w-0">
               <p className="text-xs font-bold uppercase tracking-[0.22em] text-blue-200">
                 LOGICIEL DE FACTURATION ET DE GESTION COMMERCIALE
@@ -551,10 +581,13 @@ export function FacturancePlusPage() {
               </p>
             </div>
 
-            <ul className="grid min-w-0 gap-4 sm:grid-cols-3 sm:gap-5 lg:gap-5">
+            <ul className="grid min-w-0 grid-cols-3 gap-3 sm:gap-5 lg:gap-5">
               {heroBenefits.map(({ title, description, icon: Icon }) => (
-                <li key={title} className="flex min-w-0 items-start gap-3">
-                  <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-white/10 text-sky-200">
+                <li
+                  key={title}
+                  className="flex min-w-0 flex-col items-start gap-2 sm:flex-row sm:gap-3"
+                >
+                  <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-white/10 text-sky-200 sm:size-11">
                     <Icon className="size-5" aria-hidden="true" />
                   </span>
                   <span className="min-w-0">
@@ -589,6 +622,10 @@ export function FacturancePlusPage() {
                         3 jours d’essai gratuit
                       </span>
                     </span>
+                    <ArrowRight
+                      className="ml-auto shrink-0 text-[#0b294d]/55 transition-colors duration-200 group-hover:text-white/80 group-active:text-white/80 motion-reduce:transition-none sm:hidden"
+                      aria-hidden="true"
+                    />
                   </Link>
                 </Button>
 
@@ -596,7 +633,7 @@ export function FacturancePlusPage() {
                   asChild
                   size="lg"
                   variant="outline"
-                  className="group h-15 w-full justify-start gap-3 rounded-xl border border-white/35 bg-white/[0.08] px-4 py-2 text-white shadow-[0_8px_22px_rgba(2,18,39,0.2)] backdrop-blur-sm transition duration-200 hover:-translate-y-0.5 hover:border-sky-300/70 hover:bg-primary/90 hover:text-white hover:shadow-[0_14px_32px_rgba(2,18,39,0.3),0_0_26px_rgba(56,189,248,0.28)] focus-visible:ring-sky-300 active:translate-y-0 active:border-sky-300/70 active:bg-primary/90 active:text-white motion-reduce:transition-none motion-reduce:hover:translate-y-0 sm:w-auto sm:px-5 [&_svg]:size-6"
+                  className="group h-15 w-full justify-start gap-3 rounded-xl border border-sky-400/60 bg-primary px-4 py-2 text-white lg:border-white/35 lg:bg-white/[0.08] shadow-[0_8px_22px_rgba(2,18,39,0.2)] backdrop-blur-sm transition duration-200 hover:-translate-y-0.5 hover:border-sky-300/70 hover:bg-primary/90 hover:text-white hover:shadow-[0_14px_32px_rgba(2,18,39,0.3),0_0_26px_rgba(56,189,248,0.28)] focus-visible:ring-sky-300 active:translate-y-0 active:border-sky-300/70 active:bg-primary/90 active:text-white motion-reduce:transition-none motion-reduce:hover:translate-y-0 sm:w-auto sm:px-5 [&_svg]:size-6"
                 >
                   <a href="#features">
                     <CirclePlay
@@ -606,6 +643,10 @@ export function FacturancePlusPage() {
                     <span className="whitespace-nowrap text-sm font-semibold leading-5">
                       Découvrir les fonctionnalités
                     </span>
+                    <ArrowRight
+                      className="ml-auto shrink-0 text-sky-200/80 transition-colors duration-200 group-hover:text-white group-active:text-white motion-reduce:transition-none sm:hidden"
+                      aria-hidden="true"
+                    />
                   </a>
                 </Button>
               </div>
@@ -617,7 +658,7 @@ export function FacturancePlusPage() {
             </div>
           </div>
 
-          <div className="pointer-events-auto mt-10 overflow-hidden rounded-2xl border border-white/15 bg-[#06223f]/80 shadow-[0_18px_44px_rgba(2,12,26,0.4)] backdrop-blur-sm lg:mt-12">
+          <div className="pointer-events-auto order-3 mx-5 mt-8 overflow-hidden rounded-2xl border border-white/15 bg-[#06223f]/80 shadow-[0_18px_44px_rgba(2,12,26,0.4)] backdrop-blur-sm sm:mx-8 lg:mt-12 xl:order-none xl:mx-0">
             <ul className="grid grid-cols-2 lg:grid-cols-4">
               {heroCapabilities.map(
                 ({ title, detail, icon: Icon, iconClassName }, index) => (
