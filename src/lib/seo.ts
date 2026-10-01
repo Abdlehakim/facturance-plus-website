@@ -42,6 +42,7 @@ export function buildPageMetadata({
   description,
   path,
   socialTitle,
+  brandedTitle,
   image,
   article,
 }: {
@@ -50,12 +51,18 @@ export function buildPageMetadata({
   /** Root-relative, e.g. "/pricing". Becomes both canonical and og:url. */
   path: string;
   socialTitle?: string;
+  /**
+   * Skips the layout's "%s | Brand" template. Only for a page whose title
+   * already leads with the brand, which would otherwise repeat it twice.
+   */
+  brandedTitle?: boolean;
   /** Root-relative path to a real image; falls back to the shared card. */
   image?: string;
   article?: ArticleFacts;
 }): Metadata {
   const resolvedSocialTitle =
-    socialTitle ?? `${title} | ${publicSiteConfig.brandName}`;
+    socialTitle ??
+    (brandedTitle ? title : `${title} | ${publicSiteConfig.brandName}`);
 
   const sharedOpenGraph = {
     locale: OG_LOCALE,
@@ -79,7 +86,7 @@ export function buildPageMetadata({
     : { ...sharedOpenGraph, type: "website" };
 
   return {
-    title,
+    title: brandedTitle ? { absolute: title } : title,
     description,
     alternates: { canonical: path },
     openGraph,

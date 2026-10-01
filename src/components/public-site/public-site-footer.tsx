@@ -15,6 +15,7 @@ import {
   MapPin,
   MessageCircle,
   Phone,
+  ReceiptText,
   Scale,
   ShieldCheck,
   UserPlus,
@@ -53,16 +54,22 @@ type FooterLinkItem = {
 
 const productFooterLinks: FooterLinkItem[] = [
   {
+    label: "Logiciel de facturation en Tunisie",
+    href: "/logiciel-facturation-tunisie",
+    icon: ReceiptText,
+    kind: "route",
+  },
+  {
     label: "Fonctionnalités",
-    href: "/#features",
+    href: "/features",
     icon: LayoutGrid,
-    kind: "anchor",
+    kind: "route",
   },
   {
     label: "Tarifs",
-    href: "/#pricing",
+    href: "/pricing",
     icon: BadgeDollarSign,
-    kind: "anchor",
+    kind: "route",
   },
   {
     label: "Mises à jour",

@@ -5,10 +5,16 @@ import { FacturancePlusPage } from "@/components/public-site/public-pages";
 import { publicSiteConfig } from "@/lib/public-site-config";
 import { absoluteUrl, buildPageMetadata, SOCIAL_IMAGE } from "@/lib/seo";
 
+/*
+ * Brand-and-product intent. The geo query "logiciel de facturation en
+ * Tunisie" belongs to /logiciel-facturation-tunisie, so the two titles no
+ * longer compete for it.
+ */
 export const metadata: Metadata = buildPageMetadata({
-  title: "Logiciel de facturation et gestion commerciale en Tunisie",
+  title: "Facturance Plus | Logiciel de facturation et gestion commerciale",
+  brandedTitle: true,
   description:
-    "Facturance Plus vous aide à gérer devis, factures, clients, fournisseurs, articles, stocks et paiements depuis une seule application.",
+    "Facturance Plus centralise factures, devis, clients, fournisseurs, articles, stocks et paiements dans une seule solution de gestion commerciale.",
   path: "/",
 });
 

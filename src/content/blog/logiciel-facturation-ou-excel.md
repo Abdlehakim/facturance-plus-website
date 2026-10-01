@@ -195,7 +195,7 @@ Il fonctionne selon trois modes — Local uniquement, Version web et Local + ser
 
 Il ne remplace ni votre comptabilité, ni votre conseiller comptable, et ne se connecte pas à votre banque. C’est un outil de gestion commerciale, pas un logiciel comptable.
 
-Pour voir le détail : [les fonctionnalités](/features) et [les tarifs](/pricing), qui incluent un essai gratuit de trois jours.
+Pour voir le détail : [les fonctionnalités](/features) et [les tarifs](/pricing), qui incluent un essai gratuit de trois jours. La page [logiciel de facturation en Tunisie](/logiciel-facturation-tunisie) reprend l’ensemble en une vue.
 
 ## En résumé
 
