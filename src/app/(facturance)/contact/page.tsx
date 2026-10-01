@@ -113,7 +113,7 @@ export default function ContactPage() {
               className="flex h-full flex-col rounded-2xl border border-blue-100/80 bg-white p-6 transition-colors hover:border-primary/30"
             >
               <span className="grid size-12 place-items-center rounded-2xl bg-primary/10 text-primary">
-                <Icon className="size-6" aria-hidden="true" />
+                <Icon className="size-4" aria-hidden="true" />
               </span>
 
               <h2 className="mt-4 text-lg font-bold text-[#0b294d]">
@@ -133,7 +133,7 @@ export default function ContactPage() {
       <section className="mt-12 grid gap-5 md:grid-cols-2">
         <div className="rounded-2xl border border-blue-100/80 bg-white p-6">
           <span className="grid size-12 place-items-center rounded-2xl bg-primary/10 text-primary">
-            <CircleHelp className="size-6" aria-hidden="true" />
+            <CircleHelp className="size-4" aria-hidden="true" />
           </span>
           <h2 className="mt-4 text-lg font-bold text-[#0b294d]">
             Une question sur l’application ?
@@ -152,7 +152,7 @@ export default function ContactPage() {
 
         <div className="rounded-2xl border border-blue-100/80 bg-white p-6">
           <span className="grid size-12 place-items-center rounded-2xl bg-primary/10 text-primary">
-            <MapPin className="size-6" aria-hidden="true" />
+            <MapPin className="size-4" aria-hidden="true" />
           </span>
           <h2 className="mt-4 text-lg font-bold text-[#0b294d]">Éditeur</h2>
           <p className="mt-2 text-sm leading-6 text-muted-foreground">

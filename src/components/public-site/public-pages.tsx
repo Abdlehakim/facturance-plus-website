@@ -204,7 +204,7 @@ function HeroClientsWidget({ className, width, delay }: HeroWidgetProps) {
       className={`absolute flex items-center gap-2 rounded-2xl border border-white/70 bg-white/97 backdrop-blur-sm px-2.5 py-3 sm:gap-2.5 sm:px-3 sm:py-4 shadow-[0_8px_26px_rgba(0,20,60,0.16),0_0_18px_rgba(60,180,255,0.1)] animate-[facturance-hero-float_6s_ease-in-out_infinite] motion-reduce:animate-none ${width} ${className}`}
       style={{ animationDelay: delay }}
     >
-      <UserRound className="size-6 shrink-0 text-[#1d4ed8] sm:size-8" />
+      <UserRound className="size-4 shrink-0 text-[#1d4ed8] sm:size-8" />
 
       <span className="min-w-0">
         <span className="block text-[0.8125rem] font-bold leading-[1.05rem] text-[#0b294d]">
@@ -607,7 +607,7 @@ export function FacturancePlusPage() {
                 <Button
                   asChild
                   size="lg"
-                  className="group h-15 w-full justify-start gap-3 rounded-xl border border-white/70 bg-white px-4 py-2 text-[#0b294d] shadow-[0_10px_26px_rgba(2,18,39,0.22),0_0_22px_rgba(56,189,248,0.14)] transition duration-200 hover:-translate-y-0.5 hover:border-primary hover:bg-primary hover:text-white hover:shadow-[0_16px_36px_rgba(2,18,39,0.36),0_0_30px_rgba(56,189,248,0.3)] focus-visible:ring-sky-300 active:translate-y-0 active:border-primary active:bg-primary active:text-white motion-reduce:transition-none motion-reduce:hover:translate-y-0 sm:w-auto sm:px-5 [&_svg]:size-6"
+                  className="group h-15 w-full justify-start gap-3 rounded-xl border border-white/70 bg-white px-4 py-2 text-[#0b294d] shadow-[0_10px_26px_rgba(2,18,39,0.22),0_0_22px_rgba(56,189,248,0.14)] transition duration-200 hover:-translate-y-0.5 hover:border-primary hover:bg-primary hover:text-white hover:shadow-[0_16px_36px_rgba(2,18,39,0.36),0_0_30px_rgba(56,189,248,0.3)] focus-visible:ring-sky-300 active:translate-y-0 active:border-primary active:bg-primary active:text-white motion-reduce:transition-none motion-reduce:hover:translate-y-0 sm:w-auto sm:px-5 [&_svg]:size-4"
                 >
                   <Link href={CLIENT_SIGNUP_URL}>
                     <Download
@@ -633,7 +633,7 @@ export function FacturancePlusPage() {
                   asChild
                   size="lg"
                   variant="outline"
-                  className="group h-15 w-full justify-start gap-3 rounded-xl border border-sky-400/60 bg-primary px-4 py-2 text-white lg:border-white/35 lg:bg-white/[0.08] shadow-[0_8px_22px_rgba(2,18,39,0.2)] backdrop-blur-sm transition duration-200 hover:-translate-y-0.5 hover:border-sky-300/70 hover:bg-primary/90 hover:text-white hover:shadow-[0_14px_32px_rgba(2,18,39,0.3),0_0_26px_rgba(56,189,248,0.28)] focus-visible:ring-sky-300 active:translate-y-0 active:border-sky-300/70 active:bg-primary/90 active:text-white motion-reduce:transition-none motion-reduce:hover:translate-y-0 sm:w-auto sm:px-5 [&_svg]:size-6"
+                  className="group h-15 w-full justify-start gap-3 rounded-xl border border-sky-400/60 bg-primary px-4 py-2 text-white lg:border-white/35 lg:bg-white/[0.08] shadow-[0_8px_22px_rgba(2,18,39,0.2)] backdrop-blur-sm transition duration-200 hover:-translate-y-0.5 hover:border-sky-300/70 hover:bg-primary/90 hover:text-white hover:shadow-[0_14px_32px_rgba(2,18,39,0.3),0_0_26px_rgba(56,189,248,0.28)] focus-visible:ring-sky-300 active:translate-y-0 active:border-sky-300/70 active:bg-primary/90 active:text-white motion-reduce:transition-none motion-reduce:hover:translate-y-0 sm:w-auto sm:px-5 [&_svg]:size-4"
                 >
                   <a href="#features">
                     <CirclePlay
@@ -676,7 +676,7 @@ export function FacturancePlusPage() {
                     <span
                       className={`grid size-11 shrink-0 place-items-center rounded-full sm:size-14 ${iconClassName}`}
                     >
-                      <Icon className="size-5 sm:size-6" aria-hidden="true" />
+                      <Icon className="size-5 sm:size-4" aria-hidden="true" />
                     </span>
 
                     <span className="min-w-0">
@@ -1352,7 +1352,7 @@ export function SupportPage() {
 
       <section className="mt-8 rounded-2xl border border-amber-200 bg-amber-50 p-6">
         <div className="flex items-start gap-4">
-          <FileLock2 className="mt-0.5 size-6 shrink-0 text-amber-700" />
+          <FileLock2 className="mt-0.5 size-4 shrink-0 text-amber-700" />
           <div>
             <h2 className="font-semibold text-amber-950">Avertissement de sécurité</h2>
             <p className="mt-2 text-sm leading-7 text-amber-900">
@@ -1696,7 +1696,7 @@ export function DataRequestsPage() {
 
       <section className="mt-8 rounded-2xl border border-rose-200 bg-rose-50 p-6">
         <div className="flex items-start gap-4">
-          <FileLock2 className="mt-0.5 size-6 shrink-0 text-rose-700" />
+          <FileLock2 className="mt-0.5 size-4 shrink-0 text-rose-700" />
           <div>
             <h2 className="font-semibold text-rose-950">Protégez vos identifiants</h2>
             <p className="mt-2 text-sm leading-7 text-rose-900">

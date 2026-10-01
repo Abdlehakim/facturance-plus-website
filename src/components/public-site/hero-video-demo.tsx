@@ -94,7 +94,7 @@ export function HeroVideoDemo({
 
           <span className="relative grid size-15 place-items-center rounded-full bg-primary text-white shadow-[0_14px_34px_rgba(2,18,39,0.45),0_0_26px_rgba(56,189,248,0.3)] ring-[3px] ring-white/35 transition duration-200 group-hover:scale-105 group-hover:shadow-[0_18px_40px_rgba(2,18,39,0.5),0_0_32px_rgba(56,189,248,0.45)] group-active:scale-[0.97] motion-reduce:transition-none motion-reduce:group-hover:scale-100 sm:size-17 lg:size-19">
             <Play
-              className="ml-[2px] size-6 fill-current sm:size-7"
+              className="ml-[2px] size-4 fill-current sm:size-7"
               aria-hidden="true"
             />
           </span>

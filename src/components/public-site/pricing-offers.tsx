@@ -211,7 +211,7 @@ function PlanCard({ plan }: { plan: Plan }) {
         <ul className="mt-4 grid gap-3">
           {plan.features.map((feature) => (
             <li key={feature} className="flex items-center gap-3">
-              <span className="grid size-6 shrink-0 place-items-center rounded-full bg-primary/10 text-primary">
+              <span className="grid size-4 shrink-0 place-items-center rounded-full bg-primary/10 text-primary">
                 <CheckCircle2 className="size-4" aria-hidden="true" />
               </span>
               <span className="text-sm font-semibold leading-5 text-[#0b294d]">
@@ -281,7 +281,7 @@ function CustomPlanCard({ plan }: { plan: Plan }) {
           <ul className="grid gap-3">
             {plan.features.map((feature) => (
               <li key={feature} className="flex items-center gap-3">
-                <span className="grid size-6 shrink-0 place-items-center rounded-full bg-primary/10 text-primary">
+                <span className="grid size-4 shrink-0 place-items-center rounded-full bg-primary/10 text-primary">
                   <CheckCircle2 className="size-4" aria-hidden="true" />
                 </span>
                 <span className="text-sm font-semibold leading-5 text-[#0b294d]">
