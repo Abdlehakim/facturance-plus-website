@@ -501,15 +501,19 @@ export function FacturancePlusPage() {
                 <Button
                   asChild
                   size="lg"
-                  className="h-14 w-full justify-start gap-3 rounded-md bg-white px-5 py-2 text-[#0b294d] shadow-[0_6px_16px_rgba(2,18,39,0.16)] hover:bg-blue-50 sm:w-auto [&_svg]:size-6"
+                  className="group h-14 w-full justify-start gap-3 rounded-xl border border-white/70 bg-white px-4 py-2 text-[#0b294d] shadow-[0_10px_26px_rgba(2,18,39,0.22),0_0_22px_rgba(56,189,248,0.14)] transition duration-200 hover:-translate-y-0.5 hover:bg-white hover:shadow-[0_16px_34px_rgba(2,18,39,0.28),0_0_28px_rgba(56,189,248,0.22)] focus-visible:ring-sky-300 active:translate-y-0 motion-reduce:transition-none motion-reduce:hover:translate-y-0 sm:h-15 sm:w-auto sm:px-5 [&_svg]:size-5"
                 >
                   <Link href={CLIENT_SIGNUP_URL}>
-                    <Download aria-hidden="true" />
+                    {/* The icon sits on its own brand-blue tile so the white
+                        surface reads as a surface, not as a flat label. */}
+                    <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-primary text-white shadow-sm">
+                      <Download aria-hidden="true" />
+                    </span>
                     <span className="flex flex-col items-start gap-0.5 text-left">
-                      <span className="whitespace-nowrap text-sm font-semibold leading-5">
+                      <span className="whitespace-nowrap text-sm font-bold leading-5">
                         Démarrer l’essai gratuit
                       </span>
-                      <span className="text-xs font-medium leading-4 text-[#0b294d]/85">
+                      <span className="text-xs font-medium leading-4 text-[#0b294d]/70">
                         3 jours d’essai gratuit
                       </span>
                     </span>
@@ -520,10 +524,14 @@ export function FacturancePlusPage() {
                   asChild
                   size="lg"
                   variant="outline"
-                  className="h-14 w-full justify-start gap-3 rounded-md border border-white/60 bg-transparent px-5 py-2 text-white shadow-none hover:bg-white/10 hover:text-white sm:w-auto [&_svg]:size-6"
+                  className="group h-14 w-full justify-start gap-3 rounded-xl border border-white/35 bg-white/[0.08] px-4 py-2 text-white shadow-[0_8px_22px_rgba(2,18,39,0.2)] backdrop-blur-sm transition duration-200 hover:-translate-y-0.5 hover:border-white/50 hover:bg-white/[0.14] hover:text-white hover:shadow-[0_14px_30px_rgba(2,18,39,0.26)] focus-visible:ring-sky-300 active:translate-y-0 motion-reduce:transition-none motion-reduce:hover:translate-y-0 sm:h-15 sm:w-auto sm:px-5 [&_svg]:size-5"
                 >
                   <a href="#features">
-                    <CirclePlay aria-hidden="true" />
+                    {/* Same tile geometry as the primary, deliberately lighter
+                        so the trial action stays the dominant one. */}
+                    <span className="grid size-10 shrink-0 place-items-center rounded-xl border border-sky-300/30 bg-sky-400/15 text-sky-200 transition-colors duration-200 group-hover:border-sky-300/50 group-hover:bg-sky-400/25 group-hover:text-sky-100 motion-reduce:transition-none">
+                      <CirclePlay aria-hidden="true" />
+                    </span>
                     <span className="whitespace-nowrap text-sm font-semibold leading-5">
                       Découvrir les fonctionnalités
                     </span>
