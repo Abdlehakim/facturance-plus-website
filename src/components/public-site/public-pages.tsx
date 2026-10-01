@@ -466,7 +466,7 @@ export function FacturancePlusPage() {
                 LOGICIEL DE FACTURATION ET DE GESTION COMMERCIALE
               </p>
               <h1 className="mt-4 text-[1.75rem] font-bold leading-[1.08] tracking-tight sm:text-[2.05rem] lg:text-[2.3rem] 2xl:text-[2.6rem]">
-                <span className="text-white">
+                <span className="text-white tracking-[0.015em]">
                   Toute votre facturation et votre gestion commerciale
                 </span>{" "}
                 <span className="text-sky-300">
@@ -501,19 +501,18 @@ export function FacturancePlusPage() {
                 <Button
                   asChild
                   size="lg"
-                  className="group h-14 w-full justify-start gap-3 rounded-xl border border-white/70 bg-white px-4 py-2 text-[#0b294d] shadow-[0_10px_26px_rgba(2,18,39,0.22),0_0_22px_rgba(56,189,248,0.14)] transition duration-200 hover:-translate-y-0.5 hover:bg-white hover:shadow-[0_16px_34px_rgba(2,18,39,0.28),0_0_28px_rgba(56,189,248,0.22)] focus-visible:ring-sky-300 active:translate-y-0 motion-reduce:transition-none motion-reduce:hover:translate-y-0 sm:h-15 sm:w-auto sm:px-5 [&_svg]:size-5"
+                  className="group h-14 w-full justify-start gap-3 rounded-xl border border-white/70 bg-white px-4 py-2 text-[#0b294d] shadow-[0_10px_26px_rgba(2,18,39,0.22),0_0_22px_rgba(56,189,248,0.14)] transition duration-200 hover:-translate-y-0.5 hover:border-primary hover:bg-primary hover:text-white hover:shadow-[0_16px_36px_rgba(2,18,39,0.36),0_0_30px_rgba(56,189,248,0.3)] focus-visible:ring-sky-300 active:translate-y-0 motion-reduce:transition-none motion-reduce:hover:translate-y-0 sm:h-15 sm:w-auto sm:px-5 [&_svg]:size-6"
                 >
                   <Link href={CLIENT_SIGNUP_URL}>
-                    {/* The icon sits on its own brand-blue tile so the white
-                        surface reads as a surface, not as a flat label. */}
-                    <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-primary text-white shadow-sm">
-                      <Download aria-hidden="true" />
-                    </span>
+                    <Download
+                      className="shrink-0 stroke-[2.2] text-primary transition-colors duration-200 group-hover:text-white motion-reduce:transition-none"
+                      aria-hidden="true"
+                    />
                     <span className="flex flex-col items-start gap-0.5 text-left">
                       <span className="whitespace-nowrap text-sm font-bold leading-5">
                         Démarrer l’essai gratuit
                       </span>
-                      <span className="text-xs font-medium leading-4 text-[#0b294d]/70">
+                      <span className="text-xs font-medium leading-4 text-[#0b294d]/70 transition-colors duration-200 group-hover:text-blue-50/85 motion-reduce:transition-none">
                         3 jours d’essai gratuit
                       </span>
                     </span>
@@ -524,14 +523,13 @@ export function FacturancePlusPage() {
                   asChild
                   size="lg"
                   variant="outline"
-                  className="group h-14 w-full justify-start gap-3 rounded-xl border border-white/35 bg-white/[0.08] px-4 py-2 text-white shadow-[0_8px_22px_rgba(2,18,39,0.2)] backdrop-blur-sm transition duration-200 hover:-translate-y-0.5 hover:border-white/50 hover:bg-white/[0.14] hover:text-white hover:shadow-[0_14px_30px_rgba(2,18,39,0.26)] focus-visible:ring-sky-300 active:translate-y-0 motion-reduce:transition-none motion-reduce:hover:translate-y-0 sm:h-15 sm:w-auto sm:px-5 [&_svg]:size-5"
+                  className="group h-14 w-full justify-start gap-3 rounded-xl border border-white/35 bg-white/[0.08] px-4 py-2 text-white shadow-[0_8px_22px_rgba(2,18,39,0.2)] backdrop-blur-sm transition duration-200 hover:-translate-y-0.5 hover:border-sky-300/70 hover:bg-primary/90 hover:text-white hover:shadow-[0_14px_32px_rgba(2,18,39,0.3),0_0_26px_rgba(56,189,248,0.28)] focus-visible:ring-sky-300 active:translate-y-0 motion-reduce:transition-none motion-reduce:hover:translate-y-0 sm:h-15 sm:w-auto sm:px-5 [&_svg]:size-6"
                 >
                   <a href="#features">
-                    {/* Same tile geometry as the primary, deliberately lighter
-                        so the trial action stays the dominant one. */}
-                    <span className="grid size-10 shrink-0 place-items-center rounded-xl border border-sky-300/30 bg-sky-400/15 text-sky-200 transition-colors duration-200 group-hover:border-sky-300/50 group-hover:bg-sky-400/25 group-hover:text-sky-100 motion-reduce:transition-none">
-                      <CirclePlay aria-hidden="true" />
-                    </span>
+                    <CirclePlay
+                      className="shrink-0 text-sky-300 transition-colors duration-200 group-hover:text-white motion-reduce:transition-none"
+                      aria-hidden="true"
+                    />
                     <span className="whitespace-nowrap text-sm font-semibold leading-5">
                       Découvrir les fonctionnalités
                     </span>
