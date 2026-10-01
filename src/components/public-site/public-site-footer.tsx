@@ -53,25 +53,39 @@ type FooterLinkItem = {
   openInNewTab?: boolean;
 };
 
-const productFooterLinks: FooterLinkItem[] = [
+/**
+ * The three commercial hubs and the comparison, grouped on their own. The
+ * labels are shorter than the page titles on purpose: footer anchor text is
+ * navigation, and each destination keeps its own title, H1 and canonical.
+ */
+const solutionsFooterLinks: FooterLinkItem[] = [
   {
-    label: "Logiciel de facturation en Tunisie",
+    label: "Logiciel de facturation",
     href: "/logiciel-facturation-tunisie",
     icon: ReceiptText,
     kind: "route",
   },
   {
-    label: "Logiciel de gestion commerciale en Tunisie",
+    label: "Gestion commerciale",
     href: "/logiciel-gestion-commerciale-tunisie",
     icon: LayoutGrid,
     kind: "route",
   },
   {
-    label: "Logiciel de gestion de stock en Tunisie",
+    label: "Gestion de stock",
     href: "/logiciel-gestion-stock-tunisie",
     icon: PackageCheck,
     kind: "route",
   },
+  {
+    label: "Comparatif des logiciels",
+    href: "/comparatif-logiciel-facturation-tunisie",
+    icon: Scale,
+    kind: "route",
+  },
+];
+
+const productFooterLinks: FooterLinkItem[] = [
   {
     label: "Fonctionnalités",
     href: "/features",
@@ -262,12 +276,6 @@ export function PublicSiteFooter() {
       icon: CircleHelp,
       kind: "route",
     },
-    {
-      label: "Comparatif des logiciels de facturation",
-      href: "/comparatif-logiciel-facturation-tunisie",
-      icon: Scale,
-      kind: "route",
-    },
     ...(whatsAppUrl
       ? [
           {
@@ -299,18 +307,12 @@ export function PublicSiteFooter() {
           },
         ]
       : []),
-    {
-      label: "Demandes relatives aux données",
-      href: "/data-requests",
-      icon: Database,
-      kind: "route",
-    },
   ];
 
   return (
     <footer className="border-t border-white/5 bg-[#071b32] px-5 py-10 text-slate-200 sm:px-8 lg:px-10 lg:py-12">
       <div className="mx-auto w-full max-w-7xl">
-        <div className="grid gap-9 md:grid-cols-2 xl:grid-cols-[1.05fr_0.85fr_1.05fr_1fr] xl:gap-x-12">
+        <div className="grid gap-9 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-[1.1fr_0.85fr_0.65fr_0.95fr_0.95fr] xl:gap-x-10">
           <section>
             <div className="flex items-center gap-3">
               <span className="grid size-12 shrink-0 place-items-center">
@@ -363,6 +365,10 @@ export function PublicSiteFooter() {
             )}
           </section>
 
+          <FooterNavigationColumn
+            title="Solutions"
+            links={solutionsFooterLinks}
+          />
           <FooterNavigationColumn title="Produit" links={productFooterLinks} />
           <FooterNavigationColumn title="Support" links={supportFooterLinks} />
           <FooterNavigationColumn title="Légal" links={legalFooterLinks} />

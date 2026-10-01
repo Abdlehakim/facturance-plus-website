@@ -24,6 +24,7 @@ import {
   HardDrive,
   Headphones,
   KeyRound,
+  LayoutGrid,
   Mail,
   MessageCircle,
   Package,
@@ -291,6 +292,48 @@ function HeroPaiementsWidget({ className, width, delay }: HeroWidgetProps) {
     </div>
   );
 }
+
+/**
+ * The three commercial hubs, surfaced in content rather than only in the
+ * footer. Headings are written for a reader choosing an area of the product;
+ * the exact-match page titles stay on the destination pages themselves.
+ */
+const homepageSolutions: {
+  title: string
+  description: string
+  points: string[]
+  cta: string
+  href: string
+  icon: typeof ReceiptText
+}[] = [
+  {
+    title: "Facturation",
+    description:
+      "Créez et organisez vos factures, devis et documents commerciaux depuis une interface centralisée.",
+    points: ["Factures et devis", "Documents commerciaux", "Gestion des clients"],
+    cta: "Découvrir la facturation",
+    href: "/logiciel-facturation-tunisie",
+    icon: ReceiptText,
+  },
+  {
+    title: "Gestion commerciale",
+    description:
+      "Centralisez clients, fournisseurs, articles, documents et paiements pour mieux organiser votre activité.",
+    points: ["Clients et fournisseurs", "Articles et services", "Suivi des paiements"],
+    cta: "Découvrir la gestion commerciale",
+    href: "/logiciel-gestion-commerciale-tunisie",
+    icon: LayoutGrid,
+  },
+  {
+    title: "Gestion de stock",
+    description:
+      "Suivez vos articles et votre stock en lien avec vos opérations commerciales.",
+    points: ["Articles et services", "Dépôts et magasins", "Seuils et alertes"],
+    cta: "Découvrir la gestion de stock",
+    href: "/logiciel-gestion-stock-tunisie",
+    icon: PackageCheck,
+  },
+]
 
 export function FacturancePlusPage() {
   const features = [
@@ -963,6 +1006,80 @@ export function FacturancePlusPage() {
             </div>
           </div>
         </div>
+      </section>
+
+      <section className="border-t bg-white" aria-labelledby="solutions-title">
+        <PublicPageContainer>
+          <div className="mx-auto max-w-2xl text-center">
+            <p className="text-xs font-bold uppercase tracking-[0.22em] text-primary">
+              SOLUTIONS
+            </p>
+
+            <h2
+              id="solutions-title"
+              className="mt-3 text-3xl font-bold tracking-tight text-[#0b294d]"
+            >
+              Une solution adaptée à votre gestion
+            </h2>
+
+            <p className="mt-4 text-base leading-7 text-muted-foreground">
+              Explorez les fonctionnalités de Facturance Plus selon vos besoins :
+              facturation, gestion commerciale ou suivi du stock.
+            </p>
+          </div>
+
+          <div className="mt-10 grid items-stretch gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {homepageSolutions.map(
+              ({ title, description, points, cta, href, icon: Icon }) => (
+                /* `after:inset-0` on the link stretches it over the card, so the
+                   whole card is clickable while the anchor text stays the CTA
+                   rather than the card's entire contents. */
+                <div
+                  key={href}
+                  className="group relative flex h-full flex-col rounded-2xl border border-blue-100/80 bg-white p-6 shadow-[0_10px_30px_rgba(11,41,77,0.05)] transition duration-200 hover:-translate-y-0.5 hover:border-primary/30 hover:shadow-[0_18px_44px_rgba(11,41,77,0.10)] focus-within:border-primary/30 motion-reduce:transition-none motion-reduce:hover:translate-y-0 sm:p-7"
+                >
+                  <span className="grid size-12 shrink-0 place-items-center rounded-xl bg-primary/10 text-primary transition-colors duration-200 group-hover:bg-primary/15">
+                    <Icon className="size-6" aria-hidden="true" />
+                  </span>
+
+                  <h3 className="mt-5 text-xl font-bold tracking-tight text-[#0b294d]">
+                    {title}
+                  </h3>
+
+                  <p className="mt-3 text-sm leading-6 text-muted-foreground">
+                    {description}
+                  </p>
+
+                  <ul className="mt-5 grid gap-2">
+                    {points.map((point) => (
+                      <li
+                        key={point}
+                        className="flex items-start gap-2 text-sm leading-6 text-muted-foreground"
+                      >
+                        <Check
+                          className="mt-1 size-4 shrink-0 text-primary"
+                          aria-hidden="true"
+                        />
+                        <span className="min-w-0">{point}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <Link
+                    href={href}
+                    className="mt-6 inline-flex w-fit items-center gap-2 pt-1 text-sm font-semibold text-primary after:absolute after:inset-0 after:rounded-2xl after:content-[''] hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  >
+                    {cta}
+                    <ArrowRight
+                      className="size-4 transition-transform duration-200 group-hover:translate-x-0.5 motion-reduce:transform-none"
+                      aria-hidden="true"
+                    />
+                  </Link>
+                </div>
+              ),
+            )}
+          </div>
+        </PublicPageContainer>
       </section>
 
       <section>
