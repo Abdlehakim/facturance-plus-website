@@ -268,7 +268,7 @@ export function FacturancePlusPage() {
       icon: FileText,
       accent: "bg-blue-500/10 text-[#13407a]",
       shadow: "shadow-[0_16px_34px_rgba(2,18,39,0.3)]",
-      position: "left-[43%] top-[16%]",
+      position: "left-[49%] top-[13%]",
       delay: "0s",
       wideOnly: false,
     },
@@ -278,7 +278,7 @@ export function FacturancePlusPage() {
       icon: UserRoundCheck,
       accent: "bg-sky-500/10 text-[#0f5b86]",
       shadow: "shadow-[0_12px_28px_rgba(2,18,39,0.24)]",
-      position: "left-[41%] top-[44%]",
+      position: "left-[48.5%] top-[40%]",
       delay: "1.4s",
       wideOnly: false,
     },
@@ -288,7 +288,7 @@ export function FacturancePlusPage() {
       icon: PackageCheck,
       accent: "bg-cyan-500/10 text-[#0b5b6b]",
       shadow: "shadow-[0_16px_34px_rgba(2,18,39,0.28)]",
-      position: "left-[43%] top-[71%]",
+      position: "left-[49%] top-[62%]",
       delay: "2.8s",
       wideOnly: false,
     },
@@ -298,7 +298,7 @@ export function FacturancePlusPage() {
       icon: ReceiptText,
       accent: "bg-indigo-500/10 text-[#2b3a8c]",
       shadow: "shadow-[0_14px_30px_rgba(2,18,39,0.26)]",
-      position: "right-[1%] top-[40%]",
+      position: "right-[1%] top-[41%]",
       delay: "2.1s",
       wideOnly: false,
     },
@@ -309,7 +309,7 @@ export function FacturancePlusPage() {
       accent: "bg-blue-500/10 text-[#13407a]",
       shadow: "shadow-[0_12px_28px_rgba(2,18,39,0.22)]",
       /** Fifth widget only once the viewport can carry it without crowding. */
-      position: "right-[2%] top-[9%]",
+      position: "right-[2%] top-[10%]",
       delay: "3.6s",
       wideOnly: true,
     },
@@ -334,7 +334,7 @@ export function FacturancePlusPage() {
           Below xl the same element returns to the document flow after the
           copy, which is why it is first in the DOM with `order-last`.
         */}
-        <div className="relative order-last aspect-[16/10] w-full sm:aspect-[16/9] xl:absolute xl:right-[1.5%] xl:top-1/2 xl:z-10 xl:order-none xl:aspect-[1672/941] xl:w-[82%] xl:-translate-y-[52%]">
+        <div className="relative order-last aspect-[16/10] w-full sm:aspect-[16/9] xl:absolute xl:right-[1.5%] xl:top-1/2 xl:z-10 xl:order-none xl:aspect-[1672/941] xl:w-[72%] xl:-translate-y-[51%]">
           <Image
             src="/facturance-plus-hero.webp"
             alt="Facturance Plus affiché sur un écran de bureau : logiciel de facturation et de gestion commerciale"
@@ -392,14 +392,14 @@ export function FacturancePlusPage() {
               <div
                 key={title}
                 style={{ animationDelay: delay }}
-                className={`absolute flex w-[8.75rem] animate-[facturance-hero-float_5.5s_ease-in-out_infinite] items-center gap-2.5 rounded-2xl border border-white/60 bg-white/95 p-3 backdrop-blur-sm motion-reduce:animate-none ${shadow} ${position} ${
+                className={`absolute flex w-[8rem] animate-[facturance-hero-float_5.5s_ease-in-out_infinite] items-center gap-2 rounded-2xl border border-white/60 bg-white/95 p-2.5 backdrop-blur-sm motion-reduce:animate-none ${shadow} ${position} ${
                   wideOnly ? "hidden 2xl:flex" : ""
                 }`}
               >
                 <span
-                  className={`grid size-9 shrink-0 place-items-center rounded-xl ${accent}`}
+                  className={`grid size-8 shrink-0 place-items-center rounded-xl ${accent}`}
                 >
-                  <Icon className="size-[22px]" aria-hidden="true" />
+                  <Icon className="size-5" aria-hidden="true" />
                 </span>
 
                 <span className="min-w-0">
