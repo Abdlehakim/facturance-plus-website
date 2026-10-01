@@ -253,12 +253,22 @@ export function FacturancePlusPage() {
    * cluster in the band between the copy and the monitor, and a right cluster
    * past the monitor's edge.
    */
+  /*
+   * Widgets that orbit the product visual, drawn in HTML and never baked into
+   * the photograph. Percentages are of the hero box: the left trio sits in the
+   * band between the copy and the monitor, the right pair just past its edge.
+   *
+   * `accent` and `shadow` vary slightly per card so the group reads as a set
+   * rather than five identical tiles.
+   */
   const heroFloatingCards = [
     {
       title: "Factures",
       detail: "Export PDF",
       icon: FileText,
-      position: "left-[46%] top-[17%]",
+      accent: "bg-blue-500/10 text-[#13407a]",
+      shadow: "shadow-[0_16px_34px_rgba(2,18,39,0.3)]",
+      position: "left-[43%] top-[16%]",
       delay: "0s",
       wideOnly: false,
     },
@@ -266,7 +276,9 @@ export function FacturancePlusPage() {
       title: "Clients",
       detail: "Gestion centralisée",
       icon: UserRoundCheck,
-      position: "left-[44%] top-[43%]",
+      accent: "bg-sky-500/10 text-[#0f5b86]",
+      shadow: "shadow-[0_12px_28px_rgba(2,18,39,0.24)]",
+      position: "left-[41%] top-[44%]",
       delay: "1.4s",
       wideOnly: false,
     },
@@ -274,7 +286,9 @@ export function FacturancePlusPage() {
       title: "Stock",
       detail: "Suivi simplifié",
       icon: PackageCheck,
-      position: "left-[46%] top-[67%]",
+      accent: "bg-cyan-500/10 text-[#0b5b6b]",
+      shadow: "shadow-[0_16px_34px_rgba(2,18,39,0.28)]",
+      position: "left-[43%] top-[71%]",
       delay: "2.8s",
       wideOnly: false,
     },
@@ -282,7 +296,9 @@ export function FacturancePlusPage() {
       title: "Paiements",
       detail: "Suivi des règlements",
       icon: ReceiptText,
-      position: "right-[2%] top-[31%]",
+      accent: "bg-indigo-500/10 text-[#2b3a8c]",
+      shadow: "shadow-[0_14px_30px_rgba(2,18,39,0.26)]",
+      position: "right-[1%] top-[40%]",
       delay: "2.1s",
       wideOnly: false,
     },
@@ -290,8 +306,10 @@ export function FacturancePlusPage() {
       title: "Rapports",
       detail: "Vue d’ensemble",
       icon: BarChart3,
+      accent: "bg-blue-500/10 text-[#13407a]",
+      shadow: "shadow-[0_12px_28px_rgba(2,18,39,0.22)]",
       /** Fifth widget only once the viewport can carry it without crowding. */
-      position: "right-[2%] top-[13%]",
+      position: "right-[2%] top-[9%]",
       delay: "3.6s",
       wideOnly: true,
     },
@@ -316,7 +334,7 @@ export function FacturancePlusPage() {
           Below xl the same element returns to the document flow after the
           copy, which is why it is first in the DOM with `order-last`.
         */}
-        <div className="relative order-last aspect-[16/10] w-full sm:aspect-[16/9] xl:absolute xl:right-0 xl:top-1/2 xl:order-none xl:aspect-[1672/941] xl:w-[70%] xl:max-w-[86rem] xl:-translate-y-1/2">
+        <div className="relative order-last aspect-[16/10] w-full sm:aspect-[16/9] xl:absolute xl:right-[1.5%] xl:top-1/2 xl:z-10 xl:order-none xl:aspect-[1672/941] xl:w-[82%] xl:-translate-y-[52%]">
           <Image
             src="/facturance-plus-hero.webp"
             alt="Facturance Plus affiché sur un écran de bureau : logiciel de facturation et de gestion commerciale"
@@ -326,14 +344,18 @@ export function FacturancePlusPage() {
             className="object-cover object-[72%_center] xl:object-center"
           />
 
-          {/* The photograph no longer spans the hero, so its top and bottom
-              edges melt into the navy panel instead of cutting against it. */}
+          {/* The photograph does not span the hero, so its edges melt into
+              the navy panel instead of cutting against it. */}
           <div
-            className="pointer-events-none absolute inset-x-0 top-0 hidden h-24 bg-gradient-to-b from-[#031b35] to-transparent xl:block"
+            className="pointer-events-none absolute inset-x-0 top-0 hidden h-20 bg-gradient-to-b from-[#031b35] to-transparent xl:block"
             aria-hidden="true"
           />
           <div
-            className="pointer-events-none absolute inset-x-0 bottom-0 hidden h-24 bg-gradient-to-t from-[#031b35] to-transparent xl:block"
+            className="pointer-events-none absolute inset-x-0 bottom-0 hidden h-20 bg-gradient-to-t from-[#031b35] to-transparent xl:block"
+            aria-hidden="true"
+          />
+          <div
+            className="pointer-events-none absolute inset-y-0 right-0 hidden w-10 bg-gradient-to-l from-[#031b35] to-transparent xl:block"
             aria-hidden="true"
           />
         </div>
@@ -344,29 +366,40 @@ export function FacturancePlusPage() {
           keeps the image's own brightness.
         */}
         <div
-          className="pointer-events-none absolute inset-0 hidden bg-[linear-gradient(90deg,rgba(3,27,53,1)_0%,rgba(3,27,53,0.98)_34%,rgba(3,27,53,0.82)_44%,rgba(3,27,53,0.28)_54%,rgba(3,27,53,0)_64%)] xl:block"
+          className="pointer-events-none absolute inset-0 z-20 hidden bg-[linear-gradient(90deg,rgba(3,27,53,1)_0%,rgba(3,27,53,0.98)_36%,rgba(3,27,53,0.92)_44%,rgba(3,27,53,0.45)_49%,rgba(3,27,53,0.08)_53%,rgba(3,27,53,0)_57%)] xl:block"
           aria-hidden="true"
         />
         <div
-          className="pointer-events-none absolute inset-x-0 bottom-0 hidden h-40 bg-gradient-to-t from-[#031b35]/75 to-transparent xl:block"
+          className="pointer-events-none absolute inset-x-0 bottom-0 z-20 hidden h-40 bg-gradient-to-t from-[#031b35]/70 to-transparent xl:block"
           aria-hidden="true"
         />
 
         <div
-          className="pointer-events-none absolute inset-0 z-10 hidden xl:block"
+          className="pointer-events-none absolute inset-0 z-40 hidden xl:block"
           aria-hidden="true"
         >
           {heroFloatingCards.map(
-            ({ title, detail, icon: Icon, position, delay, wideOnly }) => (
+            ({
+              title,
+              detail,
+              icon: Icon,
+              accent,
+              shadow,
+              position,
+              delay,
+              wideOnly,
+            }) => (
               <div
                 key={title}
                 style={{ animationDelay: delay }}
-                className={`absolute flex w-[9.5rem] animate-[facturance-hero-float_6s_ease-in-out_infinite] items-center gap-2.5 rounded-xl border border-white/55 bg-white/90 px-3 py-2.5 shadow-[0_12px_28px_rgba(2,18,39,0.28)] backdrop-blur-sm motion-reduce:animate-none ${position} ${
+                className={`absolute flex w-[8.75rem] animate-[facturance-hero-float_5.5s_ease-in-out_infinite] items-center gap-2.5 rounded-2xl border border-white/60 bg-white/95 p-3 backdrop-blur-sm motion-reduce:animate-none ${shadow} ${position} ${
                   wideOnly ? "hidden 2xl:flex" : ""
                 }`}
               >
-                <span className="grid size-8 shrink-0 place-items-center rounded-lg bg-[#0b294d]/10 text-[#0b294d]">
-                  <Icon className="size-4" aria-hidden="true" />
+                <span
+                  className={`grid size-9 shrink-0 place-items-center rounded-xl ${accent}`}
+                >
+                  <Icon className="size-[22px]" aria-hidden="true" />
                 </span>
 
                 <span className="min-w-0">
@@ -387,7 +420,7 @@ export function FacturancePlusPage() {
           max-width container pushed the copy too far inboard and left no room
           for the widgets between it and the monitor.
         */}
-        <div className="relative z-20 mx-auto flex w-full max-w-[120rem] flex-col justify-center px-5 py-10 sm:px-8 sm:py-12 xl:min-h-[36rem] xl:px-[4%] xl:py-14 2xl:min-h-[46rem]">
+        <div className="relative z-30 mx-auto flex w-full max-w-[120rem] flex-col justify-center px-5 py-10 sm:px-8 sm:py-12 xl:min-h-[36rem] xl:px-[4%] xl:py-14 2xl:min-h-[46rem]">
           <div className="flex w-full min-w-0 max-w-xl flex-col gap-6 xl:max-w-[34rem] 2xl:max-w-[38.75rem]">
             <div className="min-w-0">
               <p className="text-xs font-bold uppercase tracking-[0.22em] text-blue-200">
