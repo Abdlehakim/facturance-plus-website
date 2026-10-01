@@ -258,40 +258,40 @@ export function FacturancePlusPage() {
       title: "Factures",
       detail: "Export PDF",
       icon: FileText,
-      position: "left-[44%] top-[13%]",
+      position: "left-[46%] top-[17%]",
       delay: "0s",
       wideOnly: false,
     },
     {
       title: "Clients",
-      detail: "Gestion centralis\u00e9e",
+      detail: "Gestion centralisée",
       icon: UserRoundCheck,
-      position: "left-[42%] top-[41%]",
+      position: "left-[44%] top-[43%]",
       delay: "1.4s",
       wideOnly: false,
     },
     {
       title: "Stock",
-      detail: "Suivi simplifi\u00e9",
+      detail: "Suivi simplifié",
       icon: PackageCheck,
-      position: "left-[44%] top-[62%]",
+      position: "left-[46%] top-[67%]",
       delay: "2.8s",
       wideOnly: false,
     },
     {
       title: "Paiements",
-      detail: "Suivi des r\u00e8glements",
+      detail: "Suivi des règlements",
       icon: ReceiptText,
-      position: "right-[1.5%] top-[44%]",
+      position: "right-[2%] top-[31%]",
       delay: "2.1s",
       wideOnly: false,
     },
     {
       title: "Rapports",
-      detail: "Vue d\u2019ensemble",
+      detail: "Vue d’ensemble",
       icon: BarChart3,
       /** Fifth widget only once the viewport can carry it without crowding. */
-      position: "right-[1.5%] top-[23%]",
+      position: "right-[2%] top-[13%]",
       delay: "3.6s",
       wideOnly: true,
     },
@@ -301,25 +301,40 @@ export function FacturancePlusPage() {
 
   return (
     <>
-      <section className="relative flex flex-col overflow-hidden bg-[#031b35] text-white lg:block lg:min-h-[50rem] xl:min-h-[51.5rem]">
+      <section className="relative flex flex-col overflow-hidden bg-[#031b35] text-white xl:block xl:min-h-[36rem] 2xl:min-h-[46rem]">
         {/*
-          The product visual is a layer on the right rather than a full-bleed
-          backdrop: covering the whole hero scaled the monitor far past the
-          reference and cropped away its stand, keyboard and desk. Bound by the
-          hero's height, the image shows its full vertical extent and the
-          monitor lands at roughly 40% of the viewport width.
+          A box on the right whose aspect matches the photograph, so nothing is
+          cropped and the monitor keeps a fixed share of the viewport at every
+          width: the box takes 70% of the hero and the monitor is 54% of the
+          photograph, which puts it at ~38% of the viewport starting at ~58% -
+          the proportion of the reference composition.
 
-          Below lg the same element returns to the flow after the copy, which
-          is why it is first in the DOM with `order-last`.
+          Sizing the image to the hero's height instead, as a full-height cover
+          layer did, made its scale depend on that height: the monitor grew and
+          walked its left edge into the copy on narrower desktops.
+
+          Below xl the same element returns to the document flow after the
+          copy, which is why it is first in the DOM with `order-last`.
         */}
-        <div className="relative order-last aspect-[16/10] w-full sm:aspect-[16/9] lg:absolute lg:inset-y-0 lg:right-0 lg:order-none lg:aspect-auto lg:w-[70%]">
+        <div className="relative order-last aspect-[16/10] w-full sm:aspect-[16/9] xl:absolute xl:right-0 xl:top-1/2 xl:order-none xl:aspect-[1672/941] xl:w-[70%] xl:max-w-[86rem] xl:-translate-y-1/2">
           <Image
             src="/facturance-plus-hero.webp"
-            alt="Facturance Plus affich\u00e9 sur un \u00e9cran de bureau : logiciel de facturation et de gestion commerciale"
+            alt="Facturance Plus affiché sur un écran de bureau : logiciel de facturation et de gestion commerciale"
             fill
             priority
-            sizes="(min-width: 1024px) 70vw, 100vw"
-            className="object-cover object-[72%_center] lg:object-right"
+            sizes="(min-width: 1280px) 70vw, 100vw"
+            className="object-cover object-[72%_center] xl:object-center"
+          />
+
+          {/* The photograph no longer spans the hero, so its top and bottom
+              edges melt into the navy panel instead of cutting against it. */}
+          <div
+            className="pointer-events-none absolute inset-x-0 top-0 hidden h-24 bg-gradient-to-b from-[#031b35] to-transparent xl:block"
+            aria-hidden="true"
+          />
+          <div
+            className="pointer-events-none absolute inset-x-0 bottom-0 hidden h-24 bg-gradient-to-t from-[#031b35] to-transparent xl:block"
+            aria-hidden="true"
           />
         </div>
 
@@ -329,16 +344,16 @@ export function FacturancePlusPage() {
           keeps the image's own brightness.
         */}
         <div
-          className="pointer-events-none absolute inset-0 hidden bg-[linear-gradient(90deg,rgba(3,27,53,1)_0%,rgba(3,27,53,0.98)_30%,rgba(3,27,53,0.8)_40%,rgba(3,27,53,0.25)_52%,rgba(3,27,53,0)_62%)] lg:block"
+          className="pointer-events-none absolute inset-0 hidden bg-[linear-gradient(90deg,rgba(3,27,53,1)_0%,rgba(3,27,53,0.98)_34%,rgba(3,27,53,0.82)_44%,rgba(3,27,53,0.28)_54%,rgba(3,27,53,0)_64%)] xl:block"
           aria-hidden="true"
         />
         <div
-          className="pointer-events-none absolute inset-x-0 bottom-0 hidden h-44 bg-gradient-to-t from-[#031b35]/80 to-transparent lg:block"
+          className="pointer-events-none absolute inset-x-0 bottom-0 hidden h-40 bg-gradient-to-t from-[#031b35]/75 to-transparent xl:block"
           aria-hidden="true"
         />
 
         <div
-          className="pointer-events-none absolute inset-0 z-10 hidden lg:block"
+          className="pointer-events-none absolute inset-0 z-10 hidden xl:block"
           aria-hidden="true"
         >
           {heroFloatingCards.map(
@@ -372,13 +387,13 @@ export function FacturancePlusPage() {
           max-width container pushed the copy too far inboard and left no room
           for the widgets between it and the monitor.
         */}
-        <div className="relative z-20 mx-auto flex w-full max-w-[120rem] flex-col justify-center px-5 py-10 sm:px-8 sm:py-12 lg:min-h-[50rem] lg:px-[4%] lg:py-14 xl:min-h-[51.5rem]">
-          <div className="flex w-full min-w-0 max-w-xl flex-col gap-6 lg:max-w-[38.75rem]">
+        <div className="relative z-20 mx-auto flex w-full max-w-[120rem] flex-col justify-center px-5 py-10 sm:px-8 sm:py-12 xl:min-h-[36rem] xl:px-[4%] xl:py-14 2xl:min-h-[46rem]">
+          <div className="flex w-full min-w-0 max-w-xl flex-col gap-6 xl:max-w-[34rem] 2xl:max-w-[38.75rem]">
             <div className="min-w-0">
               <p className="text-xs font-bold uppercase tracking-[0.22em] text-blue-200">
                 LOGICIEL DE FACTURATION ET DE GESTION COMMERCIALE
               </p>
-              <h1 className="mt-4 text-[1.75rem] font-bold leading-[1.08] tracking-tight sm:text-[2.05rem] lg:text-[2.35rem] xl:text-[2.6rem]">
+              <h1 className="mt-4 text-[1.75rem] font-bold leading-[1.08] tracking-tight sm:text-[2.05rem] lg:text-[2.3rem] 2xl:text-[2.6rem]">
                 <span className="text-white">
                   Toute votre facturation et votre gestion commerciale
                 </span>{" "}
@@ -387,7 +402,7 @@ export function FacturancePlusPage() {
                 </span>
               </h1>
               <p className="mt-4 text-sm leading-6 text-blue-50/85 sm:text-base sm:leading-7">
-                Cr\u00e9ez vos factures, devis, bons de commande et de livraison, puis g\u00e9rez clients, fournisseurs, articles, stocks, paiements et entreprises depuis un seul espace.
+                Créez vos factures, devis, bons de commande et de livraison, puis gérez clients, fournisseurs, articles, stocks, paiements et entreprises depuis un seul espace.
               </p>
             </div>
 
@@ -410,20 +425,20 @@ export function FacturancePlusPage() {
             </ul>
 
             <div className="min-w-0">
-              <div className="flex flex-col items-stretch gap-3 sm:flex-row sm:items-stretch sm:gap-4">
+              <div className="flex flex-col items-stretch gap-3 sm:flex-row sm:flex-wrap sm:items-stretch sm:gap-4">
                 <Button
                   asChild
                   size="lg"
-                  className="h-14 w-full justify-start gap-3 rounded-md bg-white px-5 py-2 text-[#0b294d] shadow-[0_6px_16px_rgba(2,18,39,0.16)] hover:bg-blue-50 sm:w-[14.5rem] [&_svg]:size-6"
+                  className="h-14 w-full justify-start gap-3 rounded-md bg-white px-5 py-2 text-[#0b294d] shadow-[0_6px_16px_rgba(2,18,39,0.16)] hover:bg-blue-50 sm:w-auto [&_svg]:size-6"
                 >
                   <Link href={CLIENT_SIGNUP_URL}>
                     <Download aria-hidden="true" />
                     <span className="flex flex-col items-start gap-0.5 text-left">
-                      <span className="text-sm font-semibold leading-5">
-                        D\u00e9marrer l\u2019essai gratuit
+                      <span className="whitespace-nowrap text-sm font-semibold leading-5">
+                        Démarrer l’essai gratuit
                       </span>
                       <span className="text-xs font-medium leading-4 text-[#0b294d]/85">
-                        3 jours d\u2019essai gratuit
+                        3 jours d’essai gratuit
                       </span>
                     </span>
                   </Link>
@@ -433,12 +448,12 @@ export function FacturancePlusPage() {
                   asChild
                   size="lg"
                   variant="outline"
-                  className="h-14 w-full justify-start gap-3 rounded-md border border-white/60 bg-transparent px-5 py-2 text-white shadow-none hover:bg-white/10 hover:text-white sm:w-[16.5rem] [&_svg]:size-6"
+                  className="h-14 w-full justify-start gap-3 rounded-md border border-white/60 bg-transparent px-5 py-2 text-white shadow-none hover:bg-white/10 hover:text-white sm:w-auto [&_svg]:size-6"
                 >
                   <a href="#features">
                     <CirclePlay aria-hidden="true" />
-                    <span className="text-sm font-semibold leading-5">
-                      D\u00e9couvrir les fonctionnalit\u00e9s
+                    <span className="whitespace-nowrap text-sm font-semibold leading-5">
+                      Découvrir les fonctionnalités
                     </span>
                   </a>
                 </Button>
