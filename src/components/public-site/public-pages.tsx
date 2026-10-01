@@ -269,7 +269,7 @@ export function FacturancePlusPage() {
 
   return (
     <>
-      <section className="relative flex flex-col overflow-hidden bg-[#031b35] text-white xl:block xl:min-h-[36rem] 2xl:min-h-[46rem]">
+      <section className="relative flex flex-col overflow-hidden bg-[#031b35] text-white xl:block xl:min-h-[calc(100svh-4.5rem-1px)]">
         {/*
           A box on the right whose aspect matches the photograph, so nothing is
           cropped and the monitor keeps a fixed share of the viewport at every
@@ -456,8 +456,8 @@ export function FacturancePlusPage() {
           max-width container pushed the copy too far inboard and left no room
           for the widgets between it and the monitor.
         */}
-        <div className="relative z-30 mx-auto flex w-full max-w-[120rem] flex-col justify-center px-5 py-10 sm:px-8 sm:py-12 xl:min-h-[36rem] xl:px-[4%] xl:py-14 2xl:min-h-[46rem]">
-          <div className="flex w-full min-w-0 max-w-xl flex-col gap-6 xl:max-w-[34rem] 2xl:max-w-[38.75rem]">
+        <div className="relative z-30 mx-auto flex w-full max-w-[120rem] flex-col justify-center px-5 py-10 sm:px-8 sm:py-12 xl:px-[4%] xl:py-14 xl:min-h-[calc(100svh-4.5rem-1px)]">
+          <div className="flex w-full min-w-0 max-w-xl flex-col gap-6 xl:max-w-[34rem] xl:flex-1 xl:justify-center 2xl:max-w-[38.75rem]">
             <div className="min-w-0">
               <p className="text-xs font-bold uppercase tracking-[0.22em] text-blue-200">
                 LOGICIEL DE FACTURATION ET DE GESTION COMMERCIALE
