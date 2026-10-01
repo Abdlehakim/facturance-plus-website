@@ -149,4 +149,4 @@ Si vous ne deviez traiter que trois points cette année, ce seraient les erreurs
 
 Une entreprise qui a fait ce travail abordera n’importe quelle évolution sans urgence. Et en attendant, elle facturera mieux.
 
-Vous pouvez [découvrir les fonctionnalités de Facturance Plus](/features) pour voir comment ces éléments s’organisent en pratique, ou [écrire à l’équipe](/contact) si vous avez une question sur votre situation.
+Vous pouvez [découvrir les fonctionnalités de Facturance Plus](/features) ou la page [logiciel de facturation en Tunisie](/logiciel-facturation-tunisie) pour voir comment ces éléments s’organisent en pratique, ou [écrire à l’équipe](/contact) si vous avez une question sur votre situation.

@@ -77,7 +77,7 @@ Si vous accordez des délais différents selon les clients, mieux vaut que cette
 
 - Le matricule fiscal du client, absent parce que la fiche n’a jamais été complétée après la première vente.
 - Deux factures portant le même numéro, émises depuis deux postes différents le même jour.
-- Un avoir qui ne fait pas référence à la facture qu’il corrige, ce qui rend le rapprochement impossible.
+- Un avoir qui ne fait pas référence à la facture qu’il corrige, ce qui rend le rapprochement impossible. Nous détaillons ce cas dans notre article sur la [facture d’avoir en Tunisie](/blog/facture-avoir-tunisie).
 - Des lignes dont le libellé ne veut plus rien dire une fois sorties du contexte de la vente.
 - Une remise appliquée sur le total sans que la base de calcul apparaisse.
 - Une adresse de facturation devenue obsolète après un déménagement du client.

@@ -156,4 +156,4 @@ La trésorerie se pilote avec des dates, pas avec des montants. Trois habitudes 
 
 Commencez par la première. Savoir précisément qui vous doit combien, et depuis quand, règle à lui seul une bonne partie des tensions de trésorerie — parce que cet argent est déjà le vôtre.
 
-Vous pouvez [voir comment Facturance Plus organise le suivi des documents et des règlements](/features) si vous cherchez à structurer ce suivi.
+Vous pouvez [voir comment Facturance Plus organise le suivi des documents et des règlements](/features) si vous cherchez à structurer ce suivi, ou lire notre page sur le [logiciel de gestion commerciale en Tunisie](/logiciel-gestion-commerciale-tunisie).

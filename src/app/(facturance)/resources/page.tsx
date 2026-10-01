@@ -7,9 +7,12 @@ import {
   Database,
   Download,
   FileText,
+  LayoutGrid,
   Mail,
   MessageCircle,
   Newspaper,
+  PackageCheck,
+  ReceiptText,
   Scale,
   ShieldCheck,
 } from "lucide-react";
@@ -96,6 +99,37 @@ function buildGroups(): ResourceGroup[] {
               } satisfies ResourceLink,
             ]
           : []),
+      ],
+    },
+    {
+      title: "Guides et comparatifs",
+      description:
+        "Les pages qui expliquent ce que couvre Facturance Plus, et comment il se situe.",
+      links: [
+        {
+          label: "Logiciel de facturation en Tunisie",
+          description: "Ce que couvre un outil de facturation, pas à pas.",
+          href: "/logiciel-facturation-tunisie",
+          icon: ReceiptText,
+        },
+        {
+          label: "Logiciel de gestion commerciale",
+          description: "Tiers, catalogue, stock et règlements au même endroit.",
+          href: "/logiciel-gestion-commerciale-tunisie",
+          icon: LayoutGrid,
+        },
+        {
+          label: "Logiciel de gestion de stock",
+          description: "Articles, dépôts, seuils et alertes.",
+          href: "/logiciel-gestion-stock-tunisie",
+          icon: PackageCheck,
+        },
+        {
+          label: "Comparatif des logiciels de facturation",
+          description: "Sept solutions comparées selon les mêmes critères.",
+          href: "/comparatif-logiciel-facturation-tunisie",
+          icon: Scale,
+        },
       ],
     },
     {

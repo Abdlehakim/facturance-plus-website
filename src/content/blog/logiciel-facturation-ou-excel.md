@@ -203,4 +203,4 @@ Excel reste un bon choix pour une activité à faible volume, avec un seul utili
 
 Le meilleur indicateur n’est pas le chiffre d’affaires, c’est le temps que vous passez à recopier des informations que vous possédez déjà. Le jour où ce temps devient visible, le tableur a fait son travail — et il est temps de passer à autre chose.
 
-Pour comprendre comment les documents commerciaux s’articulent une fois structurés, voyez notre article sur les [différences entre devis, bon de commande, bon de livraison et facture](/blog/devis-bon-commande-bon-livraison-facture).
+Pour comprendre comment les documents commerciaux s’articulent une fois structurés, voyez notre article sur les [différences entre devis, bon de commande, bon de livraison et facture](/blog/devis-bon-commande-bon-livraison-facture). Et si vous comparez plusieurs outils, notre [comparatif des logiciels de facturation en Tunisie](/comparatif-logiciel-facturation-tunisie) applique les mêmes critères à sept solutions.

@@ -567,7 +567,15 @@ export default function LogicielGestionCommercialeTunisiePage() {
           >
             tarifs de Facturance Plus
           </Link>{" "}
-          précisent les trois modes et la remise multi-entreprises.
+          précisent les trois modes et la remise multi-entreprises. Pour
+          comparer les solutions disponibles sur le marché tunisien, notre{" "}
+          <Link
+            href="/comparatif-logiciel-facturation-tunisie"
+            className="font-semibold text-primary hover:underline"
+          >
+            comparatif des logiciels de facturation
+          </Link>{" "}
+          applique les mêmes critères à sept outils.
         </p>
       </section>
 

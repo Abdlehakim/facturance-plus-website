@@ -656,7 +656,15 @@ export default function LogicielGestionStockTunisiePage() {
           >
             tarifs
           </Link>{" "}
-          précisent les trois modes de fonctionnement.
+          précisent les trois modes de fonctionnement. Et si vous évaluez
+          plusieurs outils, notre{" "}
+          <Link
+            href="/comparatif-logiciel-facturation-tunisie"
+            className="font-semibold text-primary hover:underline"
+          >
+            comparatif des logiciels de facturation
+          </Link>{" "}
+          indique lesquels annoncent une gestion de stock et un multi-dépôt.
         </p>
       </section>
 

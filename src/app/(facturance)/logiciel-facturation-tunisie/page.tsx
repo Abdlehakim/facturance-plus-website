@@ -446,6 +446,10 @@ export default function LogicielFacturationTunisiePage() {
               label: "Les mentions à vérifier sur une facture",
             },
             {
+              href: "/blog/facture-avoir-tunisie",
+              label: "Facture d’avoir : corriger ou annuler une facture",
+            },
+            {
               href: "/blog/devis-bon-commande-bon-livraison-facture",
               label: "Devis, bon de commande, bon de livraison et facture",
             },
@@ -504,6 +508,32 @@ export default function LogicielFacturationTunisiePage() {
           </Link>{" "}
           reprend les critères un par un, sans partir du principe que le tableur
           est toujours le mauvais choix.
+        </p>
+        <p className="mt-5 max-w-3xl text-base leading-7 text-muted-foreground">
+          Si votre besoin dépasse l’émission des documents, la{" "}
+          <Link
+            href="/logiciel-gestion-commerciale-tunisie"
+            className="font-semibold text-primary hover:underline"
+          >
+            gestion commerciale
+          </Link>{" "}
+          couvre aussi les tiers, le catalogue et les règlements, et la page
+          consacrée à la{" "}
+          <Link
+            href="/logiciel-gestion-stock-tunisie"
+            className="font-semibold text-primary hover:underline"
+          >
+            gestion des articles et du stock
+          </Link>{" "}
+          traite le suivi des quantités. Pour situer Facturance Plus parmi les
+          autres solutions disponibles, voyez notre{" "}
+          <Link
+            href="/comparatif-logiciel-facturation-tunisie"
+            className="font-semibold text-primary hover:underline"
+          >
+            comparatif des logiciels de facturation en Tunisie
+          </Link>
+          .
         </p>
       </section>
 

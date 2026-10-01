@@ -125,6 +125,17 @@ export default function PricingPage() {
         </ul>
       </section>
 
+      <p className="mt-6 max-w-3xl text-base leading-7 text-muted-foreground">
+        Pour le détail de ce que couvre l’application, voyez la page{" "}
+        <Link
+          href="/logiciel-facturation-tunisie"
+          className="font-semibold text-primary hover:underline"
+        >
+          logiciel de facturation en Tunisie
+        </Link>
+        .
+      </p>
+
       <section className="mt-14">
         <div className="max-w-2xl">
           <p className="text-xs font-bold uppercase tracking-[0.2em] text-primary">

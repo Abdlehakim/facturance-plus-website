@@ -122,4 +122,4 @@ Relancer tôt, poliment, et avec des faits précis récupère la majorité des r
 
 Les impayés ne sont pas une fatalité commerciale : ce sont le plus souvent le symptôme d’un suivi trop lâche. Et comme cet argent est déjà gagné, c’est le levier de trésorerie le plus rapide dont dispose une PME — un point que nous développons dans notre article sur la [gestion de trésorerie d’une PME](/blog/gestion-tresorerie-pme-tunisie).
 
-Si vous souhaitez structurer ce suivi, vous pouvez [découvrir les fonctionnalités de Facturance Plus](/features) ou [poser votre question à l’équipe](/contact).
+Si vous souhaitez structurer ce suivi, vous pouvez [découvrir les fonctionnalités de Facturance Plus](/features), consulter notre page [logiciel de facturation en Tunisie](/logiciel-facturation-tunisie) ou [poser votre question à l’équipe](/contact).

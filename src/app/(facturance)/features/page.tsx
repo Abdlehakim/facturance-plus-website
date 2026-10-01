@@ -30,7 +30,11 @@ type Feature = {
   icon: LucideIcon;
 };
 
+type GroupLink = { label: string; href: string };
+
 type FeatureGroup = {
+  /** Contextual links to the landing page covering this group's subject. */
+  more?: GroupLink[];
   eyebrow: string;
   title: string;
   description: string;
@@ -46,6 +50,12 @@ const groups: FeatureGroup[] = [
   {
     eyebrow: "Documents",
     title: "Du devis au règlement",
+    more: [
+      {
+        label: "Logiciel de facturation en Tunisie",
+        href: "/logiciel-facturation-tunisie",
+      },
+    ],
     description:
       "Les pièces commerciales de votre activité, créées et suivies au même endroit.",
     features: [
@@ -72,6 +82,16 @@ const groups: FeatureGroup[] = [
   {
     eyebrow: "Données",
     title: "Vos partenaires et votre catalogue",
+    more: [
+      {
+        label: "Logiciel de gestion commerciale",
+        href: "/logiciel-gestion-commerciale-tunisie",
+      },
+      {
+        label: "Gestion des articles et du stock",
+        href: "/logiciel-gestion-stock-tunisie",
+      },
+    ],
     description:
       "Les informations qui alimentent vos documents, centralisées et réutilisables.",
     features: [
@@ -172,6 +192,20 @@ export default function FeaturesPage() {
                 <FeatureCard key={feature.title} {...feature} />
               ))}
             </div>
+
+            {group.more ? (
+              <p className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm">
+                {group.more.map((link) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className="font-semibold text-primary hover:underline"
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </p>
+            ) : null}
           </section>
         ))}
       </div>

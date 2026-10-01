@@ -45,6 +45,23 @@ export const metadata: Metadata = {
   description: SITE_DESCRIPTION,
   applicationName: publicSiteConfig.brandName,
   publisher: publicSiteConfig.publisherName,
+  /*
+   * The brand mark, declared explicitly. create-next-app had left its default
+   * favicon.ico in src/app, and that file convention outranks anything set
+   * here, so it was the only icon the pages emitted.
+   *
+   * The SVG is the navy tile version, which stays legible on a dark tab. The
+   * .ico is kept for the clients that request /favicon.ico regardless of the
+   * link tags, and Apple devices get a PNG because iOS does not take SVG.
+   */
+  icons: {
+    icon: [
+      { url: "/facturance-plus-icon.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico", sizes: "48x48", type: "image/x-icon" },
+    ],
+    shortcut: "/favicon.ico",
+    apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }],
+  },
   openGraph: {
     type: "website",
     locale: OG_LOCALE,

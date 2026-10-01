@@ -91,6 +91,7 @@ Il n’est présenté ici ni comme une plateforme de transmission officielle, ni
 **Pour aller plus loin**
 
 - [Les mentions à vérifier sur une facture en Tunisie](/blog/mentions-obligatoires-facture-tunisie)
+- [Logiciel de facturation en Tunisie](/logiciel-facturation-tunisie)
 - [Les fonctionnalités de Facturance Plus](/features)
 - [Une question ? Contactez l’équipe](/contact)
 
