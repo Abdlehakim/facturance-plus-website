@@ -51,6 +51,21 @@
   --font-mono: var(--font-geist-mono);
 }
 
+/*
+ * Drift for the hero's floating capability cards. Declared here because
+ * keyframes cannot live in a utility class; the cards apply it with an
+ * arbitrary `animate-[...]` value and disable it under motion-reduce.
+ */
+@keyframes facturance-hero-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-7px);
+  }
+}
+
 @layer base {
   * {
     box-sizing: border-box;

@@ -15,7 +15,6 @@ import {
   CheckCircle2,
   CirclePlay,
   Clock3,
-  Database,
   Download,
   ExternalLink,
   FileLock2,
@@ -211,34 +210,76 @@ export function FacturancePlusPage() {
     },
   ]
 
-  const heroStats = [
+  /*
+   * What the application actually does, not audience or volume figures. The
+   * previous bar published "50K+ factures", "70% de temps gagné" and the like,
+   * which nothing in this repository backs.
+   */
+  const heroCapabilities = [
     {
-      value: "50K+",
-      label: "Factures créées",
-      detail: "chaque mois",
+      title: "Documents commerciaux",
+      detail: "Factures, devis et bons",
       icon: FileText,
-      iconClassName: "bg-blue-500/20 text-blue-400",
+      iconClassName: "bg-blue-400/20 text-blue-200",
     },
     {
-      value: "70%",
-      label: "Temps gagné",
-      detail: "en moyenne",
-      icon: Clock3,
-      iconClassName: "bg-emerald-400/15 text-emerald-300",
+      title: "Gestion clients",
+      detail: "Clients et fournisseurs",
+      icon: UserRoundCheck,
+      iconClassName: "bg-sky-400/20 text-sky-200",
     },
     {
-      value: "200K+",
-      label: "Documents générés",
-      detail: "chaque mois",
-      icon: Database,
-      iconClassName: "bg-violet-400/15 text-violet-300",
+      title: "Articles et stocks",
+      detail: "Suivi centralisé",
+      icon: PackageCheck,
+      iconClassName: "bg-cyan-400/20 text-cyan-200",
     },
     {
-      value: "100%",
-      label: "Données sécurisées",
-      detail: "et sauvegardées",
+      title: "Données",
+      detail: "Sauvegarde et sécurité",
       icon: ShieldCheck,
-      iconClassName: "bg-amber-400/20 text-amber-400",
+      iconClassName: "bg-indigo-400/20 text-indigo-200",
+    },
+  ]
+
+  /*
+   * Floating cards drawn in HTML over the hero image, never baked into it.
+   * Desktop only and marked decorative: the bar below states the same
+   * capabilities for assistive technology.
+   */
+  const heroFloatingCards = [
+    {
+      title: "Factures",
+      detail: "Export PDF",
+      icon: FileText,
+      position: "left-[43%] top-[15%]",
+      delay: "0s",
+      /** The fourth card only appears once there is room for it. */
+      wide: false,
+    },
+    {
+      title: "Clients",
+      detail: "Gestion centralisée",
+      icon: UserRoundCheck,
+      position: "left-[40%] bottom-[31%]",
+      delay: "1.6s",
+      wide: false,
+    },
+    {
+      title: "Stock",
+      detail: "Suivi simplifié",
+      icon: PackageCheck,
+      position: "right-[4%] bottom-[27%]",
+      delay: "3.1s",
+      wide: false,
+    },
+    {
+      title: "Paiements",
+      detail: "Suivi des règlements",
+      icon: ReceiptText,
+      position: "right-[6%] top-[13%]",
+      delay: "2.3s",
+      wide: true,
     },
   ]
 
@@ -246,27 +287,82 @@ export function FacturancePlusPage() {
 
   return (
     <>
-      <section className="relative overflow-hidden bg-gradient-to-br from-[#06182d] via-[#0b3763] to-[#176eb0] text-white lg:min-h-[calc(100svh-4.5rem)]">
+      <section className="relative flex flex-col overflow-hidden bg-gradient-to-br from-[#06182d] via-[#0b3763] to-[#176eb0] text-white lg:block lg:min-h-[calc(100svh-4.5rem)]">
+        {/*
+          One image serves both layouts. Below lg it is a block that follows
+          the copy; from lg it becomes the full-bleed backdrop. `order-last`
+          places it visually after the text on mobile although it comes first
+          in the DOM, which is what lets the copy stack above it from lg
+          without a second element and a second download.
+        */}
+        <div className="relative order-last aspect-[16/10] w-full sm:aspect-[16/9] lg:absolute lg:inset-0 lg:order-none lg:aspect-auto">
+          <Image
+            src="/facturance-plus-hero.webp"
+            alt="Facturance Plus affiché sur un écran de bureau : logiciel de facturation et de gestion commerciale"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-[72%_center] lg:object-[68%_center]"
+          />
+
+          <HeroVideoDemo triggerClassName="left-1/2 top-[44%] lg:left-[67%] lg:top-[47%]" />
+        </div>
+
+        {/*
+          Navy wash over the left of the image so the copy keeps its contrast,
+          fading out before the monitor. Only needed where the image sits
+          behind the text.
+        */}
         <div
-          className="pointer-events-none absolute -left-24 top-16 size-72 rounded-full bg-blue-400/10 blur-3xl"
+          className="pointer-events-none absolute inset-0 hidden bg-[linear-gradient(to_right,#06182d_0%,rgba(6,24,45,0.94)_26%,rgba(6,24,45,0.72)_44%,rgba(6,24,45,0.28)_62%,rgba(6,24,45,0)_80%)] lg:block"
           aria-hidden="true"
         />
         <div
-          className="pointer-events-none absolute -right-24 top-0 size-80 rounded-full border border-white/10 bg-sky-300/10 blur-2xl"
-          aria-hidden="true"
-        />
-        <div
-          className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#06182d]/50 to-transparent"
+          className="pointer-events-none absolute inset-x-0 bottom-0 hidden h-48 bg-gradient-to-t from-[#06182d]/85 to-transparent lg:block"
           aria-hidden="true"
         />
 
-        <div className="relative mx-auto flex w-full max-w-[90rem] flex-col justify-center px-5 py-10 sm:px-8 sm:py-12 lg:min-h-[calc(100svh-4.5rem)] lg:px-8 lg:py-5">
-          <div className="grid items-center gap-8 lg:grid-cols-[0.88fr_1.12fr] xl:gap-10">
-            <div className="relative z-10 min-w-0">
+        <div
+          className="pointer-events-none absolute inset-0 z-10 hidden lg:block"
+          aria-hidden="true"
+        >
+          {heroFloatingCards.map(
+            ({ title, detail, icon: Icon, position, delay, wide }) => (
+              <div
+                key={title}
+                style={{ animationDelay: delay }}
+                className={`absolute flex animate-[facturance-hero-float_6s_ease-in-out_infinite] items-center gap-3 rounded-2xl border border-white/55 bg-white/90 px-4 py-3 shadow-[0_18px_40px_rgba(2,18,39,0.3)] backdrop-blur-sm motion-reduce:animate-none ${position} ${
+                  wide ? "hidden xl:flex" : ""
+                }`}
+              >
+                <span className="grid size-9 shrink-0 place-items-center rounded-xl bg-[#0b294d]/10 text-[#0b294d]">
+                  <Icon className="size-[18px]" aria-hidden="true" />
+                </span>
+
+                <span className="min-w-0">
+                  <span className="block whitespace-nowrap text-sm font-bold leading-5 text-[#0b294d]">
+                    {title}
+                  </span>
+                  <span className="mt-0.5 block whitespace-nowrap text-xs leading-4 text-[#0b294d]/65">
+                    {detail}
+                  </span>
+                </span>
+              </div>
+            ),
+          )}
+        </div>
+
+        <div className="relative z-20 mx-auto flex w-full max-w-[90rem] flex-col justify-center px-5 py-10 sm:px-8 sm:py-12 lg:min-h-[calc(100svh-4.5rem)] lg:px-8 lg:py-12">
+          {/*
+            The copy keeps to the left of the composition on desktop, where the
+            image reserves the right side for the monitor.
+          */}
+          <div className="flex w-full min-w-0 max-w-2xl flex-col gap-6 lg:max-w-none lg:w-[46%] xl:w-[44%]">
+            <div className="min-w-0">
               <p className="text-xs font-bold uppercase tracking-[0.22em] text-blue-200">
                 LOGICIEL DE FACTURATION ET DE GESTION COMMERCIALE
               </p>
-              <h1 className="mt-4 max-w-3xl text-[1.75rem] font-bold leading-[1.06] tracking-tight sm:text-[2.15rem] lg:text-[2.4rem] xl:text-[2.65rem]">
+              <h1 className="mt-4 text-[1.75rem] font-bold leading-[1.06] tracking-tight sm:text-[2.15rem] lg:text-[2.4rem] xl:text-[2.65rem]">
                 <span className="text-white">
                   Toute votre facturation et votre gestion commerciale
                 </span>{" "}
@@ -274,32 +370,14 @@ export function FacturancePlusPage() {
                   dans une seule application.
                 </span>
               </h1>
-              <p className="mt-4 max-w-2xl text-sm leading-6 text-blue-50/85 sm:text-base sm:leading-7">
+              <p className="mt-4 text-sm leading-6 text-blue-50/85 sm:text-base sm:leading-7">
                 Créez vos factures, devis, bons de commande et de livraison, puis gérez clients, fournisseurs, articles, stocks, paiements et entreprises depuis un seul espace.
               </p>
+            </div>
 
-              <ul className="mt-4 grid gap-5 sm:grid-cols-3 lg:gap-6">
-                {heroBenefits.map(({ title, description, icon: Icon }) => (
-                  <li
-                    key={title}
-                    className="flex min-w-0 items-start gap-3"
-                  >
-                    <span className="grid size-11 shrink-0 place-items-center rounded-full bg-white/10 text-sky-200">
-                      <Icon className="size-5" aria-hidden="true" />
-                    </span>
-                    <span className="min-w-0">
-                      <span className="block text-sm font-semibold text-white sm:text-base">
-                        {title}
-                      </span>
-                      <span className="mt-1 block text-xs leading-5 text-blue-100/75 sm:text-sm">
-                        {description}
-                      </span>
-                    </span>
-                  </li>
-                ))}
-              </ul>
-
-              <div className="mt-5 flex flex-col items-stretch gap-3 sm:flex-row sm:items-stretch sm:gap-4">
+            {/* Actions before the benefits on small screens, after them from lg. */}
+            <div className="order-2 min-w-0 lg:order-3">
+              <div className="flex flex-col items-stretch gap-3 sm:flex-row sm:items-stretch sm:gap-4">
                 <Button
                   asChild
                   size="lg"
@@ -332,40 +410,39 @@ export function FacturancePlusPage() {
                   </a>
                 </Button>
               </div>
+
               <p className="mt-3 flex items-center gap-2 text-sm text-blue-100/80">
                 <ShieldCheck className="size-4 shrink-0" aria-hidden="true" />
                 Aucune carte bancaire requise
               </p>
             </div>
 
-            <div className="relative z-10 min-w-0">
-              <Image
-                src="/img-main-page.png"
-                alt="Ordinateur portable affichant l’écran principal de Facturance Plus, logiciel de facturation et de gestion commerciale"
-                width={1350}
-                height={875}
-                priority
-                sizes="(min-width: 1024px) 50vw, 100vw"
-                className="h-auto w-full object-contain"
-              />
-
-              <HeroVideoDemo />
-            </div>
+            <ul className="order-3 grid min-w-0 gap-5 sm:grid-cols-3 lg:order-2 lg:gap-6">
+              {heroBenefits.map(({ title, description, icon: Icon }) => (
+                <li key={title} className="flex min-w-0 items-start gap-3">
+                  <span className="grid size-11 shrink-0 place-items-center rounded-full bg-white/10 text-sky-200">
+                    <Icon className="size-5" aria-hidden="true" />
+                  </span>
+                  <span className="min-w-0">
+                    <span className="block text-sm font-semibold text-white sm:text-base">
+                      {title}
+                    </span>
+                    <span className="mt-1 block text-xs leading-5 text-blue-100/75 sm:text-sm">
+                      {description}
+                    </span>
+                  </span>
+                </li>
+              ))}
+            </ul>
           </div>
 
-          <div className="mt-7 overflow-hidden rounded-2xl border border-white/15 bg-[#0a3159]/65 shadow-xl shadow-slate-950/20 backdrop-blur-sm lg:mt-5">
+          <div className="mt-8 overflow-hidden rounded-2xl border border-white/15 bg-[#0a3159]/70 shadow-xl shadow-slate-950/20 backdrop-blur-sm lg:mt-10">
             <ul className="grid grid-cols-2 lg:grid-cols-4">
-              {heroStats.map(
-                ({
-                  value,
-                  label,
-                  detail,
-                  icon: Icon,
-                  iconClassName,
-                }, index) => (
+              {heroCapabilities.map(
+                ({ title, detail, icon: Icon, iconClassName }, index) => (
                   <li
-                    key={label}
-                    className="relative flex min-w-0 items-center gap-2 px-3 py-4 sm:gap-5 sm:px-7 sm:py-6 lg:px-8 lg:py-7"
+                    key={title}
+                    className="relative flex min-w-0 items-center gap-3 px-3 py-4 sm:gap-4 sm:px-6 sm:py-5 lg:px-7 lg:py-6"
                   >
                     {index > 0 ? (
                       <span
@@ -375,21 +452,17 @@ export function FacturancePlusPage() {
                     ) : null}
 
                     <span
-                      className={`grid size-11 shrink-0 place-items-center rounded-full sm:size-16 ${iconClassName}`}
+                      className={`grid size-11 shrink-0 place-items-center rounded-full sm:size-14 ${iconClassName}`}
                     >
-                      <Icon className="size-5 sm:size-8" aria-hidden="true" />
+                      <Icon className="size-5 sm:size-6" aria-hidden="true" />
                     </span>
 
                     <span className="min-w-0">
-                      <span className="block text-xs font-semibold leading-4 text-blue-100/90 sm:text-sm sm:leading-5">
-                        {label}
+                      <span className="block text-sm font-bold leading-5 text-white sm:text-base">
+                        {title}
                       </span>
 
-                      <span className="mt-1 block text-2xl font-bold leading-none tracking-tight text-white sm:text-3xl">
-                        {value}
-                      </span>
-
-                      <span className="mt-1 block text-xs leading-4 text-blue-100/80 sm:mt-2 sm:text-sm sm:leading-5">
+                      <span className="mt-1 block text-xs leading-4 text-blue-100/80 sm:text-sm sm:leading-5">
                         {detail}
                       </span>
                     </span>

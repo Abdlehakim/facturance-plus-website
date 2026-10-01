@@ -26,7 +26,16 @@ const VIDEO_ID = "ZPkPCZ_Qsjc";
  */
 const EMBED_URL = `https://www.youtube-nocookie.com/embed/${VIDEO_ID}?autoplay=1&rel=0`;
 
-export function HeroVideoDemo() {
+export function HeroVideoDemo({
+  /**
+   * Position of the trigger inside its nearest positioned ancestor. The hero
+   * places it over the monitor on desktop and over the in-flow image on
+   * smaller screens, so the coordinates belong to the caller.
+   */
+  triggerClassName = "left-1/2 top-[38%]",
+}: {
+  triggerClassName?: string;
+} = {}) {
   const [isOpen, setIsOpen] = React.useState(false);
   const triggerRef = React.useRef<HTMLButtonElement>(null);
   const closeRef = React.useRef<HTMLButtonElement>(null);
@@ -74,7 +83,7 @@ export function HeroVideoDemo() {
         type="button"
         onClick={() => setIsOpen(true)}
         aria-label="Voir la présentation vidéo de Facturance Plus"
-        className="group absolute left-1/2 top-[38%] z-20 flex -translate-x-1/2 -translate-y-1/2 cursor-pointer flex-col items-center gap-3 rounded-2xl p-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b3763]"
+        className={`group absolute z-20 flex -translate-x-1/2 -translate-y-1/2 cursor-pointer flex-col items-center gap-3 rounded-2xl p-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b3763] ${triggerClassName}`}
       >
         <span className="grid size-16 place-items-center rounded-full bg-white/95 text-[#0b294d] shadow-[0_12px_32px_rgba(2,18,39,0.45)] ring-1 ring-white/60 transition group-hover:scale-105 group-hover:bg-white motion-reduce:transition-none motion-reduce:group-hover:scale-100 sm:size-[4.5rem]">
           <Play className="ml-0.5 size-7 fill-current" aria-hidden="true" />
