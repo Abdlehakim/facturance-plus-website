@@ -432,14 +432,14 @@ export function FacturancePlusPage() {
           Below xl the same element returns to the document flow after the
           copy, which is why it is first in the DOM with `order-last`.
         */}
-        <div className="relative order-2 mt-6 aspect-[4/3] w-full sm:mt-8 sm:aspect-[1672/941] xl:absolute xl:right-[1.5%] xl:top-1/2 xl:order-none xl:mt-0 xl:aspect-[1672/941] xl:w-[72%] xl:-translate-y-[60%]">
+        <div className="relative order-2 mt-6 aspect-[8/7] w-full sm:mt-8 sm:aspect-[1672/941] xl:absolute xl:right-[1.5%] xl:top-1/2 xl:order-none xl:mt-0 xl:aspect-[1672/941] xl:w-[72%] xl:-translate-y-[60%]">
           <Image
             src="/facturance-plus-hero.webp"
             alt="Facturance Plus affiché sur un écran de bureau : logiciel de facturation et de gestion commerciale"
             fill
             priority
             sizes="(min-width: 1280px) 70vw, 100vw"
-            className="object-cover object-[78%_center] sm:object-center"
+            className="object-cover object-right sm:object-center"
           />
 
           {/*
@@ -448,41 +448,41 @@ export function FacturancePlusPage() {
             its screen. Percentages are of the box, so they scale with it.
           */}
           <div
-            className="pointer-events-none absolute inset-0 z-10 hidden min-[360px]:block xl:hidden"
+            className="pointer-events-none absolute inset-0 z-20 hidden min-[360px]:block xl:hidden"
             aria-hidden="true"
           >
             <HeroFactureWidget
-              className="left-[2%] top-[3%]"
-              width="w-[5.25rem] sm:w-[6.25rem]"
+              className="left-[2.5%] top-[2%]"
+              width="w-[4.5rem] min-[375px]:w-[5rem] sm:w-[6.25rem]"
               delay="0s"
             />
 
             <HeroRapportsWidget
-              className="right-[2%] top-[8%]"
-              width="min-h-[6.25rem] w-[5.5rem] sm:min-h-[7.75rem] sm:w-[7rem]"
+              className="right-[2.5%] top-[4%]"
+              width="min-h-[5.5rem] w-[4.75rem] min-[375px]:min-h-[6rem] min-[375px]:w-[5.25rem] sm:min-h-[7.75rem] sm:w-[7rem]"
               delay="3.4s"
             />
 
             <HeroClientsWidget
-              className="bottom-[20%] left-[2%]"
-              width="w-[7rem] sm:w-[8.5rem]"
+              className="bottom-[14%] left-[2.5%]"
+              width="w-[5.75rem] min-[375px]:w-[6.5rem] sm:w-[8.5rem]"
               delay="1.3s"
             />
 
             <HeroPaiementsWidget
-              className="bottom-[4%] right-[2%]"
-              width="min-h-[6rem] w-[5.5rem] sm:min-h-[7.25rem] sm:w-[7rem]"
+              className="bottom-[6%] right-[2.5%]"
+              width="min-h-[5.25rem] w-[5.25rem] min-[375px]:min-h-[5.75rem] min-[375px]:w-[6rem] sm:min-h-[7.25rem] sm:w-[7rem]"
               delay="2s"
             />
 
             <HeroStockWidget
-              className="bottom-[2%] left-[32%]"
-              width="w-[4.75rem] sm:w-[5.75rem]"
+              className="bottom-[1%] left-[32%]"
+              width="w-[4rem] min-[375px]:w-[4.5rem] sm:w-[5.75rem]"
               delay="2.6s"
             />
           </div>
 
-          <HeroVideoDemo triggerClassName="left-[58%] top-[40%] sm:left-1/2 sm:top-[44%] xl:left-[67%] xl:top-[45%]" />
+          <HeroVideoDemo triggerClassName="z-30 left-1/2 top-[46%] sm:top-[44%] xl:left-[67%] xl:top-[45%]" />
 
           {/* The photograph does not span the hero, so its edges melt into
               the navy panel instead of cutting against it. */}
