@@ -334,7 +334,7 @@ export function FacturancePlusPage() {
           Below xl the same element returns to the document flow after the
           copy, which is why it is first in the DOM with `order-last`.
         */}
-        <div className="relative order-last aspect-[16/10] w-full sm:aspect-[16/9] xl:absolute xl:right-[1.5%] xl:top-1/2 xl:z-10 xl:order-none xl:aspect-[1672/941] xl:w-[72%] xl:-translate-y-[51%]">
+        <div className="relative order-last aspect-[16/10] w-full sm:aspect-[16/9] xl:absolute xl:right-[1.5%] xl:top-1/2 xl:z-10 xl:order-none xl:aspect-[1672/941] xl:w-[72%] xl:-translate-y-[60%]">
           <Image
             src="/facturance-plus-hero.webp"
             alt="Facturance Plus affiché sur un écran de bureau : logiciel de facturation et de gestion commerciale"
