@@ -2,7 +2,7 @@
 title: "Construire des produits SaaS centrés sur les permissions"
 slug: "building-permission-first-saas-products"
 description: "Pourquoi les frontières de rôles, l'auditabilité et l'accès au moindre privilège doivent être conçus tôt."
-category: "Sécurité"
+category: "Ingénierie"
 publishedAt: "2026-06-14"
 author: "Équipe sécurité Facturance"
 readTime: "4 min de lecture"

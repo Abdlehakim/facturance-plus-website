@@ -6,10 +6,12 @@
  * something, the value is "unknown" and renders as "Non communiqué", never as
  * "no". "no" is reserved for cases where absence is established.
  *
- * Facturance Plus is held to the same standard. Its electronic-invoicing entry
- * reports the application's actual state: the "Générer XML" menu exposes a
- * single disabled item and the TTN action in the document history is rendered
- * as unavailable, so no TEIF generation or TTN transmission is claimed.
+ * Facturance Plus is held to the same standard, and its electronic-invoicing
+ * row is read from the application rather than from marketing copy: the
+ * desktop build ships `buildUnsignedTeifXml` (TEIF 1.8.7) and signs the result
+ * through the bundled IDTrust signer, while no code path transmits anything to
+ * TTN and no homologation is claimed anywhere. That is why its grid reads
+ * yes/yes/no/no rather than a single blanket verdict.
  */
 
 /** The date the vendor pages were consulted. */
@@ -53,6 +55,44 @@ export const criteria: { id: CriterionId; label: string }[] = [
   { id: "mobile", label: "Application mobile" },
 ];
 
+/**
+ * Electronic invoicing, split into the four steps a single "oui" would hide.
+ * A solution can cover one without covering the next, and the step that is
+ * most often assumed - transmission - is the one least often documented.
+ */
+export type EInvoiceCriterionId =
+  | "teif"
+  | "signature"
+  | "transmission"
+  | "certification";
+
+export const eInvoiceCriteria: {
+  id: EInvoiceCriterionId;
+  label: string;
+  help: string;
+}[] = [
+  {
+    id: "teif",
+    label: "Génération du fichier TEIF",
+    help: "Produire le fichier XML au format TEIF à partir d’une facture.",
+  },
+  {
+    id: "signature",
+    label: "Signature électronique",
+    help: "Signer ce fichier au moyen d’un certificat, qui reste dans tous les cas à la charge de l’entreprise.",
+  },
+  {
+    id: "transmission",
+    label: "Transmission à TTN / El Fatoora",
+    help: "Envoyer la facture signée à la plateforme officielle depuis le logiciel.",
+  },
+  {
+    id: "certification",
+    label: "Homologation ou certification",
+    help: "Une reconnaissance officielle, qui ne découle pas des trois étapes précédentes.",
+  },
+];
+
 export type ComparedProduct = {
   id: string;
   name: string;
@@ -63,7 +103,9 @@ export type ComparedProduct = {
   pricing: string;
   trial: string;
   values: Record<CriterionId, Verdict>;
-  /** Free text: this criterion is too nuanced for a yes/no cell. */
+  /** The four electronic-invoicing steps, scored under the same rules. */
+  eInvoice: Record<EInvoiceCriterionId, Verdict>;
+  /** Free text: what the vendor actually writes, kept for nuance. */
   electronicInvoice: string;
   strengths: string[];
   limits: string[];
@@ -96,8 +138,14 @@ export const products: ComparedProduct[] = [
       payroll: "no",
       mobile: "unknown",
     },
+    eInvoice: {
+      teif: "yes",
+      signature: "yes",
+      transmission: "no",
+      certification: "no",
+    },
     electronicInvoice:
-      "Non. L’application ne génère pas de fichier TEIF et n’assure ni la signature électronique ni la transmission à TTN. Aucune homologation n’est revendiquée.",
+      "L’application Windows génère le fichier XML au format TEIF à partir d’une facture et permet de le signer avec un certificat IDTrust détenu par l’entreprise. Elle ne transmet pas la facture à El Fatoora : cette étape reste à la charge de l’entreprise. Aucune homologation n’est revendiquée, et ces fonctions ne sont pas disponibles depuis la version Web.",
     strengths: [
       "Application de bureau Windows 10 et 11, utilisable sans connexion en mode Local uniquement",
       "Devis, bons de commande, bons de livraison, factures et avoirs depuis les mêmes fiches",
@@ -106,7 +154,8 @@ export const products: ComparedProduct[] = [
       "Plusieurs entreprises par compte, chacune avec ses documents et sa numérotation",
     ],
     limits: [
-      "Pas de génération TEIF ni de transmission à TTN à ce jour",
+      "Pas de transmission à TTN : le fichier signé reste à déposer par l’entreprise",
+      "Génération et signature TEIF réservées à l’application Windows, absentes de la version Web",
       "Pas de module de caisse, de comptabilité ni de paie",
       "Essai gratuit de trois jours, plus court que la plupart des solutions comparées",
     ],
@@ -138,6 +187,14 @@ export const products: ComparedProduct[] = [
       accounting: "unknown",
       payroll: "unknown",
       mobile: "unknown",
+    },
+    eInvoice: {
+      teif: "yes",
+      signature: "yes",
+      transmission: "yes",
+      // Claimed by the vendor on its own page; we have not seen independent
+      // evidence, so it is not recorded as established.
+      certification: "partial",
     },
     electronicInvoice:
       "L’éditeur annonce la conversion automatique au format XML-TEIF, la signature électronique via Tuntrust et l’envoi direct à TTN, et se présente comme « Certifié par le Réseau Tunisien de Commerce (TTN) ».",
@@ -182,6 +239,14 @@ export const products: ComparedProduct[] = [
       payroll: "yes",
       mobile: "unknown",
     },
+    eInvoice: {
+      teif: "yes",
+      signature: "unknown",
+      // Described, but performed with the company's own El Fatoora access
+      // after enrolment rather than end to end by the editor.
+      transmission: "partial",
+      certification: "unknown",
+    },
     electronicInvoice:
       "L’éditeur annonce la génération de fichiers XML au format TEIF conformes aux spécifications TTN El Fatoora, le dépôt s’effectuant avec les accès de l’entreprise après enrôlement.",
     strengths: [
@@ -217,6 +282,14 @@ export const products: ComparedProduct[] = [
       accounting: "partial",
       payroll: "unknown",
       mobile: "unknown",
+    },
+    eInvoice: {
+      teif: "unknown",
+      signature: "unknown",
+      // An El Fatoora integration is announced, without the technical detail
+      // that would let us record the step as established.
+      transmission: "partial",
+      certification: "unknown",
     },
     electronicInvoice:
       "L’éditeur se présente comme conforme à la facturation électronique via une intégration El Fatoora. Le détail technique n’est pas précisé sur la page consultée.",
@@ -256,6 +329,15 @@ export const products: ComparedProduct[] = [
       payroll: "unknown",
       mobile: "yes",
     },
+    eInvoice: {
+      teif: "unknown",
+      signature: "unknown",
+      transmission: "unknown",
+      // An ANCE approval is claimed by the vendor. ANCE is the certification
+      // authority for electronic signatures, which is not the same thing as a
+      // TTN approval, so the claim is recorded without being equated to one.
+      certification: "partial",
+    },
     electronicInvoice:
       "L’éditeur se présente comme « homologué par l’ANCE » pour la facturation électronique et mentionne une intégration de la plateforme TEJ. Le détail El Fatoora et TEIF n’est pas précisé sur la page consultée.",
     strengths: [
@@ -291,6 +373,12 @@ export const products: ComparedProduct[] = [
       accounting: "unknown",
       payroll: "unknown",
       mobile: "unknown",
+    },
+    eInvoice: {
+      teif: "yes",
+      signature: "yes",
+      transmission: "yes",
+      certification: "unknown",
     },
     electronicInvoice:
       "L’éditeur annonce une intégration directe avec El Fatoora (TTN) : une fois le certificat de signature configuré (Digigo ou ID-Trust), les factures sont signées, converties en XML conforme et transmises à la plateforme.",
@@ -328,6 +416,12 @@ export const products: ComparedProduct[] = [
       accounting: "partial",
       payroll: "yes",
       mobile: "yes",
+    },
+    eInvoice: {
+      teif: "unknown",
+      signature: "unknown",
+      transmission: "unknown",
+      certification: "unknown",
     },
     electronicInvoice:
       "L’éditeur mentionne « El Fatoora, conformité TTN » sans détail technique sur la page consultée.",

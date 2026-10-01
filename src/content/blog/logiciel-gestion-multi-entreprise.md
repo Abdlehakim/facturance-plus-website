@@ -2,7 +2,7 @@
 title: "Comment bien gérer plusieurs entreprises avec un seul logiciel ?"
 slug: "logiciel-gestion-multi-entreprise"
 description: "Découvrez comment centraliser la gestion de plusieurs entreprises tout en séparant leurs clients, documents, stocks, utilisateurs et données."
-category: "Gestion"
+category: "Gestion commerciale"
 publishedAt: "2026-09-30"
 author: "Équipe Facturance Plus"
 readTime: "11 min de lecture"

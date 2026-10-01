@@ -2,7 +2,7 @@
 title: "Facture électronique en Tunisie : 10 erreurs à éviter en 2026"
 slug: "facture-electronique-tunisie-erreurs-2026"
 description: "Découvrez 10 erreurs fréquentes à éviter pour préparer votre entreprise à la facturation électronique en Tunisie en 2026, de la qualité des données à l’organisation interne."
-category: "Fiscalité"
+category: "Facturation électronique"
 publishedAt: "2026-09-30"
 author: "Équipe Facturance Plus"
 readTime: "12 min de lecture"

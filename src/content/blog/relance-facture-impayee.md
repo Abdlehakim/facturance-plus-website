@@ -2,7 +2,7 @@
 title: "Facture impayée : comment relancer un client efficacement ?"
 slug: "relance-facture-impayee"
 description: "Une méthode progressive et professionnelle pour relancer une facture impayée, préserver la relation client et améliorer le suivi des règlements."
-category: "Facturation"
+category: "Paiements"
 publishedAt: "2026-09-30"
 author: "Équipe Facturance Plus"
 readTime: "10 min de lecture"

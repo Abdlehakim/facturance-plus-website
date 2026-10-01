@@ -2,7 +2,7 @@
 title: "Pourquoi les workflows desktop hors ligne comptent encore pour les équipes ERP"
 slug: "why-offline-desktop-workflows-still-matter-for-erp-teams"
 description: "Le SaaS moderne est puissant, mais certaines équipes ont encore besoin d'une continuité desktop fiable lorsque l'accès Internet est instable."
-category: "Synchronisation desktop"
+category: "Ingénierie"
 publishedAt: "2026-06-12"
 author: "Ingénierie Facturance"
 readTime: "5 min de lecture"

@@ -2,7 +2,7 @@
 title: "Comment gérer la trésorerie d’une PME en Tunisie ?"
 slug: "gestion-tresorerie-pme-tunisie"
 description: "Méthode pratique pour suivre les encaissements, les dépenses, les échéances et les besoins de trésorerie d’une PME en Tunisie."
-category: "Gestion"
+category: "Paiements"
 publishedAt: "2026-09-30"
 author: "Équipe Facturance Plus"
 readTime: "11 min de lecture"

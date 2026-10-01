@@ -2,7 +2,7 @@
 title: "Concevoir un logiciel pour propriétaires, admins et opérateurs"
 slug: "designing-software-for-owners-admins-operators"
 description: "Un logiciel métier exige différents niveaux d'accès pour les personnes qui créent, approuvent et surveillent le travail."
-category: "Équipes"
+category: "Ingénierie"
 publishedAt: "2026-06-21"
 author: "Équipe produit Facturance"
 readTime: "4 min de lecture"

@@ -2,7 +2,7 @@
 title: "Penser les données cloud comme source de vérité"
 slug: "cloud-data-source-of-truth"
 description: "Une base backend propre aide factures, utilisateurs, entreprises et flux de synchronisation à évoluer sans chaos."
-category: "Modèle de données"
+category: "Ingénierie"
 publishedAt: "2026-06-18"
 author: "Ingénierie Facturance"
 readTime: "7 min de lecture"

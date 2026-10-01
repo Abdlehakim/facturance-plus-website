@@ -63,9 +63,11 @@ function HomepageStructuredData() {
         name: publicSiteConfig.brandName,
         url: homeUrl,
         description:
-          "Logiciel Windows de facturation, devis, stock, clients, paiements et gestion multi-entreprises.",
+          "Logiciel de facturation et de gestion commerciale : devis, factures, stock, clients, fournisseurs, paiements et gestion multi-entreprises, sur Windows et depuis un navigateur.",
         applicationCategory: "BusinessApplication",
-        operatingSystem: "Windows 10, Windows 11",
+        // Must stay identical to the node published under the same @id on
+        // /logiciel-facturation-tunisie: one entity, described twice.
+        operatingSystem: "Windows 10, Windows 11, Web",
         inLanguage: "fr",
         image: absoluteUrl(SOCIAL_IMAGE.url),
         publisher: {

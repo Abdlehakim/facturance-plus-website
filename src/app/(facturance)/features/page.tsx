@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import type { LucideIcon } from "lucide-react";
 import {
@@ -171,6 +172,20 @@ export default function FeaturesPage() {
           votre activité.
         </p>
       </header>
+
+      {/* The application's own main screen, not an illustration: documents,
+          models, parties and the article catalogue as they are laid out. */}
+      <div className="mt-10 overflow-hidden rounded-2xl border border-blue-100/80 bg-white p-3 shadow-[0_18px_50px_rgba(11,41,77,0.09)] sm:p-4">
+        <Image
+          src="/img-main-page.png"
+          alt="Écran principal de Facturance Plus : documents commerciaux, modèles, fiches clients et catalogue d’articles"
+          width={1350}
+          height={875}
+          sizes="(min-width: 1024px) 70vw, 100vw"
+          loading="lazy"
+          className="h-auto w-full rounded-xl object-contain"
+        />
+      </div>
 
       <div className="mt-12 space-y-12">
         {groups.map((group) => (

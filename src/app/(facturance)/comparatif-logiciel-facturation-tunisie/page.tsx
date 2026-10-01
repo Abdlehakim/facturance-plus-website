@@ -10,6 +10,7 @@ import { CLIENT_SIGNUP_URL } from "@/lib/urls";
 import {
   CHECKED_AT,
   criteria,
+  eInvoiceCriteria,
   products,
   type Verdict,
 } from "./comparison-data";
@@ -29,7 +30,8 @@ export const metadata: Metadata = buildPageMetadata({
  *
  * No score, no ranking and no winner: the guidance section sorts products by
  * need instead. Facturance Plus is held to the same evidence standard as the
- * others, which is why its row reports no TEIF or TTN capability.
+ * others, which is why its electronic-invoicing row records the transmission
+ * step it does not cover alongside the two it does.
  */
 
 function VerdictCell({ verdict }: { verdict: Verdict }) {
@@ -183,6 +185,21 @@ export default function ComparatifLogicielFacturationTunisiePage() {
             Aucune note, aucun score et aucun classement ne sont attribués.
           </li>
           <li className="leading-7 text-muted-foreground">
+            Les solutions retenues sont des outils de facturation ou de gestion
+            commerciale actifs et vérifiables en Tunisie, qui publient
+            suffisamment d’informations pour être comparés. Aucune n’a été
+            ajoutée ni écartée pour avantager Facturance Plus.
+          </li>
+          <li className="leading-7 text-muted-foreground">
+            Les tarifs mensuels et annuels ne sont pas convertis les uns dans
+            les autres, et la mention HT ou TTC est reprise telle que l’éditeur
+            la publie — ou signalée comme absente lorsqu’elle ne l’est pas.
+          </li>
+          <li className="leading-7 text-muted-foreground">
+            L’absence d’une information sur un site n’est jamais interprétée
+            comme l’absence de la fonctionnalité correspondante.
+          </li>
+          <li className="leading-7 text-muted-foreground">
             Les sources utilisées sont listées en bas de page.
           </li>
         </ul>
@@ -195,6 +212,71 @@ export default function ComparatifLogicielFacturationTunisiePage() {
             fonctionnalité n’existe pas.
           </p>
         </div>
+      </section>
+
+      <section className="mt-14" aria-labelledby="lecture-title">
+        <h2
+          id="lecture-title"
+          className="text-2xl font-bold tracking-tight text-[#0b294d] sm:text-3xl"
+        >
+          Comment lire ce comparatif
+        </h2>
+        <p className="mt-4 max-w-3xl text-base leading-7 text-muted-foreground">
+          Les tableaux utilisent quatre valeurs seulement. Elles portent sur ce
+          que l’éditeur documente publiquement, pas sur la qualité de la
+          solution.
+        </p>
+
+        <dl className="mt-6 grid gap-3 sm:grid-cols-2">
+          <div className="rounded-xl border border-blue-100/80 bg-white p-4">
+            <dt className="flex items-center gap-1.5 text-sm font-bold text-emerald-700">
+              <Check className="size-4 shrink-0" aria-hidden="true" />
+              Oui
+            </dt>
+            <dd className="mt-1.5 text-sm leading-6 text-muted-foreground">
+              La capacité est explicitement décrite par l’éditeur, ou vérifiée
+              dans l’application pour Facturance Plus.
+            </dd>
+          </div>
+          <div className="rounded-xl border border-blue-100/80 bg-white p-4">
+            <dt className="text-sm font-bold text-[#0b294d]">Partiel</dt>
+            <dd className="mt-1.5 text-sm leading-6 text-muted-foreground">
+              La capacité est annoncée, mais avec une réserve explicite : une
+              étape qui reste à votre charge, ou une affirmation de l’éditeur
+              que nous n’avons pas pu recouper.
+            </dd>
+          </div>
+          <div className="rounded-xl border border-blue-100/80 bg-white p-4">
+            <dt className="flex items-center gap-1.5 text-sm font-bold text-[#0b294d]">
+              <Minus className="size-4 shrink-0" aria-hidden="true" />
+              Non
+            </dt>
+            <dd className="mt-1.5 text-sm leading-6 text-muted-foreground">
+              L’absence est établie : l’éditeur l’indique, ou nous la
+              constatons directement. Cette valeur est rare et n’est jamais
+              utilisée par défaut.
+            </dd>
+          </div>
+          <div className="rounded-xl border border-blue-100/80 bg-white p-4">
+            <dt className="text-sm font-bold text-muted-foreground">
+              Non communiqué
+            </dt>
+            <dd className="mt-1.5 text-sm leading-6 text-muted-foreground">
+              L’information n’a pas été trouvée sur les pages publiques
+              consultées. <strong className="font-semibold text-[#0b294d]">Ce
+              n’est pas un « non »</strong> : la fonctionnalité peut exister
+              sans être documentée. Posez la question à l’éditeur.
+            </dd>
+          </div>
+        </dl>
+
+        <p className="mt-6 max-w-3xl text-base leading-7 text-muted-foreground">
+          Les tarifs demandent la même prudence. Selon l’éditeur, ils
+          s’entendent au mois ou à l’année, hors taxes ou toutes taxes
+          comprises, et peuvent dépendre du nombre d’utilisateurs, du nombre
+          d’entreprises gérées ou des modules activés. Un tarif d’entrée ne dit
+          pas ce que coûtera votre configuration réelle.
+        </p>
       </section>
 
       <section className="mt-14" aria-labelledby="differences-title">
@@ -323,28 +405,14 @@ export default function ComparatifLogicielFacturationTunisiePage() {
                 </tr>
               ))}
 
-              <tr>
-                <th
-                  scope="row"
-                  className="sticky left-0 z-10 bg-white px-4 py-4 align-top text-sm font-semibold text-[#0b294d]"
-                >
-                  Facturation électronique
-                </th>
-                {products.map((product) => (
-                  <td
-                    key={product.id}
-                    className="px-4 py-4 align-top text-sm leading-6 text-muted-foreground"
-                  >
-                    {product.electronicInvoice}
-                  </td>
-                ))}
-              </tr>
             </tbody>
           </table>
         </div>
 
         <p className="mt-4 text-sm leading-6 text-muted-foreground">
-          Tarifs et fonctionnalités relevés le {CHECKED_AT}.
+          Tarifs et fonctionnalités relevés le {CHECKED_AT}. La facturation
+          électronique fait l’objet du tableau détaillé ci-dessous, parce
+          qu’elle recouvre quatre étapes distinctes.
         </p>
       </section>
 
@@ -390,6 +458,85 @@ export default function ComparatifLogicielFacturationTunisiePage() {
             précédents.
           </li>
         </ul>
+        <div className="mt-8 overflow-x-auto rounded-2xl border border-blue-100/80 bg-white">
+          <table className="w-full min-w-[56rem] border-collapse text-left">
+            <caption className="sr-only">
+              Étapes de la facturation électronique couvertes par chaque
+              solution, informations vérifiées le {CHECKED_AT}
+            </caption>
+            <thead>
+              <tr className="border-b border-blue-100/80">
+                <th
+                  scope="col"
+                  className="sticky left-0 z-10 bg-white px-4 py-4 text-sm font-bold text-[#0b294d]"
+                >
+                  Étape
+                </th>
+                {products.map((product) => (
+                  <th
+                    key={product.id}
+                    scope="col"
+                    className="px-4 py-4 text-sm font-bold text-[#0b294d]"
+                  >
+                    {product.name}
+                    {product.isPublisher ? (
+                      <span className="mt-1 block text-[0.6875rem] font-medium uppercase tracking-wide text-primary">
+                        Notre solution
+                      </span>
+                    ) : null}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {eInvoiceCriteria.map((criterion) => (
+                <tr key={criterion.id} className="border-b border-blue-100/60">
+                  <th
+                    scope="row"
+                    className="sticky left-0 z-10 bg-white px-4 py-4 align-top text-sm font-semibold text-[#0b294d]"
+                  >
+                    {criterion.label}
+                    <span className="mt-1 block text-xs font-normal leading-5 text-muted-foreground">
+                      {criterion.help}
+                    </span>
+                  </th>
+                  {products.map((product) => (
+                    <td key={product.id} className="px-4 py-4 align-top">
+                      <VerdictCell verdict={product.eInvoice[criterion.id]} />
+                    </td>
+                  ))}
+                </tr>
+              ))}
+
+              <tr>
+                <th
+                  scope="row"
+                  className="sticky left-0 z-10 bg-white px-4 py-4 align-top text-sm font-semibold text-[#0b294d]"
+                >
+                  Ce qu’en dit l’éditeur
+                </th>
+                {products.map((product) => (
+                  <td
+                    key={product.id}
+                    className="px-4 py-4 align-top text-sm leading-6 text-muted-foreground"
+                  >
+                    {product.electronicInvoice}
+                  </td>
+                ))}
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p className="mt-4 text-sm leading-6 text-muted-foreground">
+          « Partiel » couvre deux cas distincts, précisés dans la dernière
+          ligne : une étape annoncée mais qui reste à votre charge, et une
+          homologation revendiquée par l’éditeur que nous n’avons pas pu
+          recouper auprès d’une source indépendante. Une certification
+          mentionnée sur le site d’un éditeur reste une affirmation de cet
+          éditeur.
+        </p>
+
         <p className="mt-5 max-w-3xl text-base leading-7 text-muted-foreground">
           Demandez à chaque éditeur lequel de ces quatre niveaux il couvre
           réellement, et ce qui reste à votre charge. Notre article{" "}
@@ -565,7 +712,7 @@ export default function ComparatifLogicielFacturationTunisiePage() {
             },
             {
               title: "La facture électronique est votre priorité",
-              body: "Swiver, Hesabi et Clic2Up décrivent publiquement leur chaîne TEIF, signature et transmission à TTN. Finco se présente comme homologué par l’ANCE. Iberis et Swifto mentionnent El Fatoora sans détail technique. Facturance Plus ne couvre pas ce besoin à ce jour : si c’est votre critère déterminant, orientez-vous vers une solution qui le documente.",
+              body: "Swiver et Clic2Up décrivent publiquement la chaîne complète : TEIF, signature et transmission à TTN. Hesabi annonce la génération TEIF, le dépôt restant effectué avec les accès de l’entreprise après enrôlement. Facturance Plus génère et signe le fichier TEIF depuis son application Windows, mais ne le transmet pas à El Fatoora. Finco revendique une homologation ANCE ; Iberis et Swifto mentionnent El Fatoora sans détail technique. Si la transmission depuis le logiciel est déterminante pour vous, ce critère réduit nettement la liste.",
             },
           ].map(({ title, body }) => (
             <div
@@ -738,6 +885,15 @@ export default function ComparatifLogicielFacturationTunisiePage() {
           </li>
           <li className="leading-7 text-muted-foreground">
             <Link
+              href="/pricing"
+              className="font-semibold text-primary hover:underline"
+            >
+              Tarifs de Facturance Plus
+            </Link>{" "}
+            — le détail des modes et de la remise multi-entreprises.
+          </li>
+          <li className="leading-7 text-muted-foreground">
+            <Link
               href="/blog/logiciel-facturation-ou-excel"
               className="font-semibold text-primary hover:underline"
             >
@@ -769,9 +925,10 @@ export default function ComparatifLogicielFacturationTunisiePage() {
         </h2>
         <p className="mx-auto mt-3 max-w-2xl text-base leading-7 text-blue-100">
           Si les fonctionnalités de Facturance Plus correspondent à vos besoins,
-          vous pouvez tester l’application gratuitement avant de choisir. Si la
-          facturation électronique est votre critère déterminant, une autre
-          solution de ce comparatif sera plus adaptée aujourd’hui.
+          vous pouvez tester l’application gratuitement avant de choisir. Si
+          vous avez besoin que le logiciel transmette lui-même vos factures à
+          El Fatoora, d’autres solutions de ce comparatif documentent cette
+          étape, que Facturance Plus ne couvre pas.
         </p>
         <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
           <Button

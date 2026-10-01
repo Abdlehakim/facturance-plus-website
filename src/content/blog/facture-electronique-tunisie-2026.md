@@ -2,7 +2,7 @@
 title: "Facture électronique en Tunisie en 2026 : guide pratique pour les entreprises"
 slug: "facture-electronique-tunisie-2026"
 description: "Ce qu’est réellement une facture électronique, en quoi elle diffère d’un PDF, et le travail de préparation qu’une entreprise peut engager dès aujourd’hui sans attendre."
-category: "Fiscalité"
+category: "Facturation électronique"
 publishedAt: "2026-09-30"
 author: "Équipe Facturance Plus"
 readTime: "10 min de lecture"

@@ -2,10 +2,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import type { LucideIcon } from "lucide-react";
 import {
+  Banknote,
+  BookOpen,
+  Boxes,
   ChevronRight,
   CircleHelp,
   Database,
   Download,
+  FileSignature,
   FileText,
   LayoutGrid,
   Mail,
@@ -28,7 +32,7 @@ import { CLIENT_DOWNLOADS_URL } from "@/lib/urls";
 export const metadata: Metadata = buildPageMetadata({
   title: "Ressources utiles",
   description:
-    "Le blog, le centre d’aide, le contact et les documents légaux de Facturance Plus, réunis au même endroit.",
+    "Guides de facturation, facturation électronique, gestion de stock, pages produit, aide et documents légaux de Facturance Plus, réunis au même endroit.",
   path: "/resources",
 });
 
@@ -129,6 +133,104 @@ function buildGroups(): ResourceGroup[] {
           description: "Sept solutions comparées selon les mêmes critères.",
           href: "/comparatif-logiciel-facturation-tunisie",
           icon: Scale,
+        },
+      ],
+    },
+    {
+      title: "Guides de facturation",
+      description:
+        "Ce qu’il faut savoir pour émettre des documents corrects, et les corriger quand il le faut.",
+      links: [
+        {
+          label: "Les mentions obligatoires d’une facture",
+          description:
+            "Les informations à contrôler sur chaque facture émise en Tunisie.",
+          href: "/blog/mentions-obligatoires-facture-tunisie",
+          icon: ReceiptText,
+        },
+        {
+          label: "Devis, bons et factures",
+          description:
+            "Quatre documents, quatre rôles distincts dans une même vente.",
+          href: "/blog/devis-bon-commande-bon-livraison-facture",
+          icon: FileText,
+        },
+        {
+          label: "La facture d’avoir",
+          description:
+            "Quand et comment corriger ou annuler une facture déjà émise.",
+          href: "/blog/facture-avoir-tunisie",
+          icon: BookOpen,
+        },
+        {
+          label: "Relancer une facture impayée",
+          description:
+            "Une méthode progressive qui préserve la relation client.",
+          href: "/blog/relance-facture-impayee",
+          icon: Banknote,
+        },
+      ],
+    },
+    {
+      title: "Facturation électronique",
+      description:
+        "Les étapes réelles du dispositif, et ce qu’il faut préparer en amont.",
+      links: [
+        {
+          label: "Facture électronique : guide pratique",
+          description:
+            "Ce qu’est réellement une facture électronique, et en quoi elle diffère d’un PDF.",
+          href: "/blog/facture-electronique-tunisie-2026",
+          icon: FileSignature,
+        },
+        {
+          label: "Les dix erreurs à éviter",
+          description:
+            "Qualité des fiches, numérotation et archivage : la préparation qui compte.",
+          href: "/blog/facture-electronique-tunisie-erreurs-2026",
+          icon: ShieldCheck,
+        },
+      ],
+    },
+    {
+      title: "Gestion, stock et choix d’outil",
+      description:
+        "Organiser l’activité au-delà de l’émission des documents.",
+      links: [
+        {
+          label: "Sept bonnes pratiques de gestion de stock",
+          description:
+            "Des habitudes applicables sans outil sophistiqué.",
+          href: "/blog/gestion-stock-bonnes-pratiques",
+          icon: Boxes,
+        },
+        {
+          label: "Gérer plusieurs entreprises",
+          description:
+            "Centraliser sans mélanger les clients, documents et stocks.",
+          href: "/blog/logiciel-gestion-multi-entreprise",
+          icon: LayoutGrid,
+        },
+        {
+          label: "La trésorerie d’une PME",
+          description:
+            "Suivre les encaissements, les échéances et les besoins réels.",
+          href: "/blog/gestion-tresorerie-pme-tunisie",
+          icon: Banknote,
+        },
+        {
+          label: "Logiciel ou Excel ?",
+          description:
+            "À partir de quand le tableur coûte plus qu’il ne rapporte.",
+          href: "/blog/logiciel-facturation-ou-excel",
+          icon: Scale,
+        },
+        {
+          label: "Local, web ou synchronisé",
+          description:
+            "Comment trancher sur le mode de fonctionnement.",
+          href: "/blog/logiciel-facturation-local-web-synchronise-tunisie",
+          icon: Database,
         },
       ],
     },
@@ -254,8 +356,12 @@ export default function ResourcesPage() {
           Tout ce dont vous avez besoin, au même endroit.
         </h1>
         <p className="mt-5 text-base leading-8 text-muted-foreground sm:text-lg">
-          L’aide, les actualités du produit et les documents légaux de
-          Facturance Plus.
+          Les guides pratiques, les pages produit, l’aide et les documents
+          légaux de Facturance Plus. Le{" "}
+          <Link href="/blog" className="font-semibold text-primary hover:underline">
+            blog
+          </Link>{" "}
+          réunit l’ensemble des articles.
         </p>
       </header>
 

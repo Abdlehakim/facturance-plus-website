@@ -2,7 +2,7 @@
 title: "Concevoir des systèmes financiers pour des opérations multi-entreprises"
 slug: "designing-finance-systems-for-multi-company-operations"
 description: "Un regard pratique sur l'isolation des entreprises, les utilisateurs partagés, les permissions et la propriété des documents."
-category: "Architecture"
+category: "Ingénierie"
 publishedAt: "2026-06-10"
 author: "Équipe produit Facturance"
 readTime: "6 min de lecture"

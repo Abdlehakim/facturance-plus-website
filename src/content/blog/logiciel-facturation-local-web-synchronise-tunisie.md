@@ -2,7 +2,7 @@
 title: "Logiciel de facturation local, web ou synchronisé : quelle solution choisir en Tunisie ?"
 slug: "logiciel-facturation-local-web-synchronise-tunisie"
 description: "Trois modes de fonctionnement, trois profils d’entreprise. Comparaison objective des usages, des contraintes et des questions à se poser avant de trancher."
-category: "Logiciel de gestion"
+category: "Logiciel"
 publishedAt: "2026-09-30"
 author: "Équipe Facturance Plus"
 readTime: "10 min de lecture"
