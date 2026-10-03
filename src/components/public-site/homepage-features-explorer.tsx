@@ -87,8 +87,8 @@ const featureCategories: readonly FeatureCategory[] = [
     number: "01",
     title: "Vue d’ensemble",
     description:
-      "Du premier devis au règlement, Facturance Plus centralise les documents, partenaires, articles, stocks et paiements nécessaires à votre activité.",
-    icon: LayoutGrid,
+      "Les fonctions essentielles de Facturance Plus réunies dans une vue claire et structurée pour gérer efficacement votre activité.",
+    icon: ReceiptText,
     accentClassName: "bg-blue-100/80 text-primary",
     features: Object.values(features),
   },
@@ -140,18 +140,19 @@ function wrapCategoryIndex(index: number): number {
 
 function FeatureItem({ title, description, icon: Icon }: Feature) {
   return (
-    <li className="flex min-w-0 items-start gap-3 rounded-2xl border border-blue-100/80 bg-white/80 p-4 transition-colors duration-300 hover:border-blue-200 hover:bg-white motion-reduce:transition-none">
-      <span className="grid size-9 shrink-0 place-items-center rounded-xl border border-blue-100/70 bg-blue-50 text-primary">
-        <Icon className="size-[1.125rem]" aria-hidden="true" />
+    <li className="flex min-w-0 items-center gap-2.5 rounded-[1.25rem] border border-white/70 bg-white/75 px-3 py-2.5 transition-colors duration-300 hover:border-blue-200 hover:bg-white motion-reduce:transition-none 2xl:gap-3 2xl:px-4 2xl:py-3">
+      <span className="grid size-11 shrink-0 place-items-center rounded-2xl bg-blue-100/80 text-primary 2xl:size-12">
+        <Icon className="size-6" aria-hidden="true" />
       </span>
-      <div className="min-w-0">
-        <h4 className="text-sm font-semibold leading-5 text-[#0b294d]">
+      <div className="min-w-0 flex-1">
+        <h4 className="text-sm font-semibold leading-[1.125rem] text-[#0b294d]">
           {title}
         </h4>
-        <p className="mt-1.5 text-sm leading-5 text-muted-foreground">
+        <p className="mt-0.5 text-[0.8125rem] leading-[1.125rem] text-muted-foreground">
           {description}
         </p>
       </div>
+      <ArrowRight className="size-4 shrink-0 text-primary/80" aria-hidden="true" />
     </li>
   );
 }
@@ -166,27 +167,27 @@ function FeaturePanel({ category }: { category: FeatureCategory }) {
       role="region"
       aria-labelledby="homepage-feature-category"
       aria-describedby="homepage-feature-description"
-      className="relative flex min-w-0 flex-col rounded-[2rem] border border-white/90 bg-linear-to-br from-white/85 to-blue-50/60 p-5 shadow-[0_20px_60px_rgba(11,41,77,0.08)] backdrop-blur-sm sm:p-7 lg:min-h-[48rem] lg:p-8"
+      className="relative min-w-0 rounded-[2rem] border border-white/90 bg-linear-to-br from-white/65 to-blue-100/35 p-5 shadow-[0_18px_50px_rgba(11,41,77,0.09)] backdrop-blur-sm sm:p-6 xl:p-7 2xl:p-8"
     >
       <span
         aria-hidden="true"
-        className="pointer-events-none absolute right-5 top-4 select-none text-8xl font-semibold leading-none tracking-tighter text-blue-900/[0.05] sm:right-7 sm:text-9xl"
+        className="pointer-events-none absolute right-5 top-4 select-none text-8xl font-semibold leading-none tracking-tighter text-blue-500/10 sm:right-7 sm:text-9xl"
       >
         {category.number}
       </span>
       <div className="relative flex items-center gap-4">
         <span
-          className={`grid size-12 shrink-0 place-items-center rounded-2xl shadow-sm sm:size-14 ${category.accentClassName}`}
+          className={`grid size-12 shrink-0 place-items-center rounded-2xl border border-blue-200/70 shadow-[0_4px_12px_rgba(37,99,235,0.08)] sm:size-14 2xl:size-16 ${category.accentClassName}`}
         >
           <Icon className="size-6" aria-hidden="true" />
         </span>
         <div className="min-w-0">
-          <p className="text-[0.65rem] font-bold uppercase tracking-[0.2em] text-primary sm:text-xs">
-            Catégorie {category.number}
+          <p className="text-[0.65rem] font-bold uppercase tracking-[0.16em] text-primary sm:text-xs">
+            CATÉGORIE {category.number}
           </p>
           <h3
             id="homepage-feature-category"
-            className="mt-2 text-2xl font-bold leading-tight tracking-tight text-[#0b294d] sm:text-3xl"
+            className="mt-1 text-2xl font-bold leading-tight tracking-tight text-[#0b294d] sm:text-3xl xl:text-4xl 2xl:text-5xl"
           >
             {category.title}
           </h3>
@@ -194,20 +195,20 @@ function FeaturePanel({ category }: { category: FeatureCategory }) {
       </div>
       <p
         id="homepage-feature-description"
-        className="relative mt-6 max-w-2xl text-sm leading-7 text-muted-foreground sm:text-base"
+        className="relative mt-3 text-sm leading-5 text-muted-foreground 2xl:mt-4 2xl:text-base 2xl:leading-6"
       >
         {category.description}
       </p>
 
-      <ul className="relative mt-7 grid content-start gap-3 sm:grid-cols-2 lg:flex-1">
+      <ul className="relative mt-4 grid gap-2 sm:grid-cols-2 2xl:mt-5 2xl:gap-3">
         {category.features.map((feature) => (
           <FeatureItem key={feature.title} {...feature} />
         ))}
       </ul>
 
-      <div className="relative mt-7 flex flex-col gap-5 border-t border-blue-200/60 pt-6 xl:flex-row xl:items-center xl:justify-between xl:gap-3">
-        <p className="flex items-center gap-2 text-xs font-medium text-muted-foreground sm:text-sm">
-          <LayoutGrid className="size-4 shrink-0 text-primary" aria-hidden="true" />
+      <div className="relative mt-3 flex flex-col gap-3 border-t border-blue-200/60 pt-3 sm:flex-row sm:items-center sm:justify-between 2xl:mt-4 2xl:pt-4">
+        <p className="flex items-center gap-2 text-xs font-semibold text-[#0b294d] sm:text-sm">
+          <LayoutGrid className="size-5 shrink-0 text-primary" aria-hidden="true" />
           {count}{" "}
           {count === 1
             ? "fonctionnalité essentielle"
@@ -215,10 +216,10 @@ function FeaturePanel({ category }: { category: FeatureCategory }) {
         </p>
         <Link
           href="/features"
-          className="group inline-flex w-fit max-w-full items-center justify-between gap-3 rounded-full bg-[#0b294d] py-2 pl-4 pr-2 text-xs font-semibold text-white shadow-[0_6px_18px_rgba(11,41,77,0.15)] transition-colors duration-300 hover:bg-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 motion-reduce:transition-none sm:pl-5 sm:text-sm"
+          className="group inline-flex w-fit max-w-full items-center justify-between gap-3 rounded-full bg-[#0b294d] py-1 pl-4 pr-1 text-xs font-semibold text-white shadow-[0_6px_18px_rgba(11,41,77,0.15)] transition-colors duration-300 hover:bg-[#123b68] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 motion-reduce:transition-none sm:pl-5 sm:text-sm 2xl:py-1.5 2xl:pr-1.5"
         >
           <span>Voir toutes les fonctionnalités</span>
-          <span className="grid size-8 shrink-0 place-items-center rounded-full bg-white/15 transition-colors duration-300 group-hover:bg-white/20 motion-reduce:transition-none">
+          <span className="grid size-9 shrink-0 place-items-center rounded-full bg-blue-600 text-white transition-colors duration-300 group-hover:bg-blue-500 motion-reduce:transition-none 2xl:size-10">
             <ArrowRight className="size-4" aria-hidden="true" />
           </span>
         </Link>
@@ -227,28 +228,22 @@ function FeaturePanel({ category }: { category: FeatureCategory }) {
   );
 }
 
-type SelectorPosition = "previous" | "active" | "next";
-
-const selectorPositions: Record<SelectorPosition, string> = {
-  previous: "top-[4%] scale-[0.78]",
-  active: "top-1/2 -translate-y-1/2 scale-100",
-  next: "top-[96%] -translate-y-full scale-[0.78]",
-};
-
 function CategorySelectorItem({
   category,
-  position,
+  isActive,
+  desktopOnly,
   onSelect,
 }: {
   category: FeatureCategory;
-  position: SelectorPosition;
+  isActive: boolean;
+  desktopOnly: boolean;
   onSelect: () => void;
 }) {
   const Icon = category.icon;
-  const isActive = position === "active";
   const appearance = isActive
-    ? "z-10 border-blue-200 bg-white/95 opacity-100 shadow-[0_16px_45px_rgba(11,41,77,0.12)] blur-none"
-    : "border-blue-100 bg-white/70 opacity-30 shadow-sm blur-[1px] hover:opacity-65 hover:blur-none";
+    ? "z-10 scale-100 border-blue-400/80 bg-linear-to-br from-white to-blue-100/60 opacity-100 shadow-[0_12px_35px_rgba(37,99,235,0.14)] blur-none"
+    : "-my-2 scale-[0.78] border-white/80 bg-white/75 opacity-30 shadow-sm blur-[1px] hover:opacity-65 hover:blur-none";
+  const visibility = desktopOnly ? "hidden xl:block" : "block";
 
   return (
     <button
@@ -257,17 +252,17 @@ function CategorySelectorItem({
       aria-controls="homepage-feature-panel"
       aria-label={`Catégorie ${category.number} : ${category.title}`}
       onClick={onSelect}
-      className={`absolute left-0 w-full cursor-pointer rounded-[1.75rem] border px-5 py-7 text-left transition-[top,translate,scale,opacity,filter,box-shadow,background-color,border-color] duration-300 ease-out focus-visible:z-20 focus-visible:opacity-100 focus-visible:blur-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 motion-reduce:transition-none sm:px-6 sm:py-9 ${selectorPositions[position]} ${appearance}`}
+      className={`relative w-full cursor-pointer rounded-[1.5rem] border px-4 py-5 text-left transition-[scale,opacity,filter,box-shadow,background-color,border-color] duration-300 ease-out focus-visible:z-20 focus-visible:opacity-100 focus-visible:blur-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 motion-reduce:transition-none sm:px-5 2xl:px-6 2xl:py-6 ${visibility} ${appearance}`}
     >
       <span
         aria-hidden="true"
-        className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 select-none text-8xl font-semibold tracking-tighter text-blue-900/[0.05]"
+        className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 select-none text-6xl font-semibold tracking-tighter text-blue-500/10 2xl:text-7xl"
       >
         {category.number}
       </span>
-      <span className="relative flex items-start gap-4">
+      <span className="relative flex items-center gap-3">
         <span
-          className={`grid size-11 shrink-0 place-items-center rounded-2xl sm:size-12 ${category.accentClassName}`}
+          className={`grid size-12 shrink-0 place-items-center rounded-2xl border border-blue-200/60 sm:size-14 ${category.accentClassName}`}
         >
           <Icon className="size-6" aria-hidden="true" />
         </span>
@@ -275,15 +270,9 @@ function CategorySelectorItem({
           <span className="block text-xs font-bold tracking-[0.2em] text-primary">
             {category.number}
           </span>
-          <span className="mt-2 block text-xl font-semibold leading-snug tracking-tight text-[#0b294d] sm:text-2xl">
+          <span className="mt-1 block text-lg font-semibold leading-snug tracking-tight text-[#0b294d] sm:text-xl">
             {category.title}
           </span>
-          {isActive && (
-            <span className="mt-3 flex items-center gap-2 text-xs font-medium text-primary">
-              <span className="size-1.5 rounded-full bg-primary" aria-hidden="true" />
-              Catégorie sélectionnée
-            </span>
-          )}
         </span>
       </span>
     </button>
@@ -297,26 +286,36 @@ function CategorySelector({
   activeIndex: number;
   onSelect: (index: number) => void;
 }) {
-  const visibleCategories: { index: number; position: SelectorPosition }[] = [
-    { index: wrapCategoryIndex(activeIndex - 1), position: "previous" },
-    { index: activeIndex, position: "active" },
-    { index: wrapCategoryIndex(activeIndex + 1), position: "next" },
-  ];
+  const categoryOffsets = [-1, 0, 1, 2, 3];
 
   return (
     <div
       role="group"
       aria-label="Explorer les catégories de fonctionnalités"
-      className="relative mx-auto h-[27rem] w-full max-w-sm sm:h-[31rem] lg:h-full lg:min-h-[40rem]"
+      className="relative mx-auto grid w-full max-w-[28rem] gap-3 py-2"
     >
-      {visibleCategories.map(({ index, position }) => (
-        <CategorySelectorItem
-          key={featureCategories[index].id}
-          category={featureCategories[index]}
-          position={position}
-          onSelect={() => onSelect(index)}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -left-3 bottom-6 top-6 hidden w-1 rounded-full bg-white/80 xl:block"
+      >
+        <span
+          className="absolute left-1/2 h-4 w-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-500 transition-[top] duration-300 ease-out motion-reduce:transition-none"
+          style={{ top: `${((activeIndex + 0.5) / featureCategories.length) * 100}%` }}
         />
-      ))}
+      </div>
+      {categoryOffsets.map((offset) => {
+        const index = wrapCategoryIndex(activeIndex + offset);
+
+        return (
+          <CategorySelectorItem
+            key={featureCategories[index].id}
+            category={featureCategories[index]}
+            isActive={offset === 0}
+            desktopOnly={offset > 1}
+            onSelect={() => onSelect(index)}
+          />
+        );
+      })}
     </div>
   );
 }
@@ -329,30 +328,25 @@ export function HomepageFeaturesExplorer() {
     <section
       id="features"
       aria-labelledby="homepage-features-title"
-      className="relative isolate scroll-mt-24 overflow-hidden bg-linear-to-br from-blue-50/80 via-white to-blue-50/80"
+      className="relative isolate scroll-mt-24 overflow-hidden bg-linear-to-br from-[#eaf4ff] via-[#f5faff] to-[#e5f2ff]"
     >
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -left-32 top-40 size-80 rounded-full bg-blue-100/40 blur-3xl"
+        className="pointer-events-none absolute -left-1/4 -top-1/2 h-[110%] w-[140%] -rotate-18 rounded-[50%] border-[3rem] border-white/25"
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -right-32 bottom-10 size-80 rounded-full bg-sky-100/40 blur-3xl"
+        className="pointer-events-none absolute -bottom-3/4 -right-1/4 h-[120%] w-[150%] -rotate-18 rounded-[50%] border-[3rem] border-blue-100/30"
       />
-      <div className="relative mx-auto w-full max-w-7xl px-5 py-12 sm:px-8 lg:px-10 lg:py-16">
-        <header className="max-w-2xl">
-          <p className="text-xs font-bold uppercase tracking-[0.2em] text-primary">
-            Une vue d’ensemble
-          </p>
-          <h2
-            id="homepage-features-title"
-            className="mt-3 text-3xl font-bold tracking-tight text-[#0b294d] sm:text-4xl"
-          >
-            Tout le cycle commercial réuni dans un seul outil.
-          </h2>
-        </header>
-
-        <div className="mt-9 grid min-w-0 gap-8 lg:grid-cols-[minmax(0,1.85fr)_minmax(260px,0.8fr)] lg:gap-10">
+      <h2 id="homepage-features-title" className="sr-only">
+        Tout le cycle commercial réuni dans un seul outil.
+      </h2>
+      <p className="sr-only">
+        Du premier devis au règlement, Facturance Plus centralise les documents,
+        partenaires, articles, stocks et paiements nécessaires à votre activité.
+      </p>
+      <div className="relative mx-auto flex w-full max-w-[96rem] items-center px-4 py-5 sm:px-6 lg:min-h-[calc(100svh-4.5rem)] lg:px-8 lg:py-4 xl:py-3 2xl:py-5">
+        <div className="grid w-full min-w-0 items-center gap-5 xl:grid-cols-[minmax(0,1.9fr)_minmax(380px,0.85fr)] xl:gap-8 2xl:gap-10">
           <FeaturePanel category={activeCategory} />
           <CategorySelector activeIndex={activeIndex} onSelect={setActiveIndex} />
         </div>
