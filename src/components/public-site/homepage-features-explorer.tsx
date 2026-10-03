@@ -146,15 +146,15 @@ function wrapCategoryIndex(index: number): number {
 
 function FeatureItem({ title, description, icon: Icon }: Feature) {
   return (
-    <li className="flex min-w-0 items-center gap-3 rounded-[1.25rem] bg-white/90 px-3 py-3 shadow-[0_2px_10px_rgba(15,50,90,0.015)] transition-[background-color,box-shadow] duration-200 hover:bg-white hover:shadow-[0_4px_14px_rgba(15,50,90,0.035)] motion-reduce:transition-none sm:min-h-[5.75rem] sm:px-4">
-      <span className="grid size-12 shrink-0 place-items-center rounded-2xl bg-linear-to-br from-blue-100/80 to-blue-50 text-blue-600 sm:size-14">
-        <Icon className="size-7 stroke-[1.8]" aria-hidden="true" />
+    <li className="flex min-w-0 items-center gap-3 rounded-[1.25rem] bg-white/90 px-3 py-3 shadow-[0_2px_10px_rgba(15,50,90,0.015)] transition-[background-color,box-shadow] duration-200 hover:bg-white hover:shadow-[0_4px_14px_rgba(15,50,90,0.035)] motion-reduce:transition-none sm:min-h-[5.75rem] sm:px-4 xl:min-h-20 xl:gap-2.5 xl:rounded-[1.125rem] xl:px-3.5 xl:py-[0.6875rem]">
+      <span className="grid size-12 shrink-0 place-items-center rounded-2xl bg-linear-to-br from-blue-100/80 to-blue-50 text-blue-600 sm:size-14 xl:size-12">
+        <Icon className="size-7 stroke-[1.8] xl:size-6" aria-hidden="true" />
       </span>
       <div className="min-w-0 flex-1">
-        <h4 className="text-sm font-semibold leading-5 tracking-[-0.01em] text-[#071b35] xl:text-[0.9375rem]">
+        <h4 className="text-sm font-semibold leading-5 tracking-[-0.01em] text-[#071b35] xl:leading-[1.125rem]">
           {title}
         </h4>
-        <p className="mt-1 text-[0.8125rem] leading-5 text-[#526782]">
+        <p className="mt-1 text-[0.8125rem] leading-5 text-[#526782] xl:mt-0.5 xl:leading-[1.125rem]">
           {description}
         </p>
       </div>
@@ -174,27 +174,27 @@ function FeaturePanel({ category }: { category: FeatureCategory }) {
       role="region"
       aria-labelledby="homepage-feature-category"
       aria-describedby="homepage-feature-description"
-      className="relative min-w-0 rounded-[1.75rem] border border-white bg-linear-to-br from-white via-[#fbfdff] to-[#f1f7ff] p-5 shadow-[0_18px_50px_rgba(15,50,90,0.07)] sm:p-7 xl:p-8"
+      className="relative min-w-0 rounded-[1.75rem] border border-white bg-linear-to-br from-white via-[#fbfdff] to-[#f1f7ff] p-5 shadow-[0_18px_50px_rgba(15,50,90,0.07)] sm:p-7"
     >
       <span
         aria-hidden="true"
-        className="pointer-events-none absolute right-5 top-5 select-none text-7xl font-semibold leading-none tracking-[-0.07em] text-blue-500/15 sm:right-7 sm:top-6 sm:text-[6.5rem] xl:right-8"
+        className="pointer-events-none absolute right-5 top-5 select-none text-7xl font-semibold leading-none tracking-[-0.07em] text-blue-500/15 sm:right-7 sm:top-6 sm:text-[6.5rem] xl:text-[5.75rem]"
       >
         {category.number}
       </span>
-      <div className="relative flex min-w-0 items-center gap-4 sm:gap-5">
+      <div className="relative flex min-w-0 items-center gap-4 sm:gap-5 xl:gap-4">
         <span
-          className={`grid size-14 shrink-0 place-items-center rounded-[1.25rem] border border-blue-200/70 bg-linear-to-br from-white/90 to-white/20 shadow-[0_4px_12px_rgba(37,99,235,0.07)] sm:size-16 ${category.accentClassName}`}
+          className={`grid size-14 shrink-0 place-items-center rounded-[1.25rem] border border-blue-200/70 bg-linear-to-br from-white/90 to-white/20 shadow-[0_4px_12px_rgba(37,99,235,0.07)] sm:size-16 xl:size-15 ${category.accentClassName}`}
         >
-          <Icon className="size-7 stroke-[1.8] sm:size-8" aria-hidden="true" />
+          <Icon className="size-7 stroke-[1.8] sm:size-8 xl:size-7" aria-hidden="true" />
         </span>
         <div className="min-w-0">
-          <p className="text-[0.65rem] font-bold uppercase tracking-[0.12em] text-blue-600 sm:text-xs">
+          <p className="text-[0.65rem] font-bold uppercase tracking-[0.12em] text-blue-600 sm:text-xs xl:text-[0.6875rem]">
             CATÉGORIE {category.number}
           </p>
           <h3
             id="homepage-feature-category"
-            className="mt-1.5 text-[1.75rem] font-bold leading-[1.1] tracking-tight text-[#071b35] sm:text-3xl xl:text-[2.5rem]"
+            className="mt-1.5 text-[1.75rem] font-bold leading-[1.1] tracking-tight text-[#071b35] sm:text-3xl xl:text-[2.25rem]"
           >
             {category.title}
           </h3>
@@ -202,20 +202,20 @@ function FeaturePanel({ category }: { category: FeatureCategory }) {
       </div>
       <p
         id="homepage-feature-description"
-        className="relative mt-4 max-w-3xl text-base leading-7 text-[#526782] xl:text-[1.0625rem]"
+        className="relative mt-4 max-w-3xl text-base leading-7 text-[#526782] xl:mt-3 xl:leading-6"
       >
         {category.description}
       </p>
 
-      <ul className={`relative mt-5 grid gap-3 ${featureColumns}`}>
+      <ul className={`relative mt-5 grid gap-3 xl:mt-4 xl:gap-2.5 ${featureColumns}`}>
         {category.features.map((feature) => (
           <FeatureItem key={feature.title} {...feature} />
         ))}
       </ul>
 
-      <div className="relative mt-5 flex flex-col gap-4 border-t border-blue-200/60 pt-4 sm:flex-row sm:items-center sm:justify-between sm:gap-3">
-        <p className="flex items-center gap-2 text-xs font-semibold text-primary sm:text-sm">
-          <LayoutGrid className="size-6 shrink-0 text-blue-600" aria-hidden="true" />
+      <div className="relative mt-5 flex flex-col gap-4 border-t border-blue-200/60 pt-4 sm:flex-row sm:items-center sm:justify-between sm:gap-3 xl:mt-4 xl:pt-3">
+        <p className="flex items-center gap-2 text-xs font-semibold text-primary sm:text-sm xl:text-[0.8125rem]">
+          <LayoutGrid className="size-6 shrink-0 text-blue-600 xl:size-5" aria-hidden="true" />
           {count}{" "}
           {count === 1
             ? "fonctionnalité essentielle"
@@ -223,7 +223,7 @@ function FeaturePanel({ category }: { category: FeatureCategory }) {
         </p>
         <Link
           href="/features"
-          className="group inline-flex min-h-12 w-fit max-w-full items-center justify-between gap-3 rounded-full bg-[#071b35] py-1.5 pl-4 pr-1.5 text-xs font-medium text-white shadow-[0_5px_14px_rgba(15,50,90,0.12)] transition-colors duration-200 hover:bg-[#0b294d] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 motion-reduce:transition-none sm:pl-5 sm:text-sm"
+          className="group inline-flex min-h-12 w-fit max-w-full items-center justify-between gap-3 rounded-full bg-[#071b35] py-1.5 pl-4 pr-1.5 text-xs font-medium text-white shadow-[0_5px_14px_rgba(15,50,90,0.12)] transition-colors duration-200 hover:bg-[#0b294d] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 motion-reduce:transition-none sm:pl-5 sm:text-sm xl:min-h-[2.875rem] xl:gap-2.5 xl:py-1.25 xl:text-[0.8125rem]"
         >
           <span>Voir toutes les fonctionnalités</span>
           <span className="grid size-9 shrink-0 place-items-center rounded-full bg-blue-600 text-white transition-colors duration-200 group-hover:bg-blue-500 motion-reduce:transition-none">
@@ -248,6 +248,7 @@ function CategorySelectorItem({
   const appearance = isActive
     ? "border-blue-400/90 bg-linear-to-br from-white to-blue-50 opacity-100 shadow-[0_5px_16px_rgba(37,99,235,0.07)]"
     : "border-transparent bg-white/90 opacity-85 shadow-[0_2px_10px_rgba(15,50,90,0.015)] hover:bg-white hover:opacity-100 sm:w-[96%]";
+  const iconSize = isActive ? "xl:size-14" : "xl:size-13";
 
   return (
     <button
@@ -256,25 +257,25 @@ function CategorySelectorItem({
       aria-controls="homepage-feature-panel"
       aria-label={`Catégorie ${category.number} : ${category.title}`}
       onClick={onSelect}
-      className={`relative min-h-24 w-full cursor-pointer rounded-[1.25rem] border px-3 py-4 text-left transition-[opacity,box-shadow,background-color,border-color] duration-200 ease-out focus-visible:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 motion-reduce:transition-none sm:px-4 ${appearance}`}
+      className={`relative min-h-24 w-full cursor-pointer rounded-[1.25rem] border px-3 py-4 text-left transition-[opacity,box-shadow,background-color,border-color] duration-200 ease-out focus-visible:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 motion-reduce:transition-none sm:px-4 xl:min-h-22 xl:px-3.5 xl:py-3.5 ${appearance}`}
     >
       <span
         aria-hidden="true"
-        className={`pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 select-none text-[3.5rem] font-semibold leading-none tracking-[-0.07em] opacity-20 ${category.numberClassName}`}
+        className={`pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 select-none text-[3.5rem] font-semibold leading-none tracking-[-0.07em] opacity-20 xl:right-3.5 xl:text-[3.25rem] ${category.numberClassName}`}
       >
         {category.number}
       </span>
-      <span className="relative flex items-center gap-3 pr-12 sm:gap-4 sm:pr-14">
+      <span className="relative flex items-center gap-3 pr-12 sm:gap-4 sm:pr-14 xl:gap-3 xl:pr-12">
         <span
-          className={`grid size-12 shrink-0 place-items-center rounded-[1.125rem] bg-linear-to-br from-white/40 to-transparent sm:size-15 ${category.accentClassName}`}
+          className={`grid size-12 shrink-0 place-items-center rounded-[1.125rem] bg-linear-to-br from-white/40 to-transparent sm:size-15 ${iconSize} ${category.accentClassName}`}
         >
-          <Icon className="size-7 stroke-[1.8]" aria-hidden="true" />
+          <Icon className="size-7 stroke-[1.8] xl:size-6" aria-hidden="true" />
         </span>
         <span className="min-w-0">
-          <span className={`block text-xs font-bold tracking-[0.1em] ${category.numberClassName}`}>
+          <span className={`block text-xs font-bold tracking-[0.1em] xl:text-[0.6875rem] ${category.numberClassName}`}>
             {category.number}
           </span>
-          <span className={`mt-1.5 block text-base font-semibold leading-tight tracking-tight sm:text-[1.0625rem] ${isActive ? "text-[#071b35]" : "text-[#425b7b]"}`}>
+          <span className={`mt-1.5 block text-base font-semibold leading-tight tracking-tight sm:text-[1.0625rem] xl:mt-1 xl:text-base ${isActive ? "text-[#071b35]" : "text-[#425b7b]"}`}>
             {category.title}
           </span>
         </span>
@@ -296,14 +297,14 @@ function CategorySelector({
     <div
       role="group"
       aria-label="Explorer les catégories de fonctionnalités"
-      className="relative grid w-full gap-3.5 pl-5"
+      className="relative mx-auto grid w-full max-w-[26rem] gap-3.5 pl-5 xl:gap-3"
     >
       <div
         aria-hidden="true"
         className="pointer-events-none absolute bottom-0 left-0 top-0 w-[3px] rounded-full bg-blue-100/80"
       >
         <span
-          className="absolute left-1/2 top-10 h-4 w-1.5 -translate-x-1/2 rounded-full bg-[#f97316]"
+          className="absolute left-1/2 top-10 h-4 w-1.5 -translate-x-1/2 rounded-full bg-[#f97316] xl:top-9"
         />
       </div>
       {categoryOffsets.map((offset) => {
@@ -332,12 +333,12 @@ export function HomepageFeaturesExplorer() {
       aria-labelledby="homepage-features-title"
       className="scroll-mt-24 bg-linear-to-br from-[#f8fbff] via-white to-[#f5faff]"
     >
-      <div className="mx-auto w-full max-w-[88rem] px-5 py-10 sm:px-6 sm:py-12 xl:px-8 xl:py-16">
-        <div className="grid min-w-0 items-start gap-9 xl:grid-cols-[minmax(0,1.65fr)_minmax(340px,0.9fr)] xl:gap-12">
+      <div className="mx-auto w-full max-w-[82rem] px-5 py-10 sm:px-6 sm:py-12 xl:px-16 xl:py-18">
+        <div className="grid min-w-0 items-start gap-9 xl:grid-cols-[minmax(0,1.6fr)_minmax(320px,0.9fr)] xl:gap-10">
           <FeaturePanel category={activeCategory} />
           <div className="min-w-0 xl:pt-2">
-            <header className="max-w-[27.5rem]">
-              <p className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.12em] text-blue-600">
+            <header className="max-w-[26rem]">
+              <p className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.12em] text-blue-600 xl:text-[0.6875rem]">
                 <span
                   aria-hidden="true"
                   className="size-2 shrink-0 rotate-45 rounded-[1px] border-2 border-blue-600"
@@ -346,17 +347,17 @@ export function HomepageFeaturesExplorer() {
               </p>
               <h2
                 id="homepage-features-title"
-                className="mt-4 max-w-[26.25rem] text-[1.875rem] font-bold leading-[1.1] tracking-tight text-[#071b35] sm:text-[2rem] 2xl:text-[2.125rem]"
+                className="mt-4 max-w-[26rem] text-[1.875rem] font-bold leading-[1.1] tracking-tight text-[#071b35] sm:text-[2rem] xl:mt-3 xl:text-[1.9375rem] xl:leading-[1.08]"
               >
                 Tout le cycle commercial réuni dans un seul outil.
               </h2>
-              <p className="mt-3 text-base leading-[1.55] text-[#526782] xl:text-[1.0625rem]">
+              <p className="mt-3 text-base leading-[1.55] text-[#526782] xl:text-[0.9375rem]">
                 Du premier devis au règlement, Facturance Plus centralise les
                 documents, partenaires, articles, stocks et paiements nécessaires
                 à votre activité.
               </p>
             </header>
-            <div className="mt-8">
+            <div className="mt-8 xl:mt-6">
               <CategorySelector activeIndex={activeIndex} onSelect={setActiveIndex} />
             </div>
           </div>
