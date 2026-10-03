@@ -45,6 +45,7 @@ import Link from "next/link"
 
 import { PricingOffers } from "@/components/public-site/pricing-offers"
 import { HeroVideoDemo } from "@/components/public-site/hero-video-demo"
+import { HomepageFeaturesExplorer } from "@/components/public-site/homepage-features-explorer"
 import { Button } from "@/components/ui/button"
 import {
   Card,
@@ -336,57 +337,6 @@ const homepageSolutions: {
 ]
 
 export function FacturancePlusPage() {
-  const features = [
-    {
-      title: "Factures et devis",
-      description:
-        "Créez et suivez les documents essentiels de votre activité.",
-      icon: ReceiptText,
-    },
-    {
-      title: "Bons de commande et de livraison",
-      description:
-        "Structurez le cycle commercial, de la commande à la livraison.",
-      icon: FileText,
-    },
-    {
-      title: "Clients et fournisseurs",
-      description:
-        "Centralisez les coordonnées et les informations de vos partenaires.",
-      icon: UserRoundCheck,
-    },
-    {
-      title: "Articles et stocks",
-      description:
-        "Organisez votre catalogue et suivez les mouvements de stock.",
-      icon: PackageCheck,
-    },
-    {
-      title: "Paiements et échéances",
-      description:
-        "Gardez une vision claire des règlements et des dates importantes.",
-      icon: CheckCircle2,
-    },
-    {
-      title: "Gestion multi-entreprises",
-      description:
-        "Accédez aux entreprises autorisées depuis un même compte client.",
-      icon: Building2,
-    },
-    {
-      title: "Génération et impression PDF",
-      description:
-        "Prévisualisez, exportez et imprimez vos documents commerciaux.",
-      icon: Printer,
-    },
-    {
-      title: "Synchronisation sécurisée",
-      description:
-        "Utilisez les services activés pour votre compte et votre configuration.",
-      icon: RefreshCw,
-    },
-  ]
-
   const heroBenefits = [
     {
       title: "Simple",
@@ -739,48 +689,7 @@ export function FacturancePlusPage() {
         </div>
       </section>
 
-      <section id="features" className="scroll-mt-24">
-        <PublicPageContainer>
-          <div className="max-w-2xl">
-            <p className="text-xs font-bold uppercase tracking-[0.2em] text-primary">
-              UNE VUE D’ENSEMBLE
-            </p>
-            <h2 className="mt-3 text-3xl font-bold tracking-tight text-[#0b294d]">
-              Tout le cycle commercial réuni dans un seul outil.
-            </h2>
-            <p className="mt-4 max-w-2xl text-base leading-7 text-muted-foreground">
-              Du premier devis au règlement, Facturance Plus centralise les documents, partenaires, articles, stocks et paiements nécessaires à votre activité.
-            </p>
-          </div>
-          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {features.map(({ title, description, icon: Icon }) => (
-              <Card key={title} className="gap-4 border-blue-100/80">
-                <CardHeader>
-                  <span className="mb-3 grid size-10 place-items-center rounded-xl bg-primary/10 text-primary">
-                    <Icon className="size-5" />
-                  </span>
-                  <CardTitle>
-                    <h3 className="leading-snug">{title}</h3>
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm leading-6 text-muted-foreground">
-                    {description}
-                  </p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-
-          <Link
-            href="/features"
-            className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline"
-          >
-            Voir toutes les fonctionnalités
-            <ArrowRight className="size-4" aria-hidden="true" />
-          </Link>
-        </PublicPageContainer>
-      </section>
+      <HomepageFeaturesExplorer />
 
       <section
         id="pricing"
