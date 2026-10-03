@@ -29,6 +29,7 @@ type FeatureCategory = {
   description: string;
   icon: LucideIcon;
   accentClassName: string;
+  numberClassName: string;
   features: readonly Feature[];
 };
 
@@ -89,7 +90,8 @@ const featureCategories: readonly FeatureCategory[] = [
     description:
       "Les fonctions essentielles de Facturance Plus réunies dans une vue claire et structurée pour gérer efficacement votre activité.",
     icon: ReceiptText,
-    accentClassName: "bg-blue-100/80 text-primary",
+    accentClassName: "bg-blue-50 text-blue-600",
+    numberClassName: "text-blue-600",
     features: Object.values(features),
   },
   {
@@ -99,7 +101,8 @@ const featureCategories: readonly FeatureCategory[] = [
     description:
       "Les pièces commerciales de votre activité, créées et suivies au même endroit.",
     icon: ReceiptText,
-    accentClassName: "bg-sky-100/80 text-sky-800",
+    accentClassName: "bg-rose-50 text-rose-500",
+    numberClassName: "text-rose-500",
     features: [features.invoices, features.orders, features.pdf],
   },
   {
@@ -109,7 +112,8 @@ const featureCategories: readonly FeatureCategory[] = [
     description:
       "Centralisez les coordonnées et les informations de vos partenaires. Accédez aux entreprises autorisées depuis un même compte client.",
     icon: UserRoundCheck,
-    accentClassName: "bg-cyan-100/70 text-cyan-800",
+    accentClassName: "bg-teal-50 text-teal-600",
+    numberClassName: "text-teal-600",
     features: [features.partners, features.companies],
   },
   {
@@ -118,7 +122,8 @@ const featureCategories: readonly FeatureCategory[] = [
     title: "Stock & catalogue",
     description: "Organisez votre catalogue et suivez les mouvements de stock.",
     icon: PackageCheck,
-    accentClassName: "bg-blue-100/80 text-blue-800",
+    accentClassName: "bg-rose-50 text-rose-500",
+    numberClassName: "text-rose-500",
     features: [features.stock],
   },
   {
@@ -128,7 +133,8 @@ const featureCategories: readonly FeatureCategory[] = [
     description:
       "Gardez une vision claire des règlements et des dates importantes. L’accès et la configuration suivent votre compte client Facturance Plus.",
     icon: CheckCircle2,
-    accentClassName: "bg-indigo-100/70 text-indigo-800",
+    accentClassName: "bg-indigo-50 text-indigo-500",
+    numberClassName: "text-indigo-500",
     features: [features.payments, features.companies, features.sync],
   },
 ];
@@ -140,19 +146,19 @@ function wrapCategoryIndex(index: number): number {
 
 function FeatureItem({ title, description, icon: Icon }: Feature) {
   return (
-    <li className="flex min-w-0 items-center gap-3 rounded-[1.25rem] border border-white/80 bg-white/80 px-3 py-2.5 shadow-[0_2px_8px_rgba(11,41,77,0.015)] transition-[background-color,border-color,box-shadow] duration-300 hover:border-blue-200/70 hover:bg-white hover:shadow-[0_4px_14px_rgba(11,41,77,0.04)] motion-reduce:transition-none 2xl:px-4 2xl:py-3">
-      <span className="grid size-11 shrink-0 place-items-center rounded-2xl bg-linear-to-br from-blue-100 to-blue-50 text-primary ring-1 ring-inset ring-blue-200/35 2xl:size-12">
-        <Icon className="size-6 stroke-[1.8]" aria-hidden="true" />
+    <li className="flex min-w-0 items-center gap-3 rounded-[1.25rem] bg-white/90 px-3 py-3 shadow-[0_2px_10px_rgba(15,50,90,0.015)] transition-[background-color,box-shadow] duration-200 hover:bg-white hover:shadow-[0_4px_14px_rgba(15,50,90,0.035)] motion-reduce:transition-none sm:min-h-[5.75rem] sm:px-4">
+      <span className="grid size-12 shrink-0 place-items-center rounded-2xl bg-linear-to-br from-blue-100/80 to-blue-50 text-blue-600 sm:size-14">
+        <Icon className="size-7 stroke-[1.8]" aria-hidden="true" />
       </span>
       <div className="min-w-0 flex-1">
-        <h4 className="text-sm font-semibold leading-5 tracking-[-0.01em] text-[#0b294d]">
+        <h4 className="text-sm font-semibold leading-5 tracking-[-0.01em] text-[#071b35] xl:text-[0.9375rem]">
           {title}
         </h4>
-        <p className="mt-0.5 text-[0.8125rem] leading-[1.125rem] text-muted-foreground 2xl:text-sm 2xl:leading-5">
+        <p className="mt-1 text-[0.8125rem] leading-5 text-[#526782]">
           {description}
         </p>
       </div>
-      <ArrowRight className="size-4 shrink-0 text-primary/80" aria-hidden="true" />
+      <ArrowRight className="size-4 shrink-0 text-blue-600" aria-hidden="true" />
     </li>
   );
 }
@@ -168,27 +174,27 @@ function FeaturePanel({ category }: { category: FeatureCategory }) {
       role="region"
       aria-labelledby="homepage-feature-category"
       aria-describedby="homepage-feature-description"
-      className="relative min-w-0 rounded-[2rem] border border-white/95 bg-linear-to-br from-white/75 via-blue-50/65 to-blue-100/45 p-5 shadow-[0_20px_55px_rgba(11,41,77,0.09),inset_0_1px_0_rgba(255,255,255,0.8)] backdrop-blur-sm sm:p-6 lg:grid lg:h-[clamp(38rem,calc(100svh-7.5rem),48rem)] lg:grid-rows-[4rem_3rem_minmax(0,1fr)_auto] lg:gap-y-3 xl:p-7 2xl:gap-y-4 2xl:p-8"
+      className="relative min-w-0 rounded-[1.75rem] border border-white bg-linear-to-br from-white via-[#fbfdff] to-[#f1f7ff] p-5 shadow-[0_18px_50px_rgba(15,50,90,0.07)] sm:p-7 xl:p-8"
     >
       <span
         aria-hidden="true"
-        className="pointer-events-none absolute right-5 top-5 select-none text-8xl font-semibold leading-none tracking-[-0.07em] text-blue-500/[0.12] sm:right-7 sm:text-9xl 2xl:right-8 2xl:text-[9rem]"
+        className="pointer-events-none absolute right-5 top-5 select-none text-7xl font-semibold leading-none tracking-[-0.07em] text-blue-500/15 sm:right-7 sm:top-6 sm:text-[6.5rem] xl:right-8"
       >
         {category.number}
       </span>
-      <div className="relative flex min-w-0 items-center gap-4 lg:h-16">
+      <div className="relative flex min-w-0 items-center gap-4 sm:gap-5">
         <span
-          className={`grid size-12 shrink-0 place-items-center rounded-[1.25rem] border border-blue-200/80 bg-linear-to-br from-white/90 to-white/40 shadow-[0_5px_15px_rgba(37,99,235,0.10),inset_0_1px_0_rgba(255,255,255,0.9)] sm:size-14 lg:size-16 ${category.accentClassName}`}
+          className={`grid size-14 shrink-0 place-items-center rounded-[1.25rem] border border-blue-200/70 bg-linear-to-br from-white/90 to-white/20 shadow-[0_4px_12px_rgba(37,99,235,0.07)] sm:size-16 ${category.accentClassName}`}
         >
-          <Icon className="size-6 stroke-[1.8] lg:size-7" aria-hidden="true" />
+          <Icon className="size-7 stroke-[1.8] sm:size-8" aria-hidden="true" />
         </span>
         <div className="min-w-0">
-          <p className="text-[0.65rem] font-bold uppercase tracking-[0.16em] text-primary sm:text-xs">
+          <p className="text-[0.65rem] font-bold uppercase tracking-[0.12em] text-blue-600 sm:text-xs">
             CATÉGORIE {category.number}
           </p>
           <h3
             id="homepage-feature-category"
-            className="mt-1 text-2xl font-bold leading-[1.1] tracking-tight text-[#0b294d] sm:text-3xl xl:text-4xl 2xl:text-[2.5rem]"
+            className="mt-1.5 text-[1.75rem] font-bold leading-[1.1] tracking-tight text-[#071b35] sm:text-3xl xl:text-[2.5rem]"
           >
             {category.title}
           </h3>
@@ -196,22 +202,20 @@ function FeaturePanel({ category }: { category: FeatureCategory }) {
       </div>
       <p
         id="homepage-feature-description"
-        className="relative mt-3 max-w-3xl text-sm leading-6 text-muted-foreground lg:mt-0 2xl:text-base"
+        className="relative mt-4 max-w-3xl text-base leading-7 text-[#526782] xl:text-[1.0625rem]"
       >
         {category.description}
       </p>
 
-      <div className="relative mt-4 lg:mt-0 lg:flex lg:min-h-0 lg:overflow-y-auto">
-        <ul className={`grid w-full gap-2.5 lg:my-auto lg:shrink-0 2xl:gap-3 ${featureColumns}`}>
-          {category.features.map((feature) => (
-            <FeatureItem key={feature.title} {...feature} />
-          ))}
-        </ul>
-      </div>
+      <ul className={`relative mt-5 grid gap-3 ${featureColumns}`}>
+        {category.features.map((feature) => (
+          <FeatureItem key={feature.title} {...feature} />
+        ))}
+      </ul>
 
-      <div className="relative mt-4 flex flex-col gap-3 border-t border-blue-200/65 pt-3 sm:flex-row sm:items-center sm:justify-between lg:mt-0 2xl:pt-4">
-        <p className="flex items-center gap-2 text-xs font-semibold text-[#0b294d] sm:text-sm">
-          <LayoutGrid className="size-5 shrink-0 text-primary" aria-hidden="true" />
+      <div className="relative mt-5 flex flex-col gap-4 border-t border-blue-200/60 pt-4 sm:flex-row sm:items-center sm:justify-between sm:gap-3">
+        <p className="flex items-center gap-2 text-xs font-semibold text-primary sm:text-sm">
+          <LayoutGrid className="size-6 shrink-0 text-blue-600" aria-hidden="true" />
           {count}{" "}
           {count === 1
             ? "fonctionnalité essentielle"
@@ -219,10 +223,10 @@ function FeaturePanel({ category }: { category: FeatureCategory }) {
         </p>
         <Link
           href="/features"
-          className="group inline-flex w-fit max-w-full items-center justify-between gap-3 rounded-full bg-linear-to-r from-[#0b294d] to-[#071b35] py-1 pl-4 pr-1 text-xs font-semibold text-white shadow-[0_7px_20px_rgba(11,41,77,0.17)] transition-shadow duration-300 hover:shadow-[0_10px_24px_rgba(11,41,77,0.22)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 motion-reduce:transition-none sm:pl-5 sm:text-sm 2xl:py-1.5 2xl:pr-1.5"
+          className="group inline-flex min-h-12 w-fit max-w-full items-center justify-between gap-3 rounded-full bg-[#071b35] py-1.5 pl-4 pr-1.5 text-xs font-medium text-white shadow-[0_5px_14px_rgba(15,50,90,0.12)] transition-colors duration-200 hover:bg-[#0b294d] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 motion-reduce:transition-none sm:pl-5 sm:text-sm"
         >
           <span>Voir toutes les fonctionnalités</span>
-          <span className="grid size-9 shrink-0 place-items-center rounded-full bg-blue-600 text-white shadow-[0_2px_8px_rgba(37,99,235,0.25)] transition-colors duration-300 group-hover:bg-blue-500 motion-reduce:transition-none 2xl:size-10">
+          <span className="grid size-9 shrink-0 place-items-center rounded-full bg-blue-600 text-white transition-colors duration-200 group-hover:bg-blue-500 motion-reduce:transition-none">
             <ArrowRight className="size-4" aria-hidden="true" />
           </span>
         </Link>
@@ -234,19 +238,16 @@ function FeaturePanel({ category }: { category: FeatureCategory }) {
 function CategorySelectorItem({
   category,
   isActive,
-  desktopOnly,
   onSelect,
 }: {
   category: FeatureCategory;
   isActive: boolean;
-  desktopOnly: boolean;
   onSelect: () => void;
 }) {
   const Icon = category.icon;
   const appearance = isActive
-    ? "z-10 scale-100 border-blue-400/85 bg-linear-to-br from-white via-white/95 to-blue-100/70 opacity-100 shadow-[0_14px_36px_rgba(37,99,235,0.15),inset_0_1px_0_rgba(255,255,255,0.95)] blur-none xl:py-6"
-    : "-my-2 scale-[0.78] border-white/80 bg-white/80 opacity-35 shadow-[0_4px_12px_rgba(11,41,77,0.035)] blur-[1px] hover:opacity-65 hover:blur-none xl:my-0 xl:py-4";
-  const visibility = desktopOnly ? "hidden xl:block" : "block";
+    ? "border-blue-400/90 bg-linear-to-br from-white to-blue-50 opacity-100 shadow-[0_5px_16px_rgba(37,99,235,0.07)]"
+    : "border-transparent bg-white/90 opacity-85 shadow-[0_2px_10px_rgba(15,50,90,0.015)] hover:bg-white hover:opacity-100 sm:w-[96%]";
 
   return (
     <button
@@ -255,25 +256,25 @@ function CategorySelectorItem({
       aria-controls="homepage-feature-panel"
       aria-label={`Catégorie ${category.number} : ${category.title}`}
       onClick={onSelect}
-      className={`relative w-full cursor-pointer rounded-[1.75rem] border px-4 py-5 text-left transition-[scale,opacity,filter,box-shadow,background-color,border-color] duration-300 ease-out focus-visible:z-20 focus-visible:opacity-100 focus-visible:blur-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 motion-reduce:transition-none sm:px-5 2xl:px-6 ${visibility} ${appearance}`}
+      className={`relative min-h-24 w-full cursor-pointer rounded-[1.25rem] border px-3 py-4 text-left transition-[opacity,box-shadow,background-color,border-color] duration-200 ease-out focus-visible:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 motion-reduce:transition-none sm:px-4 ${appearance}`}
     >
       <span
         aria-hidden="true"
-        className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 select-none text-6xl font-semibold tracking-[-0.07em] text-blue-500/[0.12] 2xl:text-7xl"
+        className={`pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 select-none text-[3.5rem] font-semibold leading-none tracking-[-0.07em] opacity-20 ${category.numberClassName}`}
       >
         {category.number}
       </span>
-      <span className="relative flex items-center gap-3 sm:gap-4">
+      <span className="relative flex items-center gap-3 pr-12 sm:gap-4 sm:pr-14">
         <span
-          className={`grid size-12 shrink-0 place-items-center rounded-[1.125rem] border border-blue-200/65 bg-linear-to-br from-white/85 to-white/30 shadow-[0_3px_10px_rgba(37,99,235,0.06)] sm:size-14 ${category.accentClassName}`}
+          className={`grid size-12 shrink-0 place-items-center rounded-[1.125rem] bg-linear-to-br from-white/40 to-transparent sm:size-15 ${category.accentClassName}`}
         >
-          <Icon className="size-6 stroke-[1.8]" aria-hidden="true" />
+          <Icon className="size-7 stroke-[1.8]" aria-hidden="true" />
         </span>
         <span className="min-w-0">
-          <span className="block text-xs font-bold tracking-[0.2em] text-primary">
+          <span className={`block text-xs font-bold tracking-[0.1em] ${category.numberClassName}`}>
             {category.number}
           </span>
-          <span className="mt-1.5 block text-lg font-semibold leading-tight tracking-tight text-[#0b294d] sm:text-xl">
+          <span className={`mt-1.5 block text-base font-semibold leading-tight tracking-tight sm:text-[1.0625rem] ${isActive ? "text-[#071b35]" : "text-[#425b7b]"}`}>
             {category.title}
           </span>
         </span>
@@ -289,20 +290,20 @@ function CategorySelector({
   activeIndex: number;
   onSelect: (index: number) => void;
 }) {
-  const categoryOffsets = [-1, 0, 1, 2, 3];
+  const categoryOffsets = [0, 1, 2, 3];
 
   return (
     <div
       role="group"
       aria-label="Explorer les catégories de fonctionnalités"
-      className="relative mx-auto grid w-full max-w-[29rem] gap-3 py-2 xl:h-full xl:content-between xl:gap-2 xl:py-5"
+      className="relative grid w-full gap-3.5 pl-5"
     >
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -left-4 bottom-8 top-8 hidden w-1 rounded-full bg-white/80 xl:block"
+        className="pointer-events-none absolute bottom-0 left-0 top-0 w-[3px] rounded-full bg-blue-100/80"
       >
         <span
-          className="absolute left-1/2 top-[28%] h-4 w-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-500"
+          className="absolute left-1/2 top-10 h-4 w-1.5 -translate-x-1/2 rounded-full bg-[#f97316]"
         />
       </div>
       {categoryOffsets.map((offset) => {
@@ -313,7 +314,6 @@ function CategorySelector({
             key={featureCategories[index].id}
             category={featureCategories[index]}
             isActive={offset === 0}
-            desktopOnly={offset > 1}
             onSelect={() => onSelect(index)}
           />
         );
@@ -330,27 +330,36 @@ export function HomepageFeaturesExplorer() {
     <section
       id="features"
       aria-labelledby="homepage-features-title"
-      className="relative isolate scroll-mt-24 overflow-hidden bg-linear-to-br from-[#e2f0ff] via-[#f4f9ff] to-[#deeeff]"
+      className="scroll-mt-24 bg-linear-to-br from-[#f8fbff] via-white to-[#f5faff]"
     >
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -left-1/4 -top-1/2 h-[110%] w-[140%] -rotate-18 rounded-[50%] border-[3rem] border-white/35"
-      />
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -bottom-3/4 -right-1/4 h-[120%] w-[150%] -rotate-18 rounded-[50%] border-[3rem] border-blue-100/30"
-      />
-      <h2 id="homepage-features-title" className="sr-only">
-        Tout le cycle commercial réuni dans un seul outil.
-      </h2>
-      <p className="sr-only">
-        Du premier devis au règlement, Facturance Plus centralise les documents,
-        partenaires, articles, stocks et paiements nécessaires à votre activité.
-      </p>
-      <div className="relative mx-auto flex w-full max-w-[96rem] items-center px-4 py-5 sm:px-6 lg:min-h-[calc(100svh-4.5rem)] lg:px-8 lg:py-4 xl:py-3 2xl:py-5">
-        <div className="grid w-full min-w-0 items-center gap-5 xl:grid-cols-[minmax(0,1.9fr)_minmax(380px,0.85fr)] xl:items-stretch xl:gap-8 2xl:gap-10">
+      <div className="mx-auto w-full max-w-[88rem] px-5 py-10 sm:px-6 sm:py-12 xl:px-8 xl:py-16">
+        <div className="grid min-w-0 items-start gap-9 xl:grid-cols-[minmax(0,1.65fr)_minmax(340px,0.9fr)] xl:gap-12">
           <FeaturePanel category={activeCategory} />
-          <CategorySelector activeIndex={activeIndex} onSelect={setActiveIndex} />
+          <div className="min-w-0 xl:pt-2">
+            <header className="max-w-[27.5rem]">
+              <p className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.12em] text-blue-600">
+                <span
+                  aria-hidden="true"
+                  className="size-2 shrink-0 rotate-45 rounded-[1px] border-2 border-blue-600"
+                />
+                UNE VUE D’ENSEMBLE
+              </p>
+              <h2
+                id="homepage-features-title"
+                className="mt-4 max-w-[26.25rem] text-[1.875rem] font-bold leading-[1.1] tracking-tight text-[#071b35] sm:text-[2rem] 2xl:text-[2.125rem]"
+              >
+                Tout le cycle commercial réuni dans un seul outil.
+              </h2>
+              <p className="mt-3 text-base leading-[1.55] text-[#526782] xl:text-[1.0625rem]">
+                Du premier devis au règlement, Facturance Plus centralise les
+                documents, partenaires, articles, stocks et paiements nécessaires
+                à votre activité.
+              </p>
+            </header>
+            <div className="mt-8">
+              <CategorySelector activeIndex={activeIndex} onSelect={setActiveIndex} />
+            </div>
+          </div>
         </div>
         <p role="status" aria-atomic="true" className="sr-only">
           Catégorie {activeCategory.number} : {activeCategory.title},{" "}
