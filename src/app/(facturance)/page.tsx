@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 import { getStructuredPricingOffers } from "@/components/public-site/pricing-offers";
 import { FacturancePlusPage } from "@/components/public-site/public-pages";
+import { productOverviewFeatures } from "@/lib/product-features";
 import { publicSiteConfig } from "@/lib/public-site-config";
 import { absoluteUrl, buildPageMetadata, SOCIAL_IMAGE } from "@/lib/seo";
 
@@ -65,6 +66,9 @@ function HomepageStructuredData() {
         description:
           "Logiciel de facturation et de gestion commerciale : devis, factures, stock, clients, fournisseurs, paiements et gestion multi-entreprises, sur Windows et depuis un navigateur.",
         applicationCategory: "BusinessApplication",
+        featureList: productOverviewFeatures.map(
+          ({ title, description }) => `${title} : ${description}`,
+        ),
         // Must stay identical to the node published under the same @id on
         // /logiciel-facturation-tunisie: one entity, described twice.
         operatingSystem: "Windows 10, Windows 11, Web",

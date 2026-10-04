@@ -1,17 +1,10 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import type { LucideIcon } from "lucide-react";
 import {
-  Building2,
-  CheckCircle2,
-  FileText,
-  PackageCheck,
-  Printer,
-  ReceiptText,
-  RefreshCw,
-  UserRoundCheck,
-} from "lucide-react";
+  productFeatureCategories,
+  type ProductFeature,
+} from "@/lib/product-features";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -21,129 +14,18 @@ import { CLIENT_SIGNUP_URL } from "@/lib/urls";
 export const metadata: Metadata = buildPageMetadata({
   title: "Fonctionnalités du logiciel de facturation",
   description:
-    "Devis, factures, bons de commande et de livraison, clients, fournisseurs, articles, stocks, paiements et gestion multi-entreprises : tout ce que Facturance Plus couvre.",
+    "Documents commerciaux, achats, dépenses, partenaires, stock, paiements, trésorerie, rapports et synchronisation : découvrez les fonctionnalités de Facturance Plus.",
   path: "/features",
 });
 
-type Feature = {
-  title: string;
-  description: string;
-  icon: LucideIcon;
-};
+const groups = productFeatureCategories.filter((category) => category.id !== "overview");
 
-type GroupLink = { label: string; href: string };
-
-type FeatureGroup = {
-  /** Contextual links to the landing page covering this group's subject. */
-  more?: GroupLink[];
-  eyebrow: string;
-  title: string;
-  description: string;
-  features: Feature[];
-};
-
-/**
- * The same capabilities the homepage lists, regrouped by the part of the cycle
- * they belong to. Nothing here is a new claim: every entry corresponds to a
- * feature the product section already describes.
- */
-const groups: FeatureGroup[] = [
-  {
-    eyebrow: "Documents",
-    title: "Du devis au règlement",
-    more: [
-      {
-        label: "Logiciel de facturation en Tunisie",
-        href: "/logiciel-facturation-tunisie",
-      },
-    ],
-    description:
-      "Les pièces commerciales de votre activité, créées et suivies au même endroit.",
-    features: [
-      {
-        title: "Factures et devis",
-        description:
-          "Créez et suivez les documents essentiels de votre activité.",
-        icon: ReceiptText,
-      },
-      {
-        title: "Bons de commande et de livraison",
-        description:
-          "Structurez le cycle commercial, de la commande à la livraison.",
-        icon: FileText,
-      },
-      {
-        title: "Génération et impression PDF",
-        description:
-          "Prévisualisez, exportez et imprimez vos documents commerciaux.",
-        icon: Printer,
-      },
-    ],
-  },
-  {
-    eyebrow: "Données",
-    title: "Vos partenaires et votre catalogue",
-    more: [
-      {
-        label: "Logiciel de gestion commerciale",
-        href: "/logiciel-gestion-commerciale-tunisie",
-      },
-      {
-        label: "Gestion des articles et du stock",
-        href: "/logiciel-gestion-stock-tunisie",
-      },
-    ],
-    description:
-      "Les informations qui alimentent vos documents, centralisées et réutilisables.",
-    features: [
-      {
-        title: "Clients et fournisseurs",
-        description:
-          "Centralisez les coordonnées et les informations de vos partenaires.",
-        icon: UserRoundCheck,
-      },
-      {
-        title: "Articles et stocks",
-        description:
-          "Organisez votre catalogue et suivez les mouvements de stock.",
-        icon: PackageCheck,
-      },
-      {
-        title: "Paiements et échéances",
-        description:
-          "Gardez une vision claire des règlements et des dates importantes.",
-        icon: CheckCircle2,
-      },
-    ],
-  },
-  {
-    eyebrow: "Organisation",
-    title: "Plusieurs entreprises, un seul compte",
-    description:
-      "L’accès et la configuration suivent votre compte client Facturance Plus.",
-    features: [
-      {
-        title: "Gestion multi-entreprises",
-        description:
-          "Accédez aux entreprises autorisées depuis un même compte client.",
-        icon: Building2,
-      },
-      {
-        title: "Synchronisation sécurisée",
-        description:
-          "Utilisez les services activés pour votre compte et votre configuration.",
-        icon: RefreshCw,
-      },
-    ],
-  },
-];
-
-function FeatureCard({ title, description, icon: Icon }: Feature) {
+function FeatureCard({ title, description, icon: Icon }: ProductFeature) {
   return (
     <Card className="h-full max-w-none gap-4 border-blue-100/80">
       <CardHeader>
         <span className="mb-3 grid size-10 place-items-center rounded-xl bg-primary/10 text-primary">
-          <Icon className="size-5" />
+          <Icon className="size-5" aria-hidden="true" />
         </span>
         <CardTitle>
           <h3 className="leading-snug">{title}</h3>
@@ -168,8 +50,9 @@ export default function FeaturesPage() {
         </h1>
         <p className="mt-5 text-base leading-8 text-muted-foreground sm:text-lg">
           Du premier devis au règlement, Facturance Plus centralise les
-          documents, partenaires, articles, stocks et paiements nécessaires à
-          votre activité.
+          documents, achats, dépenses, partenaires, stock, paiements et trésorerie.
+          Les fonctionnalités disponibles dépendent de votre environnement et de
+          votre configuration.
         </p>
       </header>
 
@@ -189,10 +72,10 @@ export default function FeaturesPage() {
 
       <div className="mt-12 space-y-12">
         {groups.map((group) => (
-          <section key={group.eyebrow} className="scroll-mt-24">
+          <section key={group.id} className="scroll-mt-24">
             <div className="max-w-2xl">
               <p className="text-xs font-bold uppercase tracking-[0.2em] text-primary">
-                {group.eyebrow}
+                CATÉGORIE {group.number}
               </p>
               <h2 className="mt-2 text-2xl font-bold tracking-tight text-[#0b294d] sm:text-3xl">
                 {group.title}

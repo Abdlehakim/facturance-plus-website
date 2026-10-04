@@ -1,153 +1,24 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import type { Dispatch, SetStateAction } from "react";
 import Link from "next/link";
-import type { LucideIcon } from "lucide-react";
+import { ArrowRight, LayoutGrid } from "lucide-react";
+
 import {
-  ArrowRight,
-  Building2,
-  CheckCircle2,
-  FileText,
-  LayoutGrid,
-  PackageCheck,
-  Printer,
-  ReceiptText,
-  RefreshCw,
-  UserRoundCheck,
-} from "lucide-react";
-
-type Feature = {
-  title: string;
-  description: string;
-  icon: LucideIcon;
-};
-
-type FeatureCategory = {
-  id: string;
-  number: string;
-  title: string;
-  description: string;
-  icon: LucideIcon;
-  accentClassName: string;
-  numberClassName: string;
-  features: readonly Feature[];
-};
-
-const features = {
-  invoices: {
-    title: "Factures et devis",
-    description: "Créez et suivez les documents essentiels de votre activité.",
-    icon: ReceiptText,
-  },
-  orders: {
-    title: "Bons de commande et de livraison",
-    description:
-      "Structurez le cycle commercial, de la commande à la livraison.",
-    icon: FileText,
-  },
-  partners: {
-    title: "Clients et fournisseurs",
-    description:
-      "Centralisez les coordonnées et les informations de vos partenaires.",
-    icon: UserRoundCheck,
-  },
-  stock: {
-    title: "Articles et stocks",
-    description: "Organisez votre catalogue et suivez les mouvements de stock.",
-    icon: PackageCheck,
-  },
-  payments: {
-    title: "Paiements et échéances",
-    description:
-      "Gardez une vision claire des règlements et des dates importantes.",
-    icon: CheckCircle2,
-  },
-  companies: {
-    title: "Gestion multi-entreprises",
-    description:
-      "Accédez aux entreprises autorisées depuis un même compte client.",
-    icon: Building2,
-  },
-  pdf: {
-    title: "Génération et impression PDF",
-    description:
-      "Prévisualisez, exportez et imprimez vos documents commerciaux.",
-    icon: Printer,
-  },
-  sync: {
-    title: "Synchronisation sécurisée",
-    description:
-      "Utilisez les services activés pour votre compte et votre configuration.",
-    icon: RefreshCw,
-  },
-} satisfies Record<string, Feature>;
-
-const featureCategories: readonly FeatureCategory[] = [
-  {
-    id: "overview",
-    number: "01",
-    title: "Vue d’ensemble",
-    description:
-      "Les fonctions essentielles de Facturance Plus réunies dans une vue claire et structurée pour gérer efficacement votre activité.",
-    icon: ReceiptText,
-    accentClassName: "bg-blue-50 text-blue-600",
-    numberClassName: "text-blue-600",
-    features: Object.values(features),
-  },
-  {
-    id: "documents",
-    number: "02",
-    title: "Documents commerciaux",
-    description:
-      "Les pièces commerciales de votre activité, créées et suivies au même endroit.",
-    icon: ReceiptText,
-    accentClassName: "bg-rose-50 text-rose-500",
-    numberClassName: "text-rose-500",
-    features: [features.invoices, features.orders, features.pdf],
-  },
-  {
-    id: "partners",
-    number: "03",
-    title: "Clients & partenaires",
-    description:
-      "Centralisez les coordonnées et les informations de vos partenaires. Accédez aux entreprises autorisées depuis un même compte client.",
-    icon: UserRoundCheck,
-    accentClassName: "bg-teal-50 text-teal-600",
-    numberClassName: "text-teal-600",
-    features: [features.partners, features.companies],
-  },
-  {
-    id: "stock",
-    number: "04",
-    title: "Stock & catalogue",
-    description: "Organisez votre catalogue et suivez les mouvements de stock.",
-    icon: PackageCheck,
-    accentClassName: "bg-rose-50 text-rose-500",
-    numberClassName: "text-rose-500",
-    features: [features.stock],
-  },
-  {
-    id: "management",
-    number: "05",
-    title: "Paiements & gestion",
-    description:
-      "Gardez une vision claire des règlements et des dates importantes. L’accès et la configuration suivent votre compte client Facturance Plus.",
-    icon: CheckCircle2,
-    accentClassName: "bg-indigo-50 text-indigo-500",
-    numberClassName: "text-indigo-500",
-    features: [features.payments, features.companies, features.sync],
-  },
-];
+  productFeatureCategories as featureCategories,
+  type ProductFeature as Feature,
+  type ProductFeatureCategory as FeatureCategory,
+} from "@/lib/product-features";
 
 function wrapCategoryIndex(index: number): number {
   const count = featureCategories.length;
   return ((index % count) + count) % count;
 }
 
-function FeatureItem({ title, description, icon: Icon }: Feature) {
-  return (
-    <li className="flex min-w-0 items-center gap-3 rounded-[0.625rem] bg-white/90 px-3 py-3 shadow-[0_2px_10px_rgba(15,50,90,0.015)] transition-[background-color,box-shadow] duration-200 hover:bg-white hover:shadow-[0_4px_14px_rgba(15,50,90,0.035)] motion-reduce:transition-none sm:min-h-[5.75rem] sm:px-4 xl:min-h-[4.25rem] xl:gap-2.25 xl:rounded-[0.625rem] xl:px-3.25 xl:py-2">
+function FeatureItem({ title, description, icon: Icon, href }: Feature) {
+  const content = (
+    <>
       <span className="grid size-12 shrink-0 place-items-center rounded-[0.5rem] bg-linear-to-br from-blue-100/80 to-blue-50 text-blue-600 sm:size-14 xl:size-[2.625rem]">
         <Icon className="size-7 stroke-[1.8] xl:size-5.5" aria-hidden="true" />
       </span>
@@ -160,6 +31,19 @@ function FeatureItem({ title, description, icon: Icon }: Feature) {
         </p>
       </div>
       <ArrowRight className="size-4 shrink-0 text-blue-600 xl:size-[0.9375rem]" aria-hidden="true" />
+    </>
+  );
+
+  return (
+    <li className="flex min-w-0 items-center gap-3 rounded-[0.625rem] bg-white/90 px-3 py-3 shadow-[0_2px_10px_rgba(15,50,90,0.015)] transition-[background-color,box-shadow] duration-200 hover:bg-white hover:shadow-[0_4px_14px_rgba(15,50,90,0.035)] motion-reduce:transition-none sm:min-h-[5.75rem] sm:px-4 xl:min-h-[4.25rem] xl:gap-2.25 xl:rounded-[0.625rem] xl:px-3.25 xl:py-2">
+      {href ? (
+        <Link
+          href={href}
+          className="flex min-w-0 flex-1 items-center gap-3 rounded-[inherit] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 xl:gap-2.25"
+        >
+          {content}
+        </Link>
+      ) : content}
     </li>
   );
 }
@@ -313,7 +197,47 @@ function CategorySelector({
 }) {
   const categoryOffsets = [-1, 0, 1, 2];
   const selectorRef = useRef<HTMLDivElement>(null);
-  const wheelGesture = useRef({ delta: 0, lastEvent: 0, lockedUntil: 0 });
+  const cardPositions = useRef(new Map<string, number>());
+  const wheelGesture = useRef({ delta: 0, direction: 0, lastEvent: 0, lockedUntil: 0, consumed: false });
+
+  const captureCardPositions = useCallback(() => {
+    const positions = new Map<string, number>();
+    selectorRef.current?.querySelectorAll<HTMLDivElement>("[data-category-card]").forEach((card) => {
+      positions.set(card.dataset.categoryCard!, card.getBoundingClientRect().top);
+    });
+    cardPositions.current = positions;
+  }, []);
+
+  useLayoutEffect(() => {
+    const selector = selectorRef.current;
+    if (!selector) return;
+
+    const cards = Array.from(selector.querySelectorAll<HTMLDivElement>("[data-category-card]"));
+    const previousPositions = cardPositions.current;
+    cardPositions.current = new Map();
+
+    cards.forEach((card) => {
+      card.style.transition = "none";
+      card.style.transform = "";
+    });
+
+    if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      // Preserve each retained card's visual position while its grid row changes.
+      cards.forEach((card) => {
+        const previousTop = previousPositions.get(card.dataset.categoryCard!);
+        if (previousTop === undefined) return;
+        const offset = previousTop - card.getBoundingClientRect().top;
+        card.style.transform = `translateY(${offset}px)`;
+      });
+      // Commit the starting positions before CSS transitions move cards into place.
+      void selector.offsetHeight;
+    }
+
+    cards.forEach((card) => {
+      card.style.transition = "";
+      card.style.transform = "";
+    });
+  }, [activeIndex]);
 
   useEffect(() => {
     const selector = selectorRef.current;
@@ -336,28 +260,37 @@ function CategorySelector({
         event.deltaMode === WheelEvent.DOM_DELTA_LINE ? 16 :
         event.deltaMode === WheelEvent.DOM_DELTA_PAGE ? selector.clientHeight : 1
       );
+      const direction = Math.sign(delta);
 
       if (
         now - gesture.lastEvent > 200 ||
-        Math.sign(delta) !== Math.sign(gesture.delta)
-      ) gesture.delta = 0;
+        direction !== gesture.direction
+      ) {
+        gesture.delta = 0;
+        gesture.consumed = false;
+      }
+      gesture.direction = direction;
       gesture.lastEvent = now;
 
-      if (now < gesture.lockedUntil) {
+      if (now < gesture.lockedUntil || gesture.consumed) {
         gesture.delta = 0;
+        gesture.consumed = true;
         return;
       }
 
       gesture.delta += delta;
       if (Math.abs(gesture.delta) < 60) return;
 
-      const direction = Math.sign(gesture.delta);
       gesture.delta = 0;
+      gesture.consumed = true;
       gesture.lockedUntil = now + 750;
+      captureCardPositions();
       onSelect((currentIndex) => wrapCategoryIndex(currentIndex + direction));
     };
     const resetWheelDelta = () => {
       wheelGesture.current.delta = 0;
+      wheelGesture.current.direction = 0;
+      wheelGesture.current.consumed = false;
     };
 
     selector.addEventListener("wheel", handleWheel, { passive: false });
@@ -366,7 +299,7 @@ function CategorySelector({
       selector.removeEventListener("wheel", handleWheel);
       selector.removeEventListener("pointerleave", resetWheelDelta);
     };
-  }, [onSelect]);
+  }, [onSelect, captureCardPositions]);
 
   return (
     <div
@@ -406,16 +339,23 @@ function CategorySelector({
                 <span className="block h-full w-full animate-[homepage-category-indicator-bob_2s_ease-in-out_infinite] rounded-full bg-[#f97316] motion-reduce:animate-none" />
               </span>
             )}
-            <CategorySelectorItem
-              category={featureCategories[index]}
-              isActive={offset === 0}
-              onSelect={() => {
-                if (index === activeIndex) return;
-                wheelGesture.current.delta = 0;
-                wheelGesture.current.lockedUntil = performance.now() + 750;
-                onSelect(index);
-              }}
-            />
+            <div
+              data-category-card={featureCategories[index].id}
+              className="min-w-0 transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none"
+            >
+              <CategorySelectorItem
+                category={featureCategories[index]}
+                isActive={offset === 0}
+                onSelect={() => {
+                  if (index === activeIndex) return;
+                  captureCardPositions();
+                  wheelGesture.current.delta = 0;
+                  wheelGesture.current.consumed = true;
+                  wheelGesture.current.lockedUntil = performance.now() + 750;
+                  onSelect(index);
+                }}
+              />
+            </div>
           </div>
         );
       })}
