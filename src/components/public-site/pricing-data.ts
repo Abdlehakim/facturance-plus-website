@@ -17,7 +17,6 @@ export type Plan = Offer & {
   annualMonthlyEquivalent: string;
   annualTotal: string;
   annualSuffix: string;
-  annualSaving: string;
   volumeMonthlyPrice: string;
   volumeAnnualMonthlyEquivalent: string;
   volumeAnnualTotal: string;
@@ -39,7 +38,6 @@ export const plans: Plan[] = [
     annualMonthlyEquivalent: "25 DT",
     annualTotal: "300 DT",
     annualSuffix: "par entreprise",
-    annualSaving: "180 DT",
     volumeMonthlyPrice: "36 DT",
     volumeAnnualMonthlyEquivalent: "22,50 DT",
     volumeAnnualTotal: "270 DT",
@@ -64,7 +62,6 @@ export const plans: Plan[] = [
     annualMonthlyEquivalent: "30 DT",
     annualTotal: "360 DT",
     annualSuffix: "par entreprise",
-    annualSaving: "180 DT",
     volumeMonthlyPrice: "40,50 DT",
     volumeAnnualMonthlyEquivalent: "27 DT",
     volumeAnnualTotal: "324 DT",
@@ -89,7 +86,6 @@ export const plans: Plan[] = [
     annualMonthlyEquivalent: "40 DT",
     annualTotal: "480 DT",
     annualSuffix: "par entreprise",
-    annualSaving: "240 DT",
     volumeMonthlyPrice: "54 DT",
     volumeAnnualMonthlyEquivalent: "36 DT",
     volumeAnnualTotal: "432 DT",

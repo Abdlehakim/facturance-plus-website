@@ -36,44 +36,45 @@ function PlanCard({
       />
 
       <div className="relative flex h-full flex-col">
-        <div className="flex flex-wrap items-center justify-between gap-4">
-          <span className="grid size-10 place-items-center rounded-xl bg-primary text-white shadow-lg shadow-blue-900/15">
-            <Icon className="size-5" aria-hidden="true" />
+        {isAnnual && plan.badge && (
+          <span
+            className={`mb-3 inline-flex w-full flex-wrap items-center justify-center gap-2 rounded-xl border px-3 py-1.5 text-center ${plan.badge.tone}`}
+          >
+            <span className="text-xs font-bold uppercase tracking-wide">
+              {plan.badge.label}
+            </span>
+            {plan.badge.context && (
+              <span className="text-xs font-semibold">
+                {plan.badge.context}
+              </span>
+            )}
+          </span>
+        )}
+        <div className="flex items-center gap-3">
+          <span className="grid size-8 shrink-0 place-items-center rounded-lg bg-primary text-white shadow-lg shadow-blue-900/15">
+            <Icon className="size-4" aria-hidden="true" />
           </span>
 
-          {isAnnual && plan.badge && (
-            <span
-              className={`inline-flex flex-col rounded-full border px-3 py-1.5 text-xs font-bold uppercase tracking-wide ${plan.badge.tone}`}
-            >
-              <span>{plan.badge.label}</span>
-              {plan.badge.context && (
-                <span className="text-[10px] font-semibold normal-case tracking-normal">
-                  {plan.badge.context}
-                </span>
-              )}
-            </span>
-          )}
-        </div>
-
-        <div className="mt-3 lg:min-h-[7rem]">
-          <h3 className="text-xl font-bold tracking-tight text-[#0b294d]">
+          <h3 className="min-w-0 break-words text-xl font-bold tracking-tight text-[#0b294d]">
             {plan.name}
           </h3>
-          <p className="mt-1 text-sm leading-5 text-muted-foreground">
-            {plan.description}
-          </p>
+
         </div>
+        <p className="mt-2 text-sm leading-5 text-muted-foreground">
+          {plan.description}
+        </p>
 
         <div className="mt-3 rounded-xl border border-blue-100 bg-gradient-to-br from-blue-50 to-white p-4">
-          <p className="text-sm font-semibold text-[#0b294d]">
-            {isAnnual ? "Paiement annuel" : "Paiement mensuel"}
-          </p>
-          {isAnnual && (
-            <p className="mt-1 text-xs text-muted-foreground">
-              Équivalent mensuel du paiement annuel
+          {!isAnnual && (
+            <p className="text-sm font-semibold text-[#0b294d]">
+              Paiement mensuel
             </p>
           )}
-          <p className="mt-3 flex flex-wrap items-baseline gap-x-1 gap-y-1 text-primary">
+          <p
+            className={`flex flex-wrap items-baseline gap-x-1 gap-y-1 text-primary ${
+              isAnnual ? "" : "mt-3"
+            }`}
+          >
             {isAnnual && (
               <span className="mr-1 shrink-0 whitespace-nowrap text-sm text-slate-400 line-through">
                 {plan.monthlyPrice}
@@ -88,17 +89,14 @@ function PlanCard({
           </p>
 
           {isAnnual ? (
-            <>
-              <p className="mt-2 text-sm font-semibold text-[#0b294d]">
+            <div className="mt-2 flex flex-wrap items-baseline gap-x-2 gap-y-1">
+              <p className="text-sm font-semibold text-[#0b294d]">
                 {plan.annualTotal} facturés par an
               </p>
-              <p className="mt-1 text-sm text-muted-foreground">
+              <p className="text-sm text-muted-foreground">
                 {plan.annualSuffix}
               </p>
-              <span className="mt-3 inline-flex rounded-xl bg-emerald-100 px-3 py-1 text-sm font-semibold text-emerald-700">
-                Économisez {plan.annualSaving} / an {plan.annualSuffix}
-              </span>
-            </>
+            </div>
           ) : (
             <p className="mt-2 text-sm font-semibold text-[#0b294d]">
               {plan.monthlySuffix}
