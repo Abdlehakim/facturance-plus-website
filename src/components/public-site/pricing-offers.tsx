@@ -36,6 +36,9 @@ type Plan = {
   previousPrice?: string;
   price: string;
   priceSuffix?: string;
+  annualPrice?: string;
+  annualPreviousPrice?: string;
+  annualPriceSuffix?: string;
   note?: string;
   features: string[];
   highlighted?: boolean;
@@ -54,6 +57,9 @@ const plans: Plan[] = [
     previousPrice: "40 DT",
     price: "25 DT",
     priceSuffix: "par entreprise / mois",
+    annualPrice: "300 DT",
+    annualPreviousPrice: "480 DT",
+    annualPriceSuffix: "par entreprise / an",
     note: "Économisez 15 DT par entreprise",
     features: [
       "Données enregistrées localement",
@@ -73,6 +79,9 @@ const plans: Plan[] = [
     previousPrice: "45 DT",
     price: "30 DT",
     priceSuffix: "par entreprise / mois",
+    annualPrice: "360 DT",
+    annualPreviousPrice: "540 DT",
+    annualPriceSuffix: "par entreprise / an",
     note: "Économisez 15 DT par entreprise",
     features: [
       "Accès depuis votre navigateur",
@@ -92,6 +101,9 @@ const plans: Plan[] = [
     previousPrice: "60 DT",
     price: "40 DT",
     priceSuffix: "par entreprise / mois",
+    annualPrice: "480 DT",
+    annualPreviousPrice: "720 DT",
+    annualPriceSuffix: "par entreprise / an",
     note: "Économisez 20 DT par entreprise",
     features: [
       "Données enregistrées localement",
@@ -111,6 +123,8 @@ const plans: Plan[] = [
     },
     previousPrice: "120 DT",
     price: "67,50 DT",
+    annualPrice: "810 DT / an",
+    annualPreviousPrice: "1 440 DT",
     note: "Économisez 52,50 DT",
     features: [
       "Remise appliquée dès 3 entreprises",
@@ -179,32 +193,56 @@ function PlanCard({ plan }: { plan: Plan }) {
           </p>
         </div>
 
-        <div className="mt-3 rounded-xl border border-blue-100 bg-gradient-to-br from-blue-50 to-white p-4 lg:min-h-[8.5rem]">
-          <div className="flex flex-wrap items-end gap-x-3 gap-y-2">
-            {plan.previousPrice && (
-              <span className="pb-0.5 text-base font-semibold text-slate-400 line-through decoration-2">
-                {plan.previousPrice}
+        <div className="mt-3 rounded-xl border border-blue-100 bg-gradient-to-br from-blue-50 to-white p-4">
+          <div className="min-h-[10rem]">
+            <p className="mb-3 text-sm font-semibold text-[#0b294d]">
+              Paiement mensuel
+            </p>
+            <div className="flex flex-wrap items-end gap-x-3 gap-y-2">
+              {plan.previousPrice && (
+                <span className="pb-0.5 text-base font-semibold text-slate-400 line-through decoration-2">
+                  {plan.previousPrice}
+                </span>
+              )}
+              <span
+                className={`font-bold leading-none tracking-tight text-primary ${
+                  plan.priceSuffix || plan.previousPrice ? "text-4xl" : "text-xl"
+                }`}
+              >
+                {plan.price}
+              </span>
+            </div>
+
+            {plan.priceSuffix && (
+              <p className="mt-2 text-sm font-semibold text-[#0b294d]">
+                {plan.priceSuffix}
+              </p>
+            )}
+
+            {plan.note && (
+              <span className="mt-3 inline-flex rounded-full bg-emerald-100 px-3 py-1 text-sm font-semibold text-emerald-700">
+                {plan.note}
               </span>
             )}
-            <span
-              className={`font-bold leading-none tracking-tight text-primary ${
-                plan.priceSuffix || plan.previousPrice ? "text-4xl" : "text-xl"
-              }`}
-            >
-              {plan.price}
-            </span>
           </div>
 
-          {plan.priceSuffix && (
-            <p className="mt-2 text-sm font-semibold text-[#0b294d]">
-              {plan.priceSuffix}
-            </p>
-          )}
-
-          {plan.note && (
-            <span className="mt-3 inline-flex rounded-full bg-emerald-100 px-3 py-1 text-sm font-semibold text-emerald-700">
-              {plan.note}
-            </span>
+          {plan.annualPrice && (
+            <div className="mt-4 border-t border-blue-100 pt-4">
+              <p className="text-sm font-semibold text-[#0b294d]">
+                Paiement annuel
+              </p>
+              {plan.annualPreviousPrice && (
+                <p className="mt-2 text-sm font-semibold text-slate-400 line-through decoration-2">
+                  {plan.annualPreviousPrice}
+                </p>
+              )}
+              <p className="mt-1 text-2xl font-bold tracking-tight text-primary">
+                {plan.annualPrice}
+              </p>
+              <p className="mt-1 min-h-5 text-sm text-muted-foreground">
+                {plan.annualPriceSuffix}
+              </p>
+            </div>
           )}
         </div>
 

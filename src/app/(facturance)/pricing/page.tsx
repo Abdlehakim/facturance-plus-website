@@ -77,7 +77,8 @@ export default function PricingPage() {
         <p className="mt-5 text-base leading-8 text-muted-foreground sm:text-lg">
           Choisissez votre mode de fonctionnement, Local uniquement, Local +
           serveur ou Version web, puis profitez d’un tarif adapté au nombre
-          d’entreprises de votre compte. L’essai gratuit dure trois jours.
+          d’entreprises de votre compte, avec paiement mensuel ou annuel.
+          L’essai gratuit dure trois jours.
         </p>
 
         <div className="mt-7 flex flex-wrap items-center gap-3">
