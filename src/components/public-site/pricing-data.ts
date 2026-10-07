@@ -26,7 +26,7 @@ export const plans: Plan[] = [
   {
     name: "Local uniquement",
     description:
-      "Vos données restent enregistrées localement sur votre ordinateur, sans synchronisation avec le serveur Facturance.",
+      "Vos données restent enregistrées localement et accessibles uniquement depuis votre ordinateur.",
     icon: HardDrive,
     badge: {
       label: "-37,5 %",
@@ -50,7 +50,7 @@ export const plans: Plan[] = [
   {
     name: "Version web",
     description:
-      "Utilisez Facturance Plus directement depuis votre navigateur, sans installation : vos données sont hébergées sur le serveur Facturance.",
+      "Vos données sont hébergées sur le serveur Facturance et accessibles depuis votre navigateur.",
     icon: Globe,
     badge: {
       label: "-33,33 %",
