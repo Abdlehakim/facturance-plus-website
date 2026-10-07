@@ -12,7 +12,11 @@ import {
   UserRoundCheck,
 } from "lucide-react";
 
-import { PricingOffers } from "@/components/public-site/pricing-offers";
+import {
+  CustomPricingOfferSection,
+  MultiEnterprisePricingSection,
+  PricingOffers,
+} from "@/components/public-site/pricing-offers";
 import { Button } from "@/components/ui/button";
 import { buildPageMetadata } from "@/lib/seo";
 import { CLIENT_SIGNUP_URL } from "@/lib/urls";
@@ -66,119 +70,125 @@ const faqs = [
 
 export default function PricingPage() {
   return (
-    <div className="mx-auto w-full max-w-6xl px-5 py-12 sm:px-8 lg:px-10 lg:py-16">
-      <header className="max-w-3xl">
-        <p className="text-xs font-bold uppercase tracking-[0.22em] text-primary">
-          TARIFS
-        </p>
-        <h1 className="mt-3 text-3xl font-bold tracking-tight text-[#0b294d] sm:text-4xl lg:text-5xl">
-          Des tarifs simples pour Facturance Plus
-        </h1>
-        <p className="mt-5 text-base leading-8 text-muted-foreground sm:text-lg">
-          Choisissez votre mode de fonctionnement, Local uniquement, Local +
-          serveur ou Version web, puis profitez d’un tarif adapté au nombre
-          d’entreprises de votre compte, avec paiement mensuel ou annuel.
-          L’essai gratuit dure trois jours.
+    <div className="w-full">
+      <section className="mx-auto w-full max-w-6xl px-5 py-12 sm:px-8 lg:px-10 lg:py-16">
+        <header className="max-w-3xl">
+          <p className="text-xs font-bold uppercase tracking-[0.22em] text-primary">
+            TARIFS
+          </p>
+          <h1 className="mt-3 text-3xl font-bold tracking-tight text-[#0b294d] sm:text-4xl lg:text-5xl">
+            Choisissez votre mode de fonctionnement
+          </h1>
+          <p className="mt-5 text-base leading-8 text-muted-foreground sm:text-lg">
+            Local uniquement, Version web ou Local + serveur. Choisissez ensuite
+            votre mode de paiement. L’essai gratuit dure trois jours.
+          </p>
+
+          <div className="mt-7 flex flex-wrap items-center gap-3">
+            <Button asChild className="h-11 px-6">
+              <a href={CLIENT_SIGNUP_URL}>Démarrer l’essai gratuit</a>
+            </Button>
+            <Button asChild variant="outline" className="h-11 px-6">
+              <Link href="/features">Découvrir les fonctionnalités</Link>
+            </Button>
+          </div>
+        </header>
+
+        <div className="mt-12">
+          <PricingOffers />
+        </div>
+      </section>
+
+      <MultiEnterprisePricingSection />
+
+      <CustomPricingOfferSection />
+
+      <div className="mx-auto w-full max-w-6xl px-5 pb-12 sm:px-8 lg:px-10 lg:pb-16">
+        <section>
+          <div className="max-w-2xl">
+            <p className="text-xs font-bold uppercase tracking-[0.2em] text-primary">
+              INCLUS DANS L’APPLICATION
+            </p>
+            <h2 className="mt-2 text-2xl font-bold tracking-tight text-[#0b294d] sm:text-3xl">
+              Toutes les fonctionnalités, quel que soit le mode
+            </h2>
+            <p className="mt-3 text-base leading-7 text-muted-foreground">
+              Le mode choisi détermine où vos données sont enregistrées, pas ce
+              que vous pouvez faire.
+            </p>
+          </div>
+
+          <ul className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {includedFeatures.map(({ label, icon: Icon }) => (
+              <li
+                key={label}
+                className="flex items-center gap-3 rounded-xl border border-blue-100/80 bg-white p-4"
+              >
+                <span className="grid size-9 shrink-0 place-items-center rounded-xl bg-primary/10 text-primary">
+                  <Icon className="size-[18px]" aria-hidden="true" />
+                </span>
+                <span className="min-w-0 text-sm font-semibold leading-5 text-[#0b294d]">
+                  {label}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <p className="mt-6 max-w-3xl text-base leading-7 text-muted-foreground">
+          Pour le détail de ce que couvre l’application, voyez la page{" "}
+          <Link
+            href="/logiciel-facturation-tunisie"
+            className="font-semibold text-primary hover:underline"
+          >
+            logiciel de facturation en Tunisie
+          </Link>
+          .
         </p>
 
-        <div className="mt-7 flex flex-wrap items-center gap-3">
-          <Button asChild className="h-11 px-6">
+        <section className="mt-14">
+          <div className="max-w-2xl">
+            <p className="text-xs font-bold uppercase tracking-[0.2em] text-primary">
+              QUESTIONS FRÉQUENTES
+            </p>
+            <h2 className="mt-2 text-2xl font-bold tracking-tight text-[#0b294d] sm:text-3xl">
+              Avant de commencer
+            </h2>
+          </div>
+
+          <dl className="mt-6 grid gap-4 lg:grid-cols-2">
+            {faqs.map((faq) => (
+              <div
+                key={faq.question}
+                className="rounded-xl border border-blue-100/80 bg-white p-5"
+              >
+                <dt className="text-base font-bold text-[#0b294d]">
+                  {faq.question}
+                </dt>
+                <dd className="mt-2 text-sm leading-6 text-muted-foreground">
+                  {faq.answer}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </section>
+
+        <section className="mt-14 overflow-hidden rounded-2xl bg-[#0b294d] px-6 py-10 text-center sm:px-10">
+          <h2 className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
+            Prêt à essayer Facturance Plus ?
+          </h2>
+          <p className="mx-auto mt-3 max-w-xl text-base leading-7 text-blue-100">
+            Créez votre compte et découvrez l’application pendant trois jours,
+            sans engagement.
+          </p>
+          <Button
+            asChild
+            className="mt-7 h-11 bg-white px-6 text-[#0b294d] hover:bg-blue-50"
+          >
             <a href={CLIENT_SIGNUP_URL}>Démarrer l’essai gratuit</a>
           </Button>
-          <Button asChild variant="outline" className="h-11 px-6">
-            <Link href="/features">Découvrir les fonctionnalités</Link>
-          </Button>
-        </div>
-      </header>
-
-      <section className="mt-12">
-        <PricingOffers />
-      </section>
-
-      <section className="mt-14">
-        <div className="max-w-2xl">
-          <p className="text-xs font-bold uppercase tracking-[0.2em] text-primary">
-            INCLUS DANS L’APPLICATION
-          </p>
-          <h2 className="mt-2 text-2xl font-bold tracking-tight text-[#0b294d] sm:text-3xl">
-            Toutes les fonctionnalités, quel que soit le mode
-          </h2>
-          <p className="mt-3 text-base leading-7 text-muted-foreground">
-            Le mode choisi détermine où vos données sont enregistrées, pas ce
-            que vous pouvez faire.
-          </p>
-        </div>
-
-        <ul className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-          {includedFeatures.map(({ label, icon: Icon }) => (
-            <li
-              key={label}
-              className="flex items-center gap-3 rounded-xl border border-blue-100/80 bg-white p-4"
-            >
-              <span className="grid size-9 shrink-0 place-items-center rounded-xl bg-primary/10 text-primary">
-                <Icon className="size-[18px]" aria-hidden="true" />
-              </span>
-              <span className="min-w-0 text-sm font-semibold leading-5 text-[#0b294d]">
-                {label}
-              </span>
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      <p className="mt-6 max-w-3xl text-base leading-7 text-muted-foreground">
-        Pour le détail de ce que couvre l’application, voyez la page{" "}
-        <Link
-          href="/logiciel-facturation-tunisie"
-          className="font-semibold text-primary hover:underline"
-        >
-          logiciel de facturation en Tunisie
-        </Link>
-        .
-      </p>
-
-      <section className="mt-14">
-        <div className="max-w-2xl">
-          <p className="text-xs font-bold uppercase tracking-[0.2em] text-primary">
-            QUESTIONS FRÉQUENTES
-          </p>
-          <h2 className="mt-2 text-2xl font-bold tracking-tight text-[#0b294d] sm:text-3xl">
-            Avant de commencer
-          </h2>
-        </div>
-
-        <dl className="mt-6 grid gap-4 lg:grid-cols-2">
-          {faqs.map((faq) => (
-            <div
-              key={faq.question}
-              className="rounded-xl border border-blue-100/80 bg-white p-5"
-            >
-              <dt className="text-base font-bold text-[#0b294d]">
-                {faq.question}
-              </dt>
-              <dd className="mt-2 text-sm leading-6 text-muted-foreground">
-                {faq.answer}
-              </dd>
-            </div>
-          ))}
-        </dl>
-      </section>
-
-      <section className="mt-14 overflow-hidden rounded-2xl bg-[#0b294d] px-6 py-10 text-center sm:px-10">
-        <h2 className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
-          Prêt à essayer Facturance Plus ?
-        </h2>
-        <p className="mx-auto mt-3 max-w-xl text-base leading-7 text-blue-100">
-          Créez votre compte et découvrez l’application pendant trois jours,
-          sans engagement.
-        </p>
-        <Button
-          asChild
-          className="mt-7 h-11 bg-white px-6 text-[#0b294d] hover:bg-blue-50"
-        >
-          <a href={CLIENT_SIGNUP_URL}>Démarrer l’essai gratuit</a>
-        </Button>
-      </section>
+        </section>
+      </div>
     </div>
   );
 }

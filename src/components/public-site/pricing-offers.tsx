@@ -1,13 +1,8 @@
-import type { LucideIcon } from "lucide-react";
 import Link from "next/link";
-import {
-  CheckCircle2,
-  Cloud,
-  Globe,
-  HardDrive,
-  Layers,
-  Sparkles,
-} from "lucide-react";
+import { CheckCircle2, Layers, Sparkles } from "lucide-react";
+
+import { plans, type Offer } from "@/components/public-site/pricing-data";
+import { PricingBillingSelector } from "@/components/public-site/pricing-billing-selector";
 
 import { Button } from "@/components/ui/button";
 import { CLIENT_SIGNUP_URL } from "@/lib/urls";
@@ -21,124 +16,47 @@ import { CLIENT_SIGNUP_URL } from "@/lib/urls";
  * belongs to each page.
  */
 
-/**
- * Every figure below is the one the product section of the homepage already
- * publishes; nothing here is a new commercial claim. The trial facts come from
- * the terms page ("L'essai gratuit dure trois jours", one to three companies)
- * and the client application's own signup screen (local database only).
- */
-
-type Plan = {
-  name: string;
-  description: string;
-  icon: LucideIcon;
-  badge?: { label: string; tone: string };
-  previousPrice?: string;
-  price: string;
-  priceSuffix?: string;
-  annualPrice?: string;
-  annualPreviousPrice?: string;
-  annualPriceSuffix?: string;
-  note?: string;
-  features: string[];
-  highlighted?: boolean;
+type MultiCompanyPricing = Offer & {
+  heading: string;
+  introduction: string;
+  explanation: string;
+  pricingNote: string;
 };
 
-const plans: Plan[] = [
-  {
-    name: "Local uniquement",
-    description:
-      "Vos données restent enregistrées localement sur votre ordinateur, sans synchronisation avec le serveur Facturance.",
-    icon: HardDrive,
-    badge: {
-      label: "-37,5 %",
-      tone: "border-emerald-300 bg-emerald-100 text-emerald-800",
-    },
-    previousPrice: "40 DT",
-    price: "25 DT",
-    priceSuffix: "par entreprise / mois",
-    annualPrice: "300 DT",
-    annualPreviousPrice: "480 DT",
-    annualPriceSuffix: "par entreprise / an",
-    note: "Économisez 15 DT par entreprise",
-    features: [
-      "Données enregistrées localement",
-      "Toutes les fonctionnalités de gestion",
-      "Aucune synchronisation serveur",
-    ],
+type CustomPlan = Offer & {
+  price: string;
+};
+
+const multiCompanyPricing: MultiCompanyPricing = {
+  name: "Tarif multi-entreprises",
+  heading: "Profitez de 10 % de réduction dès 3 entreprises",
+  description:
+    "Gérez plusieurs entreprises et profitez d’une remise supplémentaire.",
+  icon: Layers,
+  badge: {
+    label: "-10 % dès 3 entreprises",
+    tone: "border-emerald-300 bg-emerald-100 text-emerald-800",
   },
-  {
-    name: "Version web",
-    description:
-      "Utilisez Facturance Plus directement depuis votre navigateur, sans installation : vos données sont hébergées sur le serveur Facturance.",
-    icon: Globe,
-    badge: {
-      label: "-33,33 %",
-      tone: "border-emerald-300 bg-emerald-100 text-emerald-800",
-    },
-    previousPrice: "45 DT",
-    price: "30 DT",
-    priceSuffix: "par entreprise / mois",
-    annualPrice: "360 DT",
-    annualPreviousPrice: "540 DT",
-    annualPriceSuffix: "par entreprise / an",
-    note: "Économisez 15 DT par entreprise",
-    features: [
-      "Accès depuis votre navigateur",
-      "Aucune installation sur votre ordinateur",
-      "Données hébergées sur le serveur Facturance",
-    ],
-  },
-  {
-    name: "Local + serveur",
-    description:
-      "Vos données restent disponibles localement et sont synchronisées avec le serveur Facturance.",
-    icon: Cloud,
-    badge: {
-      label: "Synchronisation incluse",
-      tone: "border-sky-300 bg-sky-100 text-sky-800",
-    },
-    previousPrice: "60 DT",
-    price: "40 DT",
-    priceSuffix: "par entreprise / mois",
-    annualPrice: "480 DT",
-    annualPreviousPrice: "720 DT",
-    annualPriceSuffix: "par entreprise / an",
-    note: "Économisez 20 DT par entreprise",
-    features: [
-      "Données enregistrées localement",
-      "Synchronisation sécurisée avec le serveur",
-      "Accès à l’espace client web",
-    ],
-    highlighted: true,
-  },
-  {
-    name: "Tarif multi-entreprises",
-    description:
-      "Remise sur volume, indépendante du mode de fonctionnement : 10 % de réduction supplémentaire à partir de 3 entreprises.",
-    icon: Layers,
-    badge: {
-      label: "-43,75 % au total",
-      tone: "border-emerald-300 bg-emerald-100 text-emerald-800",
-    },
-    previousPrice: "120 DT",
-    price: "67,50 DT",
-    annualPrice: "810 DT / an",
-    annualPreviousPrice: "1 440 DT",
-    note: "Économisez 52,50 DT",
-    features: [
-      "Remise appliquée dès 3 entreprises",
-      "Cumulable avec les deux modes",
-      "Un seul compte client",
-    ],
-  },
-];
+  introduction:
+    "À partir de 3 entreprises, bénéficiez de 10 % de réduction supplémentaire sur le tarif choisi.",
+  explanation:
+    "La remise s’applique au mode choisi — Local uniquement, Version web ou Local + serveur — et au cycle de paiement choisi. Elle se cumule avec le tarif annuel.",
+  pricingNote:
+    "Tarifs indiqués par entreprise. La remise de 10 % s’applique à partir de 3 entreprises. Le paiement annuel est facturé une fois par an.",
+  features: [
+    "Remise appliquée dès 3 entreprises",
+    "Applicable aux trois modes",
+    "Cumulable avec le tarif annuel",
+    "Un seul compte client",
+  ],
+};
 
 /**
  * Kept out of `plans` because it is not priced per entreprise and does not
- * belong in the four-card row: it is rendered once, full width, underneath.
+ * belong in the operating-mode grid: it is rendered once, full width, below
+ * the multi-enterprise section.
  */
-const customPlan: Plan = {
+const customPlan: CustomPlan = {
   name: "Offre personnalisée",
   description:
     "Une offre adaptée à votre organisation, à vos besoins spécifiques et à votre périmètre fonctionnel.",
@@ -155,117 +73,124 @@ const customPlan: Plan = {
   ],
 };
 
-function PlanCard({ plan }: { plan: Plan }) {
-  const Icon = plan.icon;
+export function MultiEnterprisePricingSection() {
+  const Icon = multiCompanyPricing.icon;
 
   return (
-    <div
-      className={`relative flex h-full flex-col overflow-hidden rounded-2xl border bg-white p-4 shadow-[0_18px_50px_rgba(11,41,77,0.09)] sm:p-5 ${
-        plan.highlighted ? "border-primary/40" : "border-blue-200"
-      }`}
+    <section
+      id="tarif-multi-entreprises"
+      className="scroll-mt-24 border-y border-blue-100 bg-gradient-to-br from-blue-50 via-white to-slate-50 py-12 sm:py-14 lg:py-16"
     >
-      <div
-        className="pointer-events-none absolute -right-20 -top-20 size-56 rounded-full bg-blue-100/70 blur-3xl"
-        aria-hidden="true"
-      />
-
-      <div className="relative flex h-full flex-col">
-        <div className="flex flex-wrap items-center justify-between gap-4">
-          <span className="grid size-10 place-items-center rounded-xl bg-primary text-white shadow-lg shadow-blue-900/15">
-            <Icon className="size-5" aria-hidden="true" />
-          </span>
-
-          {plan.badge && (
+      <div className="mx-auto w-full max-w-6xl px-5 sm:px-8 lg:px-10">
+        <div className="flex flex-wrap items-start justify-between gap-5">
+          <div className="flex min-w-0 items-start gap-3">
+            <span className="mt-1 grid size-10 shrink-0 place-items-center rounded-xl bg-primary text-white">
+              <Icon className="size-5" aria-hidden="true" />
+            </span>
+            <div className="min-w-0">
+              <p className="text-xs font-bold uppercase tracking-[0.22em] text-primary">
+                MULTI-ENTREPRISES
+              </p>
+              <h2 className="mt-3 text-2xl font-bold tracking-tight text-[#0b294d] sm:text-3xl">
+                {multiCompanyPricing.heading}
+              </h2>
+              <p className="mt-2 text-sm font-semibold text-primary">
+                {multiCompanyPricing.name}
+              </p>
+            </div>
+          </div>
+          {multiCompanyPricing.badge && (
             <span
-              className={`inline-flex items-center rounded-full border px-3 py-1.5 text-xs font-bold uppercase tracking-wide ${plan.badge.tone}`}
+              className={`inline-flex rounded-full border px-3 py-1.5 text-xs font-bold uppercase tracking-wide ${multiCompanyPricing.badge.tone}`}
             >
-              {plan.badge.label}
+              {multiCompanyPricing.badge.label}
             </span>
           )}
         </div>
 
-        <div className="mt-3 lg:min-h-[5.75rem]">
-          <h3 className="text-xl font-bold tracking-tight text-[#0b294d]">
-            {plan.name}
-          </h3>
-          <p className="mt-1 text-sm leading-5 text-muted-foreground">
-            {plan.description}
-          </p>
-        </div>
+        <p className="mt-5 text-base leading-7 text-[#0b294d] sm:text-lg">
+          {multiCompanyPricing.description}
+        </p>
+        <p className="mt-3 text-sm font-semibold leading-6 text-[#0b294d]">
+          {multiCompanyPricing.introduction}
+        </p>
+        <p className="mt-1 max-w-3xl text-sm leading-6 text-muted-foreground">
+          {multiCompanyPricing.explanation}
+        </p>
 
-        <div className="mt-3 rounded-xl border border-blue-100 bg-gradient-to-br from-blue-50 to-white p-4">
-          <div className="min-h-[10rem]">
-            <p className="mb-3 text-sm font-semibold text-[#0b294d]">
-              Paiement mensuel
-            </p>
-            <div className="flex flex-wrap items-end gap-x-3 gap-y-2">
-              {plan.previousPrice && (
-                <span className="pb-0.5 text-base font-semibold text-slate-400 line-through decoration-2">
-                  {plan.previousPrice}
-                </span>
-              )}
-              <span
-                className={`font-bold leading-none tracking-tight text-primary ${
-                  plan.priceSuffix || plan.previousPrice ? "text-4xl" : "text-xl"
-                }`}
-              >
-                {plan.price}
-              </span>
-            </div>
-
-            {plan.priceSuffix && (
-              <p className="mt-2 text-sm font-semibold text-[#0b294d]">
-                {plan.priceSuffix}
-              </p>
-            )}
-
-            {plan.note && (
-              <span className="mt-3 inline-flex rounded-full bg-emerald-100 px-3 py-1 text-sm font-semibold text-emerald-700">
-                {plan.note}
-              </span>
-            )}
-          </div>
-
-          {plan.annualPrice && (
-            <div className="mt-4 border-t border-blue-100 pt-4">
-              <p className="text-sm font-semibold text-[#0b294d]">
-                Paiement annuel
-              </p>
-              {plan.annualPreviousPrice && (
-                <p className="mt-2 text-sm font-semibold text-slate-400 line-through decoration-2">
-                  {plan.annualPreviousPrice}
+        <div className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {plans.map((plan) => (
+            <div
+              key={plan.name}
+              className="min-w-0 rounded-xl border border-blue-100 bg-white p-4"
+            >
+              <h3 className="text-base font-bold text-[#0b294d]">
+                {plan.name}
+              </h3>
+              <div className="mt-3">
+                <p className="text-sm font-semibold text-[#0b294d]">
+                  Paiement mensuel
                 </p>
-              )}
-              <p className="mt-1 text-2xl font-bold tracking-tight text-primary">
-                {plan.annualPrice}
-              </p>
-              <p className="mt-1 min-h-5 text-sm text-muted-foreground">
-                {plan.annualPriceSuffix}
-              </p>
+                <p className="mt-2 flex flex-wrap items-baseline gap-x-2 gap-y-1">
+                  <span className="text-sm text-slate-400 line-through">
+                    {plan.monthlyPrice}
+                  </span>
+                  <span className="text-sm text-muted-foreground">→</span>
+                  <span className="text-xl font-bold text-primary">
+                    {plan.volumeMonthlyPrice}
+                  </span>
+                </p>
+                <p className="mt-1 text-sm text-muted-foreground">
+                  par entreprise / mois
+                </p>
+              </div>
+              <div className="mt-4 border-t border-blue-100 pt-3">
+                <p className="text-sm font-semibold text-[#0b294d]">
+                  Paiement annuel
+                </p>
+                <p className="mt-2 flex flex-wrap items-baseline gap-x-2 gap-y-1">
+                  <span className="text-sm text-slate-400 line-through">
+                    {plan.annualMonthlyEquivalent}
+                  </span>
+                  <span className="text-sm text-muted-foreground">→</span>
+                  <span className="text-xl font-bold text-primary">
+                    {plan.volumeAnnualMonthlyEquivalent}
+                  </span>
+                </p>
+                <p className="mt-1 text-sm text-muted-foreground">
+                  / mois équivalent, par entreprise
+                </p>
+                <p className="mt-2 text-sm font-semibold leading-5 text-[#0b294d]">
+                  {plan.volumeAnnualTotal} facturés par an / entreprise
+                </p>
+              </div>
             </div>
-          )}
+          ))}
         </div>
 
-        <ul className="mt-4 grid gap-3">
-          {plan.features.map((feature) => (
-            <li key={feature} className="flex items-center gap-3">
-              <span className="grid size-4 shrink-0 place-items-center rounded-full bg-primary/10 text-primary">
-                <CheckCircle2 className="size-4" aria-hidden="true" />
-              </span>
-              <span className="text-sm font-semibold leading-5 text-[#0b294d]">
-                {feature}
-              </span>
-            </li>
-          ))}
-        </ul>
-
-        <div className="mt-auto pt-5">
-          <Button asChild className="h-11 w-full">
+        <p className="mt-4 text-sm leading-6 text-muted-foreground">
+          {multiCompanyPricing.pricingNote}
+        </p>
+        <div className="mt-5 flex flex-col gap-5 border-t border-blue-100 pt-5 lg:flex-row lg:items-center lg:justify-between">
+          <ul className="grid gap-3 sm:grid-cols-2">
+            {multiCompanyPricing.features.map((feature) => (
+              <li key={feature} className="flex min-w-0 items-center gap-2">
+                <CheckCircle2
+                  className="size-4 shrink-0 text-primary"
+                  aria-hidden="true"
+                />
+                <span className="text-sm font-semibold text-[#0b294d]">
+                  {feature}
+                </span>
+              </li>
+            ))}
+          </ul>
+          <Button asChild className="h-11 w-full lg:w-auto">
             <a href={CLIENT_SIGNUP_URL}>Démarrer l’essai gratuit</a>
           </Button>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 
@@ -275,7 +200,7 @@ function PlanCard({ plan }: { plan: Plan }) {
  * Same tokens as PlanCard - only the arrangement differs, because the stacked
  * card stretched to the container width would have been mostly empty space.
  */
-function CustomPlanCard({ plan }: { plan: Plan }) {
+function CustomPlanCard({ plan }: { plan: CustomPlan }) {
   const Icon = plan.icon;
 
   return (
@@ -350,20 +275,14 @@ export type StructuredPricingOffer = {
  * The offers as structured data, parsed from the very strings the cards render
  * so a price can never be published with two different values.
  *
- * Only plans quoting a recurring per-entreprise price qualify: the
- * multi-entreprises card shows a three-company total rather than a unit price,
- * and the custom offer carries no numeric price at all.
+ * Only the three operating modes qualify. These are the normal monthly rates;
+ * annual commitments and volume discounts have separate commercial conditions.
  */
 export function getStructuredPricingOffers(): StructuredPricingOffer[] {
   return plans.flatMap((plan) => {
-    if (!plan.priceSuffix) {
-      return [];
-    }
-
-    // "67,50 DT" -> 67.5; anything that is not a number is left out rather
-    // than guessed at.
+    // Parse the normal monthly amount, never the annual monthly equivalent.
     const amount = Number(
-      plan.price.replace(/[^\d,.]/g, "").replace(",", "."),
+      plan.monthlyPrice.replace(/[^\d,.]/g, "").replace(",", "."),
     );
 
     return Number.isFinite(amount) && amount > 0
@@ -372,29 +291,24 @@ export function getStructuredPricingOffers(): StructuredPricingOffer[] {
             name: plan.name,
             price: amount,
             priceCurrency: "TND",
-            unitText: plan.priceSuffix,
+            unitText: plan.monthlySuffix,
           },
         ]
       : [];
   });
 }
 
-/**
- * The four per-entreprise offers in one row, then the custom offer full width
- * beneath them. The wrapping section supplies its own container and spacing.
- */
+/** The three operating modes; page-level sections own all surrounding content. */
 export function PricingOffers() {
-  return (
-    <>
-      <div className="grid items-stretch gap-5 md:grid-cols-2 xl:grid-cols-4">
-        {plans.map((plan) => (
-          <PlanCard key={plan.name} plan={plan} />
-        ))}
-      </div>
+  return <PricingBillingSelector />;
+}
 
-      <div className="mt-5">
+export function CustomPricingOfferSection() {
+  return (
+    <section className="bg-white py-12 sm:py-14 lg:py-16">
+      <div className="mx-auto w-full max-w-6xl px-5 sm:px-8 lg:px-10">
         <CustomPlanCard plan={customPlan} />
       </div>
-    </>
+    </section>
   );
 }

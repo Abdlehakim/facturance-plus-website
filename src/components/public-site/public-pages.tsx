@@ -43,7 +43,11 @@ import {
 import Image from "next/image"
 import Link from "next/link"
 
-import { PricingOffers } from "@/components/public-site/pricing-offers"
+import {
+  CustomPricingOfferSection,
+  MultiEnterprisePricingSection,
+  PricingOffers,
+} from "@/components/public-site/pricing-offers"
 import { HeroVideoDemo } from "@/components/public-site/hero-video-demo"
 import { HomepageFeaturesExplorer } from "@/components/public-site/homepage-features-explorer"
 import { Button } from "@/components/ui/button"
@@ -702,11 +706,12 @@ export function FacturancePlusPage() {
             </p>
 
             <h2 className="mt-2 text-2xl font-bold tracking-tight text-[#0b294d] sm:text-3xl">
-              Choisissez l’offre adaptée à votre entreprise.
+              Choisissez votre mode de fonctionnement
             </h2>
 
             <p className="mx-auto mt-2 max-w-3xl text-sm leading-6 text-muted-foreground sm:text-base">
-              Choisissez votre mode de fonctionnement, Local uniquement, Local + serveur ou Version web, puis profitez d’un tarif adapté au nombre d’entreprises de votre compte.
+              Local uniquement, Version web ou Local + serveur.
+              Choisissez ensuite votre mode de paiement.
             </p>
           </div>
 
@@ -715,6 +720,10 @@ export function FacturancePlusPage() {
           </div>
         </div>
       </section>
+
+      <MultiEnterprisePricingSection />
+
+      <CustomPricingOfferSection />
 
       <section className="relative overflow-hidden bg-gradient-to-br from-[#eef6ff] via-white to-[#edf5ff]">
         <div
