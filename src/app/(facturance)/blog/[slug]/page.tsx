@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { ArrowLeft, CalendarDays, Clock3, UserRound } from "lucide-react";
 
 import { MarkdownContent } from "@/components/blog/markdown-content";
+import { Button } from "@/components/ui/button";
 import {
   getAllBlogPosts,
   getBlogPostBySlug,
@@ -11,6 +12,7 @@ import {
 } from "@/lib/blog";
 import { publicSiteConfig } from "@/lib/public-site-config";
 import { absoluteUrl, buildPageMetadata } from "@/lib/seo";
+import { CLIENT_SIGNUP_URL } from "@/lib/urls";
 
 type BlogArticlePageProps = {
   params: Promise<{ slug: string }>;
@@ -175,6 +177,30 @@ export default async function BlogArticlePage({
           <MarkdownContent content={post.content} />
         </div>
       </article>
+
+      <aside
+        aria-labelledby="article-product-cta"
+        className="mt-12 rounded-2xl border border-blue-100/80 bg-blue-50/40 p-6"
+      >
+        <h2
+          id="article-product-cta"
+          className="text-lg font-bold tracking-tight text-[#0b294d]"
+        >
+          Découvrir Facturance Plus
+        </h2>
+        <p className="mt-2 text-sm leading-6 text-muted-foreground">
+          Devis, factures, clients, fournisseurs, articles, stocks et
+          règlements, dans une seule application.
+        </p>
+        <div className="mt-5 flex flex-wrap items-center gap-3">
+          <Button asChild className="h-11 px-6">
+            <Link href="/features">Voir les fonctionnalités</Link>
+          </Button>
+          <Button asChild variant="outline" className="h-11 px-6">
+            <a href={CLIENT_SIGNUP_URL}>Démarrer l’essai gratuit</a>
+          </Button>
+        </div>
+      </aside>
 
       <Link
         href="/blog"

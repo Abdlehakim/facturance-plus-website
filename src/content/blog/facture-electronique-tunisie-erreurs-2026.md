@@ -32,7 +32,7 @@ Posez-vous une question simple : si votre client voulait intégrer votre facture
 
 Le réflexe naturel consiste à attendre qu’une échéance soit fixée. C’est un mauvais calcul, parce que la partie longue de la transition n’est pas technique mais organisationnelle. Un logiciel se change en quelques semaines ; cinq ans de fiches clients approximatives ne se corrigent pas en quelques semaines.
 
-Un échange automatisé ne tolère pas l’à-peu-près. Si l’identifiant fiscal d’un client est absent, mal saisi, ou rangé dans un champ « commentaire » parce qu’il n’y avait pas de case prévue, aucun traitement automatique ne fonctionnera.
+Une donnée approximative passe inaperçue tant qu’un humain relit le document ; elle bloque net dès qu’une machine le traite. Si l’identifiant fiscal d’un client est absent, mal saisi, ou rangé dans un champ « commentaire » parce qu’il n’y avait pas de case prévue, aucun traitement automatique ne fonctionnera.
 
 ### Ce qu’il faut auditer dès maintenant
 
@@ -82,7 +82,7 @@ Un dossier de PDF sur un ordinateur de bureau, sans sauvegarde, n’est pas un a
 - Pouvez-vous retrouver une facture précise de l’an dernier en moins d’une minute ?
 - Sauriez-vous dire qui a modifié un document, et quand ?
 
-Ces questions valent indépendamment de tout dispositif réglementaire. Elles décrivent une gestion documentaire saine, et c’est exactement ce que le passage à la facture électronique présuppose.
+Si l’une de ces quatre réponses manque, le problème n’est pas réglementaire : c’est un risque que votre entreprise porte déjà aujourd’hui. Une copie conservée ailleurs que sur le poste, un accès qui ne dépend pas d’une seule personne et un historique consultable répondent aux quatre d’un coup.
 
 ## Erreur 6 — Mélanger clients, documents et suivi des règlements
 
@@ -94,7 +94,7 @@ La fragmentation coûte cher en temps, et elle produit exactement le type d’in
 
 ## Erreur 7 — Ne pas formaliser le circuit de validation
 
-Dans beaucoup de petites structures, l’émission d’une facture repose sur une personne et sur sa mémoire. Cela fonctionne jusqu’au jour où cette personne est absente, part, ou se trompe.
+Le circuit existe toujours, même lorsqu’il n’est écrit nulle part : quelqu’un prépare le document, quelqu’un le vérifie, quelqu’un l’envoie. Le problème est qu’il tient dans la tête d’une seule personne, et qu’il s’interrompt le jour où elle est absente, change de poste, ou se trompe.
 
 Un circuit automatisé suppose des rôles explicites. Il n’est pas nécessaire d’écrire une procédure de dix pages : quelques lignes suffisent à clarifier qui fait quoi.
 
@@ -104,7 +104,7 @@ Un circuit automatisé suppose des rôles explicites. Il n’est pas nécessaire
 - **Règlement** — qui enregistre les paiements, et à quelle fréquence ?
 - **Archivage** — où le document part-il une fois réglé, et pour combien de temps ?
 
-L’exercice révèle presque toujours des étapes implicites que personne n’avait formalisées. Ce sont ces étapes-là qui résistent à l’automatisation.
+En écrivant ces cinq lignes, on découvre presque toujours une étape que personne n’avait posée : un accord donné de vive voix, une vérification faite « quand on y pense », une validation qui ne tient qu’à une seule personne. Ce sont celles-là qu’il faut trancher avant d’automatiser quoi que ce soit, parce qu’un outil ne tranchera pas à votre place.
 
 ## Erreur 8 — Choisir un logiciel sur la foi d’une promesse commerciale
 

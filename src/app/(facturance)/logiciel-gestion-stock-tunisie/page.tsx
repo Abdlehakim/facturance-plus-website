@@ -168,7 +168,9 @@ function StructuredData() {
         url: pageUrl,
         name: "Logiciel de gestion de stock en Tunisie",
         inLanguage: "fr",
-        isPartOf: { "@id": `${homeUrl}#organization` },
+        // A WebPage belongs to the site, not to the publisher: this is the
+        // WebSite the homepage graph defines, under the same @id.
+        isPartOf: { "@id": `${homeUrl}#website` },
         about: { "@id": `${homeUrl}#software-application` },
       },
     ],
@@ -257,7 +259,7 @@ export default function LogicielGestionStockTunisiePage() {
         <div className="mt-8 overflow-hidden rounded-2xl border border-blue-100/80 bg-white p-3 shadow-[0_18px_50px_rgba(11,41,77,0.09)] sm:p-4">
           <Image
             src="/img-main-page.png"
-            alt="Gestion des articles et du stock dans Facturance Plus"
+            alt="Écran principal de Facturance Plus sur un ordinateur portable : onglets Documents, Stock, Paiements et Trésorerie, et actions sur les articles dont « Seuils & alertes »"
             width={1350}
             height={875}
             sizes="(min-width: 1024px) 70vw, 100vw"

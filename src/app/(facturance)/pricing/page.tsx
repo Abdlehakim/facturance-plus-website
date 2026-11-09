@@ -14,19 +14,97 @@ import {
 
 import {
   CustomPricingOfferSection,
+  getStructuredPricingOffers,
   MultiEnterprisePricingSection,
   PricingOffers,
 } from "@/components/public-site/pricing-offers";
 import { Button } from "@/components/ui/button";
-import { buildPageMetadata } from "@/lib/seo";
+import { publicSiteConfig } from "@/lib/public-site-config";
+import { absoluteUrl, buildPageMetadata } from "@/lib/seo";
 import { CLIENT_SIGNUP_URL } from "@/lib/urls";
 
+const PATH = "/pricing";
+
+/*
+ * Held in constants so the WebPage node below and the page metadata cannot
+ * state different things. The emitted metadata values are unchanged.
+ */
+const PAGE_TITLE = "Tarifs du logiciel de facturation en Tunisie";
+const PAGE_DESCRIPTION =
+  "Les tarifs de Facturance Plus : Local uniquement, Version web ou Local + serveur, remise à partir de trois entreprises, et trois jours d’essai gratuit.";
+
 export const metadata: Metadata = buildPageMetadata({
-  title: "Tarifs du logiciel de facturation en Tunisie",
-  description:
-    "Les tarifs de Facturance Plus : Local uniquement, Version web ou Local + serveur, remise à partir de trois entreprises, et trois jours d’essai gratuit.",
-  path: "/pricing",
+  title: PAGE_TITLE,
+  description: PAGE_DESCRIPTION,
+  path: PATH,
 });
+
+/**
+ * The offers this page publishes, attached to the product entity that already
+ * owns them elsewhere.
+ *
+ * Nothing is restated by hand: the amounts, the currency and the billing unit
+ * all come from `getStructuredPricingOffers()`, the same source the visible
+ * cards read, so the structured price cannot drift from the published one. The
+ * custom plan has no fixed amount and that helper already excludes it, so no
+ * price is invented for it. No availability, discount, rating or guarantee is
+ * asserted - the page states none of those as a fact a crawler could verify.
+ */
+function PricingStructuredData() {
+  const homeUrl = `${publicSiteConfig.siteUrl}/`;
+  const pageUrl = absoluteUrl(PATH);
+
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": pageUrl,
+        url: pageUrl,
+        name: PAGE_TITLE,
+        description: PAGE_DESCRIPTION,
+        inLanguage: "fr",
+        isPartOf: { "@id": `${homeUrl}#website` },
+      },
+      {
+        // Same @id as the homepage and /logiciel-facturation-tunisie graphs:
+        // one product described on three pages, not three entities. Every
+        // field also stated there is repeated verbatim; `operatingSystem` in
+        // particular must stay identical across all three.
+        "@type": "SoftwareApplication",
+        "@id": `${homeUrl}#software-application`,
+        name: publicSiteConfig.brandName,
+        url: homeUrl,
+        applicationCategory: "BusinessApplication",
+        operatingSystem: "Windows 10, Windows 11, Web",
+        inLanguage: "fr",
+        publisher: { "@id": `${homeUrl}#organization` },
+        mainEntityOfPage: { "@id": pageUrl },
+        offers: getStructuredPricingOffers().map((offer) => ({
+          "@type": "Offer",
+          name: offer.name,
+          price: String(offer.price),
+          priceCurrency: offer.priceCurrency,
+          url: pageUrl,
+          priceSpecification: {
+            "@type": "UnitPriceSpecification",
+            price: offer.price,
+            priceCurrency: offer.priceCurrency,
+            unitText: offer.unitText,
+          },
+        })),
+      },
+    ],
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      // Serialized from values this repository controls, never from input.
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+    />
+  );
+}
 
 /** The capabilities the product section already lists, unchanged. */
 const includedFeatures: { label: string; icon: LucideIcon }[] = [
@@ -71,6 +149,7 @@ const faqs = [
 export default function PricingPage() {
   return (
     <div className="w-full">
+      <PricingStructuredData />
       <section className="mx-auto w-full max-w-6xl px-5 py-12 sm:px-8 lg:px-10 lg:py-16">
         <header className="max-w-3xl">
           <p className="text-xs font-bold uppercase tracking-[0.22em] text-primary">

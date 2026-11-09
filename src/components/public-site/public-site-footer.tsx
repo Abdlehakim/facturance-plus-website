@@ -380,6 +380,8 @@ export function PublicSiteFooter() {
           <div className="text-sm font-normal leading-6 text-slate-300">
             <p>
               © {currentYear} {publicSiteConfig.brandName}. Tous droits réservés.
+              {" "}
+              Édité par {publicSiteConfig.publisherName}.
             </p>
             <p className="mt-2 flex flex-wrap items-center gap-2">
               <span>Conçu avec</span>

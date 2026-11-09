@@ -97,7 +97,7 @@ L’installation suit la même logique. Installer une application sur un poste e
 
 ## Comparer les offres
 
-Les trois modes sont proposés à des tarifs différents, exprimés par entreprise et par mois, avec une remise supplémentaire à partir de trois entreprises rattachées au même compte. Le détail des offres, y compris l’offre personnalisée pour les besoins spécifiques, figure sur la page des tarifs.
+Les trois modes sont proposés à des tarifs différents, exprimés par entreprise et par mois, avec une remise supplémentaire à partir de trois entreprises rattachées au même compte. Le détail des offres, y compris l’offre personnalisée pour les besoins spécifiques, figure sur la page des tarifs. Si votre comparaison dépasse les modes de Facturance Plus, le [comparatif des solutions de facturation en Tunisie](/comparatif-logiciel-facturation-tunisie) reprend ces mêmes questions — logiciel Windows, solution 100 % Web, travail sans connexion — pour les autres outils disponibles sur le marché.
 
 **Pour aller plus loin**
 

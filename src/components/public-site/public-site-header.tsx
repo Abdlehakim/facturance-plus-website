@@ -6,6 +6,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
   BadgeDollarSign,
+  Building2,
   LayoutGrid,
   Library,
   LogIn,
@@ -38,6 +39,7 @@ const publicNavigation = [
   { label: "Blog", href: "/blog", icon: Newspaper },
   { label: "Fonctionnalités", href: "/features", icon: LayoutGrid },
   { label: "Ressources utiles", href: "/resources", icon: Library },
+  { label: "Nos clients", href: "/nos-clients", icon: Building2 },
   { label: "Contactez-nous", href: "/contact", icon: MessageCircle },
 ];
 

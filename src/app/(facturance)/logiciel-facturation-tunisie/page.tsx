@@ -599,11 +599,9 @@ function StructuredData() {
         operatingSystem: "Windows 10, Windows 11, Web",
         inLanguage: "fr",
         mainEntityOfPage: { "@type": "WebPage", "@id": pageUrl },
-        publisher: {
-          "@type": "Organization",
-          name: publicSiteConfig.publisherName,
-          url: homeUrl,
-        },
+        // The Organization the homepage graph already defines under this @id,
+        // rather than an anonymous copy of it: one publisher identity.
+        publisher: { "@id": `${homeUrl}#organization` },
         // Read from the pricing cards rather than restated here.
         offers: getStructuredPricingOffers().map((offer) => ({
           "@type": "Offer",
