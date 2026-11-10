@@ -66,17 +66,42 @@ function VerdictCell({ verdict }: { verdict: Verdict }) {
 
 function StructuredData() {
   const homeUrl = `${publicSiteConfig.siteUrl}/`;
+  const pageUrl = absoluteUrl(PATH);
+  const pageName = "Comparatif des logiciels de facturation en Tunisie";
 
+  /*
+   * The breadcrumb is unchanged; it now shares a @graph with a minimal WebPage
+   * so this page carries the same site identity as the other landing pages.
+   *
+   * Deliberately absent: no ItemList, no aggregateRating and no review score.
+   * The comparison publishes per-criterion observations with sources, not
+   * scores, and inventing a rating would misrepresent it. `dateModified` is
+   * also omitted: the only review date here is CHECKED_AT, a French display
+   * string rather than an ISO date, and deriving one would risk drifting from
+   * the date the page actually prints.
+   */
   const structuredData = {
     "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Accueil", item: homeUrl },
+    "@graph": [
       {
-        "@type": "ListItem",
-        position: 2,
-        name: "Comparatif des logiciels de facturation en Tunisie",
-        item: absoluteUrl(PATH),
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Accueil", item: homeUrl },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: pageName,
+            item: pageUrl,
+          },
+        ],
+      },
+      {
+        "@type": "WebPage",
+        "@id": pageUrl,
+        url: pageUrl,
+        name: pageName,
+        inLanguage: "fr",
+        isPartOf: { "@id": `${homeUrl}#website` },
       },
     ],
   };

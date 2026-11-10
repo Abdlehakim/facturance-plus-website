@@ -23,6 +23,10 @@ const PUBLIC_PATHS: { path: string; priority: number }[] = [
   { path: "/features", priority: 0.9 },
   { path: "/blog", priority: 0.8 },
   { path: "/resources", priority: 0.7 },
+  // Server-rendered from the public showcase endpoint, so its content can
+  // change without a deployment. No lastModified is reported: the set is
+  // read live and there is no date that describes it.
+  { path: "/nos-clients", priority: 0.6 },
   { path: "/contact", priority: 0.7 },
   { path: "/support", priority: 0.6 },
   { path: "/privacy", priority: 0.3 },

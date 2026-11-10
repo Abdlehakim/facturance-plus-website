@@ -121,7 +121,7 @@ export default function FeaturesPage() {
             asChild
             className="h-11 bg-white px-6 text-[#0b294d] hover:bg-blue-50"
           >
-            <a href={CLIENT_SIGNUP_URL}>Commencer l’essai gratuit</a>
+            <a href={CLIENT_SIGNUP_URL}>Démarrer l’essai gratuit</a>
           </Button>
           <Button
             asChild

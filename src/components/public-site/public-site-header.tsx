@@ -6,6 +6,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
   BadgeDollarSign,
+  Building2,
   LayoutGrid,
   Library,
   LogIn,
@@ -34,6 +35,7 @@ import { CLIENT_LOGIN_URL, CLIENT_SIGNUP_URL } from "@/lib/urls";
  * also match every route under the prefix test below.
  */
 const publicNavigation = [
+  { label: "Nos clients", href: "/nos-clients", icon: Building2 },
   { label: "Tarifs", href: "/pricing", icon: BadgeDollarSign },
   { label: "Blog", href: "/blog", icon: Newspaper },
   { label: "Fonctionnalités", href: "/features", icon: LayoutGrid },

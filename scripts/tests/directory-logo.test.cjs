@@ -1,0 +1,23 @@
+"use strict";
+const test=require("node:test"),assert=require("node:assert/strict"),fs=require("node:fs"),path=require("node:path"),vm=require("node:vm");
+const ts=require(path.resolve(__dirname,"../../../../services/api/node_modules/typescript"));
+const revision="10000000-0000-4000-8000-000000000001",apiUrl="/api/public/showcase/synthetic/logo/"+revision;
+const source=fs.readFileSync(path.resolve(__dirname,"../../src/lib/showcase-api.ts"),"utf8");
+const exportsObject={};vm.runInNewContext(ts.transpileModule(source,{compilerOptions:{target:ts.ScriptTarget.ES2023,module:ts.ModuleKind.CommonJS}}).outputText,{exports:exportsObject,process:{env:{NODE_ENV:"production"}},URL,URLSearchParams,AbortSignal,fetch:()=>{throw Error("unexpected network");}});
+test("Website maps only a same-company controlled API revision to its local live route",()=>{assert.equal(exportsObject.safeDirectoryLogoUrl(apiUrl,"synthetic"),"/nos-clients/logo/synthetic/"+revision);});
+test("Website refuses external domains, another company, traversal and URL decoration",()=>{for(const value of ["https://evil.invalid/logo.png","//evil.invalid/logo",apiUrl+"?cache=1",apiUrl+"#fragment","/api/public/showcase/other/logo/"+revision,"/api/public/showcase/synthetic/logo/../../private"])assert.equal(exportsObject.safeDirectoryLogoUrl(value,"synthetic"),null);});
+const routeSource=fs.readFileSync(path.resolve(__dirname,"../../src/app/(facturance)/nos-clients/logo/[slug]/[revision]/route.ts"),"utf8");
+const compiled=ts.transpileModule(routeSource,{compilerOptions:{target:ts.ScriptTarget.ES2023,module:ts.ModuleKind.CommonJS}}).outputText;
+function route(fetch){const out={},calls=[];vm.runInNewContext(compiled,{exports:out,require:name=>{assert.equal(name,"@/lib/showcase-api");return{resolveApiBaseUrl:()=>"http://synthetic-api.invalid/api"};},fetch:async(...a)=>{calls.push(a);return fetch(...a);},Response,Request,Buffer,AbortSignal});return{GET:out.GET,calls};}
+const params={params:Promise.resolve({slug:"synthetic",revision})};
+test("actual image route forwards only the controlled live URL with no-store and no redirects",async()=>{const bytes=Buffer.from("524946460400000057454250", "hex"),h=route(async()=>new Response(bytes,{headers:{"content-type":"image/webp"}}));const response=await h.GET(new Request("http://synthetic.invalid"),params);assert.equal(response.status,200);assert.equal(response.headers.get("cache-control"),"no-store, max-age=0");assert.equal(response.headers.get("x-content-type-options"),"nosniff");assert.equal(h.calls[0][0],"http://synthetic-api.invalid/api/public/showcase/synthetic/logo/"+revision);assert.equal(h.calls[0][1].cache,"no-store");assert.equal(h.calls[0][1].redirect,"error");});
+test("withdrawn, missing, wrong-type, corrupt and oversized assets have no cached fallback",async()=>{for(const response of [new Response(null,{status:404}),new Response("<svg/>",{headers:{"content-type":"image/svg+xml"}}),new Response("corrupt",{headers:{"content-type":"image/webp"}}),new Response(Buffer.alloc(262145),{headers:{"content-type":"image/webp"}})]){const h=route(async()=>response);assert.equal((await h.GET(new Request("http://synthetic.invalid"),params)).status,404);}});
+test("invalid route parameters never reach any upstream",async()=>{const h=route(async()=>{throw Error("must not fetch");});assert.equal((await h.GET(new Request("http://synthetic.invalid"),{params:Promise.resolve({slug:"../private",revision})})).status,404);assert.equal(h.calls.length,0);});
+test("actual public card logo has bounded contain-fit geometry and an accessible neutral fallback",()=>{
+ const component=fs.readFileSync(path.resolve(__dirname,"../../src/components/public-site/directory-company-logo.tsx"),"utf8"),out={};
+ const modules=path.resolve(__dirname,"../../node_modules"),React=require(path.join(modules,"react")),server=require(path.join(modules,"react-dom/server"));
+ vm.runInNewContext(ts.transpileModule(component,{compilerOptions:{target:ts.ScriptTarget.ES2023,module:ts.ModuleKind.CommonJS,jsx:ts.JsxEmit.ReactJSX}}).outputText,{exports:out,require:name=>require(path.join(modules,name))});
+ const image=server.renderToStaticMarkup(React.createElement(out.DirectoryCompanyLogo,{src:"/nos-clients/logo/synthetic/"+revision}));
+ assert.match(image,/width="56"/);assert.match(image,/height="56"/);assert.match(image,/object-contain/);assert.match(image,/loading="lazy"/);assert.match(image,/alt=""/);assert.match(image,/aria-hidden="true"/);
+ for(const src of [null,"https://untrusted.invalid/logo.png"]){const fallback=server.renderToStaticMarkup(React.createElement(out.DirectoryCompanyLogo,{src}));assert.ok(!fallback.includes('<img'));assert.ok(fallback.includes('<svg'));}
+});

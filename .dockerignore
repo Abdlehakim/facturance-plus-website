@@ -1,5 +1,6 @@
 node_modules
 .next
+.local
 out
 build
 
@@ -27,3 +28,35 @@ README.md
 AGENTS.md
 CLAUDE.md
 docs
+
+# First-party testing infrastructure is never a production build input.
+tests
+test
+**/tests
+**/test
+scripts/tests
+**/__tests__
+**/__fixtures__
+**/__snapshots__
+**/*.spec.*
+**/*.test.*
+jest.config.*
+vitest.config.*
+playwright.config.*
+cypress.config.*
+tsconfig.spec.json
+coverage
+reports
+results
+test-results
+playwright-report
+tmp
+.cache
+.pytest_cache
+**/__pycache__
+**/*.pyc
+.nyc_output
+validation-artifacts
+validation-reports
+FACTURANCE-*-RESULTS.md
+PHASE-*-RESULTS.md

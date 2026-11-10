@@ -72,7 +72,7 @@ import {
   CLIENT_SIGNUP_URL,
 } from "@/lib/urls"
 
-function PublicPageContainer({
+export function PublicPageContainer({
   children,
 }: {
   children: React.ReactNode
@@ -84,7 +84,7 @@ function PublicPageContainer({
   )
 }
 
-function PublicPageHeader({
+export function PublicPageHeader({
   eyebrow,
   title,
   description,
@@ -606,7 +606,7 @@ export function FacturancePlusPage() {
                   size="lg"
                   className="group h-15 w-full justify-start gap-3 rounded-xl border border-white/70 bg-white px-4 py-2 text-[#0b294d] shadow-[0_10px_26px_rgba(2,18,39,0.22),0_0_22px_rgba(56,189,248,0.14)] transition duration-200 hover:-translate-y-0.5 hover:border-primary hover:bg-primary hover:text-white hover:shadow-[0_16px_36px_rgba(2,18,39,0.36),0_0_30px_rgba(56,189,248,0.3)] focus-visible:ring-sky-300 active:translate-y-0 active:border-primary active:bg-primary active:text-white motion-reduce:transition-none motion-reduce:hover:translate-y-0 sm:w-auto sm:px-5 [&_svg]:size-4"
                 >
-                  <Link href={CLIENT_SIGNUP_URL}>
+                  <a href={CLIENT_SIGNUP_URL}>
                     <Download
                       className="shrink-0 stroke-[2.2] text-primary transition-colors duration-200 group-hover:text-white group-active:text-white motion-reduce:transition-none"
                       aria-hidden="true"
@@ -623,7 +623,7 @@ export function FacturancePlusPage() {
                       className="ml-auto shrink-0 text-[#0b294d]/55 transition-colors duration-200 group-hover:text-white/80 group-active:text-white/80 motion-reduce:transition-none sm:hidden"
                       aria-hidden="true"
                     />
-                  </Link>
+                  </a>
                 </Button>
 
                 <Button
@@ -779,10 +779,10 @@ export function FacturancePlusPage() {
 
               <div className="mt-auto pt-5">
                 <Button asChild className="w-full">
-                  <Link href={CLIENT_SIGNUP_URL}>
+                  <a href={CLIENT_SIGNUP_URL}>
                     <UserRoundCheck />
                     Créer un compte
-                  </Link>
+                  </a>
                 </Button>
               </div>
             </div>
@@ -807,10 +807,10 @@ export function FacturancePlusPage() {
 
               <div className="mt-auto pt-5">
                 <Button asChild className="w-full">
-                  <Link href={CLIENT_LOGIN_URL}>
+                  <a href={CLIENT_LOGIN_URL}>
                     <KeyRound />
                     Ouvrir l’espace client
-                  </Link>
+                  </a>
                 </Button>
               </div>
             </div>
@@ -835,10 +835,10 @@ export function FacturancePlusPage() {
 
               <div className="mt-auto pt-5">
                 <Button asChild className="w-full">
-                  <Link href={CLIENT_DOWNLOADS_URL}>
+                  <a href={CLIENT_DOWNLOADS_URL}>
                     <Download />
                     Télécharger l’application
-                  </Link>
+                  </a>
                 </Button>
               </div>
             </div>
@@ -863,10 +863,10 @@ export function FacturancePlusPage() {
 
               <div className="mt-auto pt-5">
                 <Button asChild variant="outline" className="w-full">
-                  <Link href={CLIENT_DOWNLOADS_URL}>
+                  <a href={CLIENT_DOWNLOADS_URL}>
                     <PackageCheck />
                     Voir les options d’installation
-                  </Link>
+                  </a>
                 </Button>
               </div>
             </div>
@@ -1013,10 +1013,10 @@ export function FacturancePlusPage() {
             </div>
             <div className="mt-6 grid w-full grid-cols-1 gap-3 sm:grid-cols-[1.55fr_1fr_0.9fr] lg:mt-0 lg:w-[34rem] lg:shrink-0">
               <Button asChild className="h-10 w-full bg-white text-[#0b294d] hover:bg-blue-50">
-                <Link href={CLIENT_SIGNUP_URL}>Démarrer l’essai gratuit</Link>
+                <a href={CLIENT_SIGNUP_URL}>Démarrer l’essai gratuit</a>
               </Button>
               <Button asChild variant="outline" className="h-10 w-full border-white/30 bg-white/5 text-white hover:bg-white/10 hover:text-white">
-                <Link href={CLIENT_LOGIN_URL}>Se connecter</Link>
+                <a href={CLIENT_LOGIN_URL}>Se connecter</a>
               </Button>
               {whatsAppUrl ? (
                 <Button asChild variant="outline" className="h-10 w-full border-white/30 bg-white/5 text-white hover:bg-white/10 hover:text-white">
@@ -1335,7 +1335,7 @@ export function SupportPage() {
       content: (
         <ol className="grid gap-2 pl-5 marker:font-semibold marker:text-primary [&>li]:list-decimal">
           <li>Connectez-vous à votre compte.</li>
-          <li>Ouvrez la page <Link href={CLIENT_DOWNLOADS_URL} className={inlineLinkClassName}>Téléchargements</Link>.</li>
+          <li>Ouvrez la page <a href={CLIENT_DOWNLOADS_URL} className={inlineLinkClassName}>Téléchargements</a>.</li>
           <li>Téléchargez l’installateur EXE x64 publié.</li>
           <li>Vérifiez le nom du fichier et son empreinte SHA-256 affichés sur la page.</li>
         </ol>
@@ -1346,7 +1346,7 @@ export function SupportPage() {
       icon: Store,
       content: (
         <p>
-          Après connexion, ouvrez la page <Link href={CLIENT_DOWNLOADS_URL} className={inlineLinkClassName}>Téléchargements</Link> et utilisez l’option Microsoft Store lorsqu’elle est disponible. Les mises à jour sont alors gérées par Microsoft Store.
+          Après connexion, ouvrez la page <a href={CLIENT_DOWNLOADS_URL} className={inlineLinkClassName}>Téléchargements</a> et utilisez l’option Microsoft Store lorsqu’elle est disponible. Les mises à jour sont alors gérées par Microsoft Store.
         </p>
       ),
     },
@@ -1442,7 +1442,7 @@ export function SupportPage() {
         </div>
         <nav className="mt-6 flex flex-wrap gap-3" aria-label="Accès utiles">
           <Button asChild className="bg-white text-[#0b294d] hover:bg-blue-50">
-            <Link href={CLIENT_LOGIN_URL}>Se connecter</Link>
+            <a href={CLIENT_LOGIN_URL}>Se connecter</a>
           </Button>
           <Button asChild variant="outline" className="border-white/30 bg-white/5 text-white hover:bg-white/10 hover:text-white">
             <Link href="/data-requests">Demandes relatives aux données</Link>

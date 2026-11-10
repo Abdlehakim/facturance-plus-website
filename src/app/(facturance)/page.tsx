@@ -32,10 +32,23 @@ function HomepageStructuredData() {
   const homeUrl = `${publicSiteConfig.siteUrl}/`;
   const organizationId = `${homeUrl}#organization`;
   const softwareApplicationId = `${homeUrl}#software-application`;
+  const websiteId = `${homeUrl}#website`;
 
   const structuredData = {
     "@context": "https://schema.org",
     "@graph": [
+      {
+        // Same @id as the node declared inline on
+        // /logiciel-facturation-tunisie: one site, hosted on its own root.
+        // No potentialAction/SearchAction - the site publishes no search
+        // endpoint, so claiming one would be unsupported.
+        "@type": "WebSite",
+        "@id": websiteId,
+        url: homeUrl,
+        name: publicSiteConfig.brandName,
+        inLanguage: "fr",
+        publisher: { "@id": organizationId },
+      },
       {
         "@type": "Organization",
         "@id": organizationId,

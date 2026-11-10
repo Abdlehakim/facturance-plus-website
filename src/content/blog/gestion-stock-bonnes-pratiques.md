@@ -89,7 +89,7 @@ Un rendez-vous mensuel de trente minutes avec ces quatre questions vaut mieux qu
 
 Un logiciel ne décide pas à votre place ce qu’il faut acheter. Ce qu’il apporte, c’est une information fiable et immédiatement disponible, là où un tableur demande une mise à jour manuelle que personne ne tient dans la durée.
 
-Dans Facturance Plus, les articles sont tenus dans des fiches uniques, réutilisées par tous les documents commerciaux. Les mouvements de stock découlent de l’activité enregistrée — ce qui sort en livraison, ce qui entre à la réception — plutôt que d’une saisie séparée. L’historique reste consultable, et lorsque vous gérez plusieurs entreprises, chacune conserve son propre stock et ses propres articles.
+Dans Facturance Plus, les articles sont tenus dans des fiches uniques, réutilisées par tous les documents commerciaux. Les mouvements de stock découlent de l’activité enregistrée — ce qui sort en livraison, ce qui entre à la réception — plutôt que d’une saisie séparée. L’historique reste consultable, et lorsque vous gérez plusieurs entreprises, chacune conserve son propre stock et ses propres articles. Les seuils d’alerte, les dépôts et le lien entre le stock et les documents commerciaux sont détaillés sur [la page dédiée à la gestion de stock](/logiciel-gestion-stock-tunisie).
 
 Les sept pratiques ci-dessus restent de votre ressort : c’est vous qui fixez les seuils, qui décidez du sort des invendus et qui organisez les comptages. L’outil se contente de vous donner des chiffres justes pour le faire.
 
