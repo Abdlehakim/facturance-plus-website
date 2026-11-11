@@ -675,7 +675,7 @@ export default function LogicielFacturationTunisiePage() {
           Logiciel de facturation en Tunisie pour gérer votre entreprise
         </h1>
         <p className="mt-5 text-base leading-8 text-muted-foreground sm:text-lg">
-          Facturance Plus réunit vos devis, factures, bons de livraison et
+          Adapté aux TPE et PME en Tunisie, Facturance Plus réunit vos devis, factures, bons de livraison et
           documents d’achat, vos fiches clients et fournisseurs, vos articles,
           vos stocks et vos règlements dans une seule application. Les
           informations sont saisies une fois et réutilisées partout, ce qui
